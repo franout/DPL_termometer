@@ -2,6 +2,6 @@ Ignore everything in this folder
 ./vhdl/termometer*
 
 # But not these files...
-!./vhdl/termometer/.*\.vhd
+!./vhdl/termometer/.*.vhd
 
-!.*vhdl/termometer/.*\.xise
+!.*vhdl/termometer/.*.xise
