@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital project laboratory/project/vhdl/termometer/termometer.xst" -ofn "D:/uni/2019-2020/CTH/Digital project laboratory/project/vhdl/termometer/termometer.syr" 
