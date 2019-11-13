@@ -1,5 +1,5 @@
 #Ignore everything in this folder
-./vhdl/termometer*
+./vhdl/termometer/*
 
 # But not these files...
 !./vhdl/termometer/.*.vhd
