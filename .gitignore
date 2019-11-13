@@ -1,4 +1,4 @@
-Ignore everything in this folder
+#Ignore everything in this folder
 ./vhdl/termometer*
 
 # But not these files...
