@@ -124,6 +124,21 @@ void __attribute__((interrupt("IRQ"))) interrupt_vector(void)
         LED_ON();
         lit = 1;
     }
+
+
+/*verify that a interrupt has been arrived with debouncign*/
+
+
+
+/*sample the value from the temrometer ( indoor and outdoo ) */
+
+
+
+/* send them to the lcd */
+
+
+    /*clear the interrupt flag*/
+    
 }
 
 

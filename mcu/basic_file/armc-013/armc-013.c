@@ -25,9 +25,16 @@ extern void _enable_interrupts(void);
 /** Main function - we'll never return from here */
 void kernel_main( unsigned int r0, unsigned int r1, unsigned int atags )
 {
-    /* Write 1 to the LED init nibble in the Function Select GPIO
-       peripheral register to enable LED pin as an output */
-    RPI_GetGpio()->LED_GPFSEL |= ( 1 << LED_GPFBIT);
+    
+
+    /*enable GPIO to generate interrupt on switch of ind/outd' */
+
+
+
+
+
+    
+
 
     /* Enable the timer interrupt IRQ */
     RPI_GetIrqController()->Enable_Basic_IRQs = RPI_BASIC_ARM_TIMER_IRQ;
@@ -36,13 +43,7 @@ void kernel_main( unsigned int r0, unsigned int r1, unsigned int atags )
     /* Timer frequency = Clk/256 * 0x400 */
     RPI_GetArmTimer()->Load = 0x400;
 
-    /* Setup the ARM Timer */
-    RPI_GetArmTimer()->Control =
-            RPI_ARMTIMER_CTRL_23BIT |
-            RPI_ARMTIMER_CTRL_ENABLE |
-            RPI_ARMTIMER_CTRL_INT_ENABLE |
-            RPI_ARMTIMER_CTRL_PRESCALE_256;
-
+  
     /* Enable interrupts! */
     _enable_interrupts();
 
