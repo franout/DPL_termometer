@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="valvers-armc-013" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="kernel.armc-013.rpi2">
+         <Option output="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/kernel.armc-013.rpi2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DRPI2=1" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/include" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/include" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/include-fixed" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 kernel.armc-013.rpi2" />
+            <CompileFile command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="kernel.armc-013.rpi2/fast">
+         <Option output="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/kernel.armc-013.rpi2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DRPI2=1" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/include" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/include" />
+            <Add directory="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/../lib/gcc/arm-none-eabi/7.3.1/include-fixed" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 kernel.armc-013.rpi2/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstartup.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstubs.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-start.S">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-armtimer.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-armtimer.h">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-base.h">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-gpio.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-gpio.h">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-interrupts.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-interrupts.h">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-systimer.c">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-systimer.h">
+         <Option target="kernel.armc-013.rpi2"/>
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/toolchain-arm-none-eabi-rpi2.cmake">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>

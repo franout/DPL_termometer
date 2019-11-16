@@ -1,0 +1,18 @@
+.*
+!.gitignore
+!.gitattributes
+!.travis.yml
+
+# Don't include personal docs
+rpi-docs
+
+firmware/firmware
+
+part-*/**/build
+part-*/**/*.asm
+part-*/**/*.elf
+part-*/**/*.hexdump
+part-*/**/*.img
+part-*/**/*.nm
+
+compiler/gcc-arm*
