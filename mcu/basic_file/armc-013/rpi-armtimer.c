@@ -21,20 +21,16 @@ rpi_arm_timer_t* RPI_GetArmTimer(void)
 void RPI_ArmTimerInit(uint32_t time)
 {
 
-	  RPI_GetArmTimer()->Control =
-            RPI_ARMTIMER_CTRL_23BIT |
-            RPI_ARMTIMER_CTRL_ENABLE |
-            RPI_ARMTIMER_CTRL_INT_ENABLE |
-            RPI_ARMTIMER_CTRL_PRESCALE_256;
+	  RPI_GetArmTimer()->Control = 0x00000220;
 
-
+	  RPI_GetArmTimer()->IRQClear=0;
+	 RPI_GetArmTimer()->PreDivider=0;
 
     /* Enable the timer interrupt IRQ */
     RPI_GetIrqController()->Enable_Basic_IRQs = RPI_BASIC_ARM_TIMER_IRQ;
 
     /* Setup the system timer interrupt */
-    /* Timer frequency = Clk/256 * 0x400 */
-    RPI_GetArmTimer()->Load = 0x400;
+    RPI_GetArmTimer()->Load = time;
 
 
 }
@@ -42,12 +38,19 @@ void RPI_ArmTimerInit(uint32_t time)
 
     void RPI_ArmTimerEnable(void){
 
-    		RPI_GetArmTimer()->Contro|=(1<<5);
+    		RPI_GetArmTimer()->Control|=(1<<7);
 
     }
 
     void RPI_ArmTimerStop(void) {
 
-    	    		RPI_GetArmTimer()->Contro&=~(1<<5);
+    	   	RPI_GetArmTimer()->Control&=~(1<<7);
+
+    }
+
+    void RPI_ArmTimerReset(void) {
+
+            RPI_GetArmTimer()->Value=  RPI_GetArmTimer()->Load ;
+
 
     }

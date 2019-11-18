@@ -13,6 +13,8 @@ CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../rpi-base.h
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../rpi-gpio.h
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../rpi-interrupts.h
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../rpi-systimer.h
+CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../t_sensor/1wire.h
+CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../t_sensor/tempmeas.h
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj: ../rpi-armtimer.c
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj: ../rpi-armtimer.h

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013
+CMAKE_SOURCE_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build
+CMAKE_BINARY_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

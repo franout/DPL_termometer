@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013
+CMAKE_SOURCE_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build
+CMAKE_BINARY_DIR = /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/kernel.armc-013.rpi2.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj: ../armc-013.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/armc-013.c.obj.provides.build: CMakeFiles/ke
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj: ../armc-013-cstartup.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstartup.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstartup.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstartup.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstartup.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstartup.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstartup.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstartup.c.obj.provides.build: CMak
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj: ../armc-013-cstubs.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstubs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstubs.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstubs.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstubs.c > CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-cstubs.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-cstubs.c -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj.requires:
 
@@ -131,8 +131,8 @@ CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-cstubs.c.obj.provides.build: CMakeF
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj: ../armc-013-start.S
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building ASM object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/armc-013-start.S
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building ASM object CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/armc-013-start.S
 
 CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj.requires:
 
@@ -147,16 +147,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/armc-013-start.S.obj.provides.build: CMakeFi
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj: ../rpi-armtimer.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-armtimer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-armtimer.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-armtimer.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-armtimer.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-armtimer.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-armtimer.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj.requires:
 
@@ -171,16 +171,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/rpi-armtimer.c.obj.provides.build: CMakeFile
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj: ../rpi-gpio.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-gpio.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-gpio.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-gpio.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-gpio.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-gpio.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-gpio.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj.requires:
 
@@ -195,16 +195,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/rpi-gpio.c.obj.provides.build: CMakeFiles/ke
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj: ../rpi-interrupts.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-interrupts.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-interrupts.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-interrupts.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-interrupts.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-interrupts.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-interrupts.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj.requires:
 
@@ -219,16 +219,16 @@ CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj.provides.build: CMakeFi
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj: CMakeFiles/kernel.armc-013.rpi2.dir/flags.make
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj: ../rpi-systimer.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-systimer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj"
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj   -c /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-systimer.c
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.i"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-systimer.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.i
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-systimer.c > CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.i
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.s"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/rpi-systimer.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.s
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/rpi-systimer.c -o CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.s
 
 CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj.requires:
 
@@ -265,11 +265,11 @@ kernel.armc-013.rpi2: CMakeFiles/kernel.armc-013.rpi2.dir/rpi-interrupts.c.obj
 kernel.armc-013.rpi2: CMakeFiles/kernel.armc-013.rpi2.dir/rpi-systimer.c.obj
 kernel.armc-013.rpi2: CMakeFiles/kernel.armc-013.rpi2.dir/build.make
 kernel.armc-013.rpi2: CMakeFiles/kernel.armc-013.rpi2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable kernel.armc-013.rpi2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable kernel.armc-013.rpi2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kernel.armc-013.rpi2.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Convert the ELF output file to a binary image"
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-objcopy ./kernel.armc-013.rpi2 -O binary ./kernel.armc-013.rpi2.img
-	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-objdump -l -S -D ./kernel.armc-013.rpi2 > ./kernel.armc-013.rpi2.asm
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-objcopy ./kernel.armc-013.rpi2 -O binary ./kernel.armc-013.rpi2.img
+	/mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/compiler/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-objdump -l -S -D ./kernel.armc-013.rpi2 > ./kernel.armc-013.rpi2.asm
 
 # Rule to build all files generated by this target.
 CMakeFiles/kernel.armc-013.rpi2.dir/build: kernel.armc-013.rpi2
@@ -292,6 +292,6 @@ CMakeFiles/kernel.armc-013.rpi2.dir/clean:
 .PHONY : CMakeFiles/kernel.armc-013.rpi2.dir/clean
 
 CMakeFiles/kernel.armc-013.rpi2.dir/depend:
-	cd /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013 /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013 /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/mcu/part-4/armc-013/build/CMakeFiles/kernel.armc-013.rpi2.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013 /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013 /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build /mnt/d/uni/2019-2020/CTH/Digital_project_laboratory/project/mcu/basic_file/armc-013/build/CMakeFiles/kernel.armc-013.rpi2.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/kernel.armc-013.rpi2.dir/depend
 

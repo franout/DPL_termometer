@@ -104,41 +104,38 @@ void __attribute__((interrupt("ABORT"))) data_abort_vector(void)
     importantly clear the interrupt flag so that the interrupt won't
     immediately put us back into the start of the handler again.
 */
+
 void __attribute__((interrupt("IRQ"))) interrupt_vector(void)
 {
-    static int lit = 0;
 
-    /* Clear the ARM Timer interrupt - it's the only interrupt we have
-       enabled, so we want don't have to work out which interrupt source
-       caused us to interrupt */
-    RPI_GetArmTimer()->IRQClear = 1;
+// no debouncing 
 
-    /* Flip the LED */
-    if( lit )
-    {
-        LED_OFF();
-        lit = 0;
+
+    if(get_value_pin(9)) {
+        // indor sensor
+
+
+        // start conversion of value 
+
+
+        // wait for it
+
+
+        // send to the lcd
+
+
+    }else {
+
+        // outdor sensor
+
+
     }
-    else
-    {
-        LED_ON();
-        lit = 1;
-    }
-
-
-/*verify that a interrupt has been arrived with debouncign*/
-
-
-
-/*sample the value from the temrometer ( indoor and outdoo ) */
-
-
-
-/* send them to the lcd */
-
+  
 
     /*clear the interrupt flag*/
-    
+
+    RPI_GetArmTimer()->IRQClear = 1;
+
 }
 
 

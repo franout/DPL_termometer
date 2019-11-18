@@ -167,5 +167,6 @@ typedef struct {
 
 extern rpi_gpio_t* RPI_GetGpio(void);
 extern void RPI_GpioInit(void);
-
+void set_pin ( int value, int pin_num) ;
+int get_value_pin ( int pin_num) ;
 #endif

@@ -117,6 +117,10 @@ typedef struct {
 
 
 extern rpi_arm_timer_t* RPI_GetArmTimer(void);
-extern void RPI_ArmTimerInit(void);
+ void RPI_ArmTimerInit(uint32_t time);
+    void RPI_ArmTimerEnable(void);
+    void RPI_ArmTimerReset(void);
+
+
 
 #endif
