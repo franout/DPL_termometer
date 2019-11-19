@@ -34,9 +34,9 @@ init_set_up: OUT std_logic ; -- commond signal to all component for setting up t
 ------------------------------------------------------------------------------------------------------------------------
 
 in_out:OUT std_logic; -- common signal to all component for indoor outdoor sensor
--- from/to computation 
-start_computation : OUT std_logic;
-done_computation: IN std_logic;
+-- from/to comparison 
+start_comparison : OUT std_logic;
+done_comparison: IN std_logic;
 select_data: OUT std_logic_vector(1 DOWNTO 0); -- selecting between max,min and curr tmp 
 -- from/to lcd interface
 tc_transaction_lcd: IN std_logic; -- it will tell when a data has been processed
@@ -74,11 +74,11 @@ END PROCESS regs;
 
 
 
-comb_logic:PROCESS(in_out_sel,done_computation,done_lcd,done_meas,curr_state)
+comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
-start_meas<='0';display<='0';select_data<="00";in_out<='0';select_data<='0';start_computation<='0';init_set_up<='0';
+start_meas<='0';display<='0';select_data<="00";in_out<='0';select_data<='0';start_comparison<='0';init_set_up<='0';
 
 CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
@@ -103,8 +103,8 @@ WHEN measure_tmp=>
 				next_state<=curr_state;
 				END IF;			
 WHEN compute_max_min=>
-						start_computation<='1';
-						IF(done_computation='1') THEN
+						start_comparison<='1';
+						IF(done_comparison='1') THEN
 						next_state<=dispay_max_tmp;
 						ELSE
 						next_state<=curr_state;
