@@ -1,10 +1,10 @@
 #Ignore everything in this folder
-./vhdl/termometer/*
+./vhdl/*
 
 # But not these files...
-! ./vhdl/termometer/*.vhd
+! ./vhdl/*/*.vhd
 
-! ./vhdl/termometer/*.xise
+! ./vhdl/*/*.xise
 
 ! .gitignore
 
