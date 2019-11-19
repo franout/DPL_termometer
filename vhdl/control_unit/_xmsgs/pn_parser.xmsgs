@@ -8,13 +8,7 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/cu/control_unit/control_unit.vhd&quot; into library work</arg>
-</msg>
-
-<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/cu/control_unit/control_unit.vhd</arg>&quot; Line <arg fmt="%d" index="2">37</arg>. <arg fmt="%s" index="3">Syntax error near &quot;)&quot;.</arg>
-</msg>
-
-<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/cu/control_unit/control_unit.vhd</arg>&quot; Line <arg fmt="%d" index="2">47</arg>. <arg fmt="%s" index="3">Syntax error near &quot;begin&quot;.</arg>
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd&quot; into library work</arg>
 </msg>
 
 </messages>
