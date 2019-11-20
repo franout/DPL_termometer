@@ -46,8 +46,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
          in_out_sel : IN  std_logic;
          init_set_up : OUT  std_logic;
          in_out : OUT  std_logic;
-         start_computation : OUT  std_logic;
-         done_computation : IN  std_logic;
+         start_comparison : OUT  std_logic;
+         done_comparison : IN  std_logic;
          select_data : OUT  std_logic_vector(1 downto 0);
          display : OUT  std_logic;
          done_lcd : IN  std_logic;
@@ -61,18 +61,19 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
    signal reset : std_logic := '0';
    signal clk : std_logic := '0';
    signal in_out_sel : std_logic := '0';
-   signal done_computation : std_logic := '0';
+   signal done_comparison : std_logic := '0';
    signal done_lcd : std_logic := '0';
    signal done_meas : std_logic := '0';
-
  	--Outputs
    signal init_set_up : std_logic;
    signal in_out : std_logic;
-   signal start_computation : std_logic;
+   signal start_comparison : std_logic;
    signal select_data : std_logic_vector(1 downto 0);
    signal display : std_logic;
    signal start_meas : std_logic;
+	signal cmd : std_logic_vector(6 DOWNTO 0) ;
 
+	
    -- Clock period definitions
    constant clk_period : time := 10 ns;
  
@@ -85,14 +86,14 @@ BEGIN
           in_out_sel => in_out_sel,
           init_set_up => init_set_up,
           in_out => in_out,
-          start_computation => start_computation,
-          done_computation => done_computation,
+          start_comparison => start_comparison,
+          done_comparison => done_comparison,
           select_data => select_data,
           display => display,
           done_lcd => done_lcd,
           start_meas => start_meas,
           done_meas => done_meas
-        );
+			 );
 
    -- Clock process definitions
    clk_process :process
@@ -107,14 +108,153 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
-
+      -- hold reset state for 50 ns.
+      reset<='1';
+		FOR I IN 0 TO 5 LOOP
+		wait until clk='1' AND clk'EVENT;
+		END LOOP;
+		ASSERT cmd="1000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
       wait for clk_period*10;
 
-      -- insert stimulus here 
+     --  stimulus for uut 
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+		wait for clk_period;
+		ASSERT cmd="1000000" REPORT "failed to set set up signal for interfaces" SEVERITY FAILURE;
+		reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+		wait for clk_period;
+		ASSERT cmd="1000000" REPORT "there is a change in the cmd during the set up phase" SEVERITY FAILURE; -- no changes becouse it waits for the interfaces set up
+		
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+		for i in  0 to 5 LOOP
+	wait for clk_period;
+	END LOOP ; -- wait for 5 c.c.
+		ASSERT cmd="1000000" REPORT "cu doesn't wait for the interfaces" SEVERITY FAILURE;
+		
+		
+		-- set up of peripherals correctly done 
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='1';
+    done_lcd <='1';
+    done_meas <='1';
+	wait for clk_period; -- idle state
+		ASSERT cmd="1000000" REPORT "not in idle state" SEVERITY FAILURE;
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+	wait for clk_period; -- idle state
+		ASSERT cmd="0000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
+		
+		-- transaction on the switch  start measurement
+		reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+	FOR i IN 0 TO 5  LOOP
+	wait for clk_period; 
+	END LOOP;
+		ASSERT cmd="0100001" REPORT "no started measurements" SEVERITY FAILURE;
+	
+
+
+-- measure is done	
+
+	reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='1';
+	
+	wait for clk_period; 
+	-- in out is still set to one 
+		ASSERT cmd="0100001" REPORT "not started comparison " SEVERITY FAILURE;
+		-- make comparison and waiting for it
+
+
+	reset<='0';
+		in_out_sel <= '0';
+   done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+	
+	
+	wait for clk_period; 
+	-- no changes during the comparison
+		ASSERT cmd="0110000" REPORT "changed value on in out " SEVERITY FAILURE;
+		
+	reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='1';
+    done_lcd <='0';
+    done_meas <='0';
+	 	wait for clk_period; 
+
+	 	ASSERT cmd="0110000" REPORT "not completed comparison" SEVERITY FAILURE;
+
+	-- display max
+
+	reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='0';
+    done_lcd <='1';
+    done_meas <='0';
+	
+	wait for clk_period; 
+		ASSERT cmd="0100110" REPORT "not showing max tmp" SEVERITY FAILURE;
+		
+
+
+-- display min
+
+
+	reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='0';
+    done_lcd <='1';
+    done_meas <='0';
+	
+	wait for clk_period; 
+		ASSERT cmd="0101010" REPORT "not showing min tmp" SEVERITY FAILURE;
+		
+		
+		-- dispaly curr 
+	reset<='0';
+		in_out_sel <= '1';
+    done_comparison<='0';
+    done_lcd <='1';
+    done_meas <='0';
+	
+	wait for clk_period; 
+		ASSERT cmd="0101110" REPORT "not showing curr tmp" SEVERITY FAILURE;
+		
+		
+		done_lcd<='0';
+		
+		--idle state 
+	wait for clk_period;
+			ASSERT cmd="0100000" REPORT "not in idle state" SEVERITY FAILURE;
+
+
 
       wait;
    end process;
+
+
+cmd<=init_set_up & in_out & start_comparison & select_data &  display &   start_meas;
 
 END;

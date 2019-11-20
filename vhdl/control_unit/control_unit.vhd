@@ -39,7 +39,6 @@ start_comparison : OUT std_logic;
 done_comparison: IN std_logic;
 select_data: OUT std_logic_vector(1 DOWNTO 0); -- selecting between max,min and curr tmp 
 -- from/to lcd interface
-tc_transaction_lcd: IN std_logic; -- it will tell when a data has been processed
 display: OUT std_logic;
 done_lcd: IN std_logic;
 -- from/to sensor interface
@@ -53,7 +52,7 @@ architecture Behavioral of control_unit is
 type  state_t is (set_up,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
 
 SIGNAL curr_state,next_state: state_t;
-
+SIGNAL in_out_val: std_logic:='0';
 
 
 begin
@@ -78,12 +77,16 @@ comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
-start_meas<='0';display<='0';select_data<="00";in_out<='0';select_data<='0';start_comparison<='0';init_set_up<='0';
+start_meas<='0';
+display<='0';
+select_data<="00";
+in_out<=in_out_val;
+start_comparison<='0';init_set_up<='0';
 
 CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
-			IF ( done_computation='1' AND done_lcd='1' AND done_meas='1' ) THEN
+			IF ( done_comparison='1' AND done_lcd='1' AND done_meas='1' ) THEN
 			next_state<=idle;
 			ELSE
 			next_state<=curr_state;
@@ -91,11 +94,11 @@ WHEN set_up=> init_set_up<='1';
 WHEN idle=> 
 				IF( in_out_sel'EVENT) THEN
 				next_state<=measure_tmp;
+				in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSE 
 				next_state<=curr_state;
 				END IF;
 WHEN measure_tmp=>
-				in_out<=in_out_sel;
 				start_meas<='1';
 				IF(done_meas='1')THEN
 				next_state<=compute_max_min;
@@ -105,19 +108,21 @@ WHEN measure_tmp=>
 WHEN compute_max_min=>
 						start_comparison<='1';
 						IF(done_comparison='1') THEN
-						next_state<=dispay_max_tmp;
+						next_state<=display_max_tmp;
 						ELSE
 						next_state<=curr_state;
 						END IF;
 WHEN display_max_tmp=>
 							select_data<="01";
-							IF ( tc_transaction_lcd ='1') THEN
+							display<='1';
+							IF ( done_lcd ='1') THEN
 							next_state<=display_min_tmp;
 							ELSE 
 							next_state<=curr_state;
 							END IF;
 WHEN display_min_tmp=>select_data<="10";
-							IF ( tc_transaction_lcd ='1') THEN
+							display<='1';
+							IF ( done_lcd ='1') THEN
 							next_state<=display_curr_tmp;
 							ELSE 
 							next_state<=curr_state;
@@ -125,7 +130,8 @@ WHEN display_min_tmp=>select_data<="10";
 
 WHEN display_curr_tmp=> 
 							select_data<="11";
-							IF ( tc_transaction_lcd ='1') THEN
+							display<='1';
+							IF ( done_lcd ='1') THEN
 							next_state<=idle;
 							ELSE 
 							next_state<=curr_state;
@@ -134,7 +140,7 @@ WHEN display_curr_tmp=>
 -- for a safe fsm
 WHEN OTHERS=> 
 	next_state<=set_up;
-	start_meas<='0';display<='0';select_data<="00";in_out<='0';select_data<='0';start_computation<='0';init_set_up<='0';
+	start_meas<='0';display<='0';select_data<="00";in_out<='0';start_comparison<='0';init_set_up<='0';
 END CASE;
 
 END PROCESS comb_logic;
