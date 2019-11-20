@@ -1,10 +1,26 @@
 #Ignore everything in this folder
-./vhdl/*
+./vhdl/control_unit/*
+./vhdl/computation/*
+
+./vhdl/top_termometer/*
 
 # But not these files...
-! ./vhdl/*/*.vhd
 
-! ./vhdl/*/*.xise
+
+! ./vhdl/control_unit/tb_main_control_unit.vhd
+! ./vhdl/control_unit/control_unit.vhd
+! ./vhdl/control_unit/control_unit.xise
+
+
+! ./vhdl/comparison/tb_comparison.vhd
+! ./vhdl/comparison/comparison.vhd
+! ./vhdl/comparison/comparison.xise
+
+
+! ./vhdl/top_termometer/tb_top_termometer.vhd
+! ./vhdl/top_termometer/top_termometer.vhd
+! ./vhdl/top_termometer/top_termomemter.xise
+
 
 ! .gitignore
 
