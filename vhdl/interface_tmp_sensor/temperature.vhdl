@@ -55,108 +55,140 @@ begin
 	else
 		case state is
 		when RESET1 	=>	cnt<=cnt+1;
-							if (cnt< 500) then					-- controller => ds18s20
-								dq<='0';							--low reset signal
+					dq<='0';
+							if (cnt> 500) then						--low reset signal
 								state<=RESET2;
+							else
+								state<=RESET1;
 							END IF;
 						
-		WHEN RESET2 	=>	if (cnt>=500 and cnt<520) then		--wait 20 us
+		WHEN RESET2 	=>	if (cnt<515) then	                                            	--wait 15 us
 								dq<='Z';
 								cnt<=cnt+1;
+					end if;
+					if(dq='0')                                                              --detect the response
 								state<=PRE1;
-							end if;
+					else
+								dq<='z';
+					end if;
 							
-		WHEN PRE1		=>	if ( dq='0') then						-- ds => controller
-								led1<='1';							--shows the presence of ds18s20
-								state<=PRE2;						--when detect the presence pluse, enter PRE2 state 
-								cnt<=cnt+1;
-							else
-								led1<='0';
-								state<=RESET1;
-								cnt<=0;
-							end if;
+		WHEN PRE1	=>	if ( dq='0') then						-- ds => controller
+							led1<='1';					--shows the presence of ds18s20
+							state<=PRE2;					--when detect the presence pluse, enter PRE2 state 
+							cnt<=cnt+1;
+					else
+							led1<='0';
+							state<=RESET1;
+							cnt<=0;
+					end if;
 							
-		when PRE2		=>	cnt<=cnt+1;						-- *********the difference of 1 ds and more than 1 ds?**********
-							if (cnt>760) then					-- initial finish
-								state<=CMD_CC;						-- skip ROM
-								cnt<=0;
-							end if;
+		when PRE2	=>	cnt<=cnt+1;						
+					if (cnt>760) then					-- initial finish
+							state<=Match_Rom;						--
+							cnt<=0;
+					end if;
 							
-		when CMD_CC 	=>	writetemp<="11001100";
-							state<=CMD_WR;
-		when CMD_WR		=>	case cnt_wr is
-							when 0 to 7	=>  if(writetemp(cnt_wr)='0') then
-												state<=WRITE_LOW;
-											else
-												state<=WRITE_HIGH;
-											end if;
-											cnt_wr<=cnt_wr+1;
-							when 8		=>  cnt_wr<=0;
-											if(write_flag=0) then				--THE FIRST TIME FOR CC
-												state<= CONV_44;
-												write_flag<=1;
-											elsif(write_flag=1)then				--44
-												state<= RESET1;
-												write_flag<=2;
-											elsif(write_flag=2) then			--THE SECOND TIME FOR CC
-												state<=CMD_BE;
-												write_flag<=3;
-											elsif(write_flag=3) then			--BE
-												state<=GET_TEMP;				-- get temperature
-												write_flag<=0;
-											end if;
+		when Match_Rom  => 	writetemp<="01010101";                            --start to find address
+					state<=CMD_WR;
+		
+		when write_add  =>	if (cnt_add<8) then 
+						writetemp<=address64(63-8*cnt_add downto 64-8*(cnt_add+1));
+						state<=CMD_WR;
+						cnt_add<=cnt_add+1;
+					end if;
+		when CONV_44	=> 	writetemp<="01000100";                          --convert temperature
+					state<=CMD_WR;
+		when wait_conv  =>	if (cnt <800) then                               --wait for coversion
+						cnt<=cnt+1;
+						dq<='1';
+					else
+						state<=RESET1;
+					end if;
+		when CMD_WR	=>	case cnt_wr is
+					when 0 to 7	=>	if(writetemp(cnt_wr)='0') then
+									state<=WRITE_LOW;
+								else
+									state<=WRITE_HIGH;
+								end if;
+								cnt_wr<=cnt_wr+1;
+					when 8		=>	cnt_wr<=0;
+								if(write_flag=0) then			 --the first time to search address 
+									state<=write_add;
+									write_flag<=1;
+								elsif(write_flag=1) then 
+									state<=write_add;
+									if(cnt_add=8) then
+										write_flag<=2;
+										if(search_time=0) then
+											write_flag<=2;
+											state<=CONV_44;
+											search_time<=1;
+										else
+											write_flag<=3;
+											state<=CMD_BE;
+										end if;
+									else
+										state<=write_add;
+										write_flag<=1;
+									end if;
+								elsif(write_flag=2)then				
+									state<=wait_conv;
+									write_flag<=0;
+								elsif(write_flag=3) then			--BE
+									state<=GET_TEMP;				-- get temperature
+									write_flag<=0;
+								end if;
 												
 							when others =>  cnt_wr<=0;
 							end case;
 		
-		WHEN WRITE_LOW  =>	case write_low_cnt is
-							when 0		=>  dq<='0';
-											if (cnt=80) then
-												write_low_cnt<=1;
-												cnt<=0;
-											else
-												cnt<=cnt+1;
-											end if;
-							when 1		=>	dq<='Z';
-											if (cnt=10) then
-												write_low_cnt<=2;
-												cnt<=0;
-											else
-												cnt<=cnt+1;
-											end if;
-							when 2		=>  state<= CMD_WR;
-											write_low_cnt<=0;
+		WHEN WRITE_LOW	=>	case write_low_cnt is
+							when 0	=>	dq<='0';
+									if (cnt=80) then
+										write_low_cnt<=1;
+										cnt<=0;
+									else
+										cnt<=cnt+1;
+									end if;
+							when 1	=>	dq<='Z';
+									if (cnt=10) then
+										write_low_cnt<=2;
+										cnt<=0;
+									else
+										cnt<=cnt+1;
+									end if;
+							when 2	=>	state<= CMD_WR;
+									write_low_cnt<=0;
 							when others =>  write_low_cnt<=0;
 							end case;
 							
 		when WRITE_HIGH	=>  case write_high_cnt is
-							when 0		=>	dq<='0';
-											if (cnt=5) then
-												write_high_cnt<=1;
-												cnt<=0;
-											else
-												cnt<=cnt+1;
-											end if;
-							when 1		=>  dq<='Z';
-											if (cnt=60) then
-												write_high_cnt<=2;
-												cnt<=0;
-											else
-												cnt<=cnt+1;
-											end if;
-							when 2		=>  state<=CMD_WR;
-											write_high_cnt<=0;
+							when 0	=>	dq<='0';
+									if (cnt=5) then
+										write_high_cnt<=1;
+										cnt<=0;
+									else
+										cnt<=cnt+1;
+									end if;
+							when 1	=>	dq<='Z';
+									if (cnt=60) then
+										write_high_cnt<=2;
+										cnt<=0;
+									else
+										cnt<=cnt+1;
+									end if;
+							when 2	=>	state<=CMD_WR;
+									write_high_cnt<=0;
 							when others =>  write_high_cnt<=0;
 							end case;
 							
-		when CONV_44	=> 	writetemp<="01000100";
-							state<=CMD_WR;
-		when CMD_BE		=>  writetemp<="10111110";
-							state<=CMD_WR;
-		when GET_TEMP	=>  case get_temp_cnt is												--read temperature from dq
+		
+		when CMD_BE	=> 	writetemp<="10111110";
+					state<=CMD_WR;
+		when GET_TEMP	=> 	case get_temp_cnt is												--read temperature from dq
 							when 0			=>	state<=READ_BIT;
 												get_temp_cnt<=get_temp_cnt+1;
-							when 1 to 9		=>	dataout(get_temp_cnt-1)<=datatemp;				--0 to 8: 9 bits
+							when 1 to 9		=>	dataout(get_temp_cnt-1)<=datatemp;				--0 to 8: 9 bits 8LSB+1MSB(sign)sign
 												state<=READ_BIT;
 												get_temp_cnt<=get_temp_cnt+1;
 							when 10			=>  dataout(8)<=dataout(8);
@@ -182,14 +214,14 @@ begin
 											end if;
 							when 2		=>	dq<='Z';
 											datatemp<=dq;
-											if(cnt=5) then 		--13us read out data from dq;
+											if(cnt=2) then 		--13us read out data from dq;
 												cnt_rd<=3;
 												cnt<=0;
 											else
 												cnt<=cnt+1;
 											end if;
 							when 3 		=>  dq<='Z';
-											if(cnt=60) then			--delay 60 us
+											if(cnt=59) then			--delay 60 us
 												cnt<=0;
 												cnt_rd<=0;
 												state<=GET_TEMP;
