@@ -40,6 +40,7 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
     -- Component Declaration for the Unit Under Test (UUT)
  
     COMPONENT control_unit
+	 GENERIC ( WATCH_DOG_COUNT: integer:= 100);
     PORT(
          reset : IN  std_logic;
          clk : IN  std_logic;
@@ -249,7 +250,62 @@ BEGIN
 	wait for clk_period;
 			ASSERT cmd="0100000" REPORT "not in idle state" SEVERITY FAILURE;
 
+ --- transition from high to low detect
+ reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+	
+	wait for clk_period*2; 
+	
+		ASSERT cmd="0000001" REPORT "transition h to l not detected" SEVERITY FAILURE;
+	
 
+
+-- reset again 
+    reset<='1';
+		FOR I IN 0 TO 5 LOOP
+		wait until clk='1' AND clk'EVENT;
+		END LOOP;
+		ASSERT cmd="1000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
+      wait for clk_period*10;
+
+
+-- watchdog exppired into the setup state
+	reset<='0';
+	FOR I IN 0 TO 100 LOOP
+		wait until clk='1' AND clk'EVENT;
+		END LOOP;
+				wait until clk='1' AND clk'EVENT;
+
+		ASSERT cmd="0000000"  REPORT "reset values of cu are wrong watchdog not active" SEVERITY FAILURE;
+		
+-- watchdog expire into the idle state
+		-- set up of peripherals correctly done 
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='1';
+    done_lcd <='1';
+    done_meas <='1';
+	wait for clk_period; -- idle state
+		ASSERT cmd="1000000" REPORT "not in idle state" SEVERITY FAILURE;
+		reset<='0';
+		in_out_sel <= '0';
+    done_comparison<='0';
+    done_lcd <='0';
+    done_meas <='0';
+	wait for clk_period; -- idle state
+		ASSERT cmd="0000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
+		
+		-- watchdog expires
+			FOR I IN 0 TO 100 LOOP
+		wait until clk='1' AND clk'EVENT;
+		END LOOP;
+		-- tc is activated and cu understands
+				wait until clk='1' AND clk'EVENT;
+
+		ASSERT cmd="0000001" REPORT "no started measurements after wd expired" SEVERITY FAILURE;
 
       wait;
    end process;

@@ -11,8 +11,33 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run all
 
-** Failure: not showing max tmp 1
+** Failure:reset values of cu are wrong watchdog not active
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# run all
+INFO: Simulator is stopped.
+# run 100.00us
+INFO: Simulator is stopped.
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:reset values of cu are wrong watchdog not active
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:reset values of cu are wrong watchdog not active
 User(VHDL) Code Called Simulation Stop
 In process tb_main_control_unit.vhd:stim_proc 
  
@@ -25,8 +50,9 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 100.00us
 
-** Failure:not showing min tmp
+** Failure:reset values of cu are wrong watchdog not active
 User(VHDL) Code Called Simulation Stop
 In process tb_main_control_unit.vhd:stim_proc 
  
@@ -39,8 +65,37 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 100.00us
 
-** Failure:not showing min tmp
+** Failure:reset values of cu are wrong watchdog not active
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1545 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# step
+
+** Failure:reset values of cu are wrong watchdog not active
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1545 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# step
+
+** Failure:reset values of cu are wrong watchdog not active
 User(VHDL) Code Called Simulation Stop
 In process tb_main_control_unit.vhd:stim_proc 
  
@@ -53,8 +108,41 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 100.00us
+Stopped at time : 1575 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1575 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run all
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00us
+Stopped at time : 1555 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# step
 
-** Failure:not showing min tmp
+** Failure:reset values of cu are wrong watchdog not active
 User(VHDL) Code Called Simulation Stop
 In process tb_main_control_unit.vhd:stim_proc 
  
@@ -67,6 +155,8 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 100.00us
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 282
 ISim P.20131013 (signature 0x7708f090)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -75,3 +165,55 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1555 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 280
+# step
+
+** Failure:reset values of cu are wrong watchdog not active
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00us
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 282
+# step
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 286
+# restart
+# run 100.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 282
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00us
+Stopped at time : 1565 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 282
+# run all
+Stopped at time : 26680575 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter.vhd" Line 53
+# restart
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00us

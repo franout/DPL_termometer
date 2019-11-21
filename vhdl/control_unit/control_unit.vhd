@@ -19,10 +19,12 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.math_real."log2";
+use IEEE.math_real."ceil";
 
 
 entity control_unit is
-
+GENERIC ( WATCH_DOG_COUNT: integer:= 100);
 PORT ( reset,clk: IN std_logic;
 -- selecting the indoor or outdoor temp sensor
 in_out_sel: IN std_logic;
@@ -49,13 +51,28 @@ end entity control_unit;
 
 
 architecture Behavioral of control_unit is
-type  state_t is (set_up,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
+type  state_t is (set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
 
 SIGNAL curr_state,next_state: state_t;
 SIGNAL in_out_val: std_logic:='0';
+SIGNAL tc_wd: std_logic;
+
+-- component declaration it works like a watchdog timer for the setup phase and the idle period ( for refreshing the temperature) 
+
+
+component counter is
+generic ( N : integer := 8;
+			MAX_VAL: integer :=255);
+    Port ( clk : in  STD_LOGIC;
+           reset : in  STD_LOGIC;
+           tc : out  STD_LOGIC);
+end component counter;
 
 
 begin
+
+
+watch_dog: counter GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)))),MAX_VAL=>WATCH_DOG_COUNT) PORT MAP(clk=>clk,reset=>reset,tc=> tc_wd);
 
 
 regs:PROCESS(clk,reset)
@@ -73,7 +90,7 @@ END PROCESS regs;
 
 
 
-comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state)
+comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
@@ -88,11 +105,15 @@ WHEN set_up=> init_set_up<='1';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
 			IF ( done_comparison='1' AND done_lcd='1' AND done_meas='1' ) THEN
 			next_state<=idle;
+			ELSIF ( tc_wd='1' ) THEN 
+			next_state<=set_up_hang;
 			ELSE
 			next_state<=curr_state;
 			END IF;
+WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
+					next_state<=set_up;
 WHEN idle=> 
-				IF( in_out_sel'EVENT) THEN
+				IF( in_out_sel'EVENT OR tc_wd='1' ) THEN
 				next_state<=measure_tmp;
 				in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSE 
