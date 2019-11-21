@@ -45,7 +45,8 @@ display: OUT std_logic;
 done_lcd: IN std_logic;
 -- from/to sensor interface
 start_meas: OUT std_logic;
-done_meas:IN std_logic
+done_meas:IN std_logic;
+reset_i: OUT std_logic -- internal reset for all interfaces 
 );
 end entity control_unit;
 
@@ -101,7 +102,7 @@ select_data<="00";
 in_out<=in_out_val;
 start_comparison<='0';init_set_up<='0';
 enable_wd<='0';
-
+reset_i<='0';
 CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
@@ -114,6 +115,7 @@ WHEN set_up=> init_set_up<='1';
 			next_state<=curr_state;
 			END IF;
 WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
+					reset_i<='1';
 					next_state<=set_up;
 WHEN idle=> enable_wd<='1';
 				IF( in_out_sel'EVENT OR tc_wd='1' ) THEN
@@ -164,7 +166,8 @@ WHEN display_curr_tmp=>
 -- for a safe fsm
 WHEN OTHERS=> 
 	next_state<=set_up;
-	start_meas<='0';display<='0';select_data<="00";in_out<='0';start_comparison<='0';init_set_up<='0';
+	start_meas<='0';display<='0';select_data<="00";in_out<='0';start_comparison<='0';init_set_up<='0';enable_wd<='0';
+reset_i<='0';
 END CASE;
 
 END PROCESS comb_logic;

@@ -53,7 +53,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
          display : OUT  std_logic;
          done_lcd : IN  std_logic;
          start_meas : OUT  std_logic;
-         done_meas : IN  std_logic
+         done_meas : IN  std_logic;
+			reset_i:OUT std_logic
         );
     END COMPONENT;
     
@@ -72,8 +73,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
    signal select_data : std_logic_vector(1 downto 0);
    signal display : std_logic;
    signal start_meas : std_logic;
-	signal cmd : std_logic_vector(6 DOWNTO 0) ;
-
+	signal cmd : std_logic_vector(7 DOWNTO 0) ;
+	signal reset_i: std_logic;
 	
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -93,7 +94,8 @@ BEGIN
           display => display,
           done_lcd => done_lcd,
           start_meas => start_meas,
-          done_meas => done_meas
+          done_meas => done_meas, 
+			 reset_i=> reset_i
 			 );
 
    -- Clock process definitions
@@ -114,7 +116,7 @@ BEGIN
 		FOR I IN 0 TO 5 LOOP
 		wait until clk='1' AND clk'EVENT;
 		END LOOP;
-		ASSERT cmd="1000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
+		ASSERT cmd="10000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
       wait for clk_period*10;
 
      --  stimulus for uut 
@@ -124,14 +126,14 @@ BEGIN
     done_lcd <='0';
     done_meas <='0';
 		wait for clk_period;
-		ASSERT cmd="1000000" REPORT "failed to set set up signal for interfaces" SEVERITY FAILURE;
+		ASSERT cmd="10000000" REPORT "failed to set set up signal for interfaces" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '1';
     done_comparison<='0';
     done_lcd <='0';
     done_meas <='0';
 		wait for clk_period;
-		ASSERT cmd="1000000" REPORT "there is a change in the cmd during the set up phase" SEVERITY FAILURE; -- no changes becouse it waits for the interfaces set up
+		ASSERT cmd="10000000" REPORT "there is a change in the cmd during the set up phase" SEVERITY FAILURE; -- no changes becouse it waits for the interfaces set up
 		
 		reset<='0';
 		in_out_sel <= '0';
@@ -141,7 +143,7 @@ BEGIN
 		for i in  0 to 5 LOOP
 	wait for clk_period;
 	END LOOP ; -- wait for 5 c.c.
-		ASSERT cmd="1000000" REPORT "cu doesn't wait for the interfaces" SEVERITY FAILURE;
+		ASSERT cmd="10000000" REPORT "cu doesn't wait for the interfaces" SEVERITY FAILURE;
 		
 		
 		-- set up of peripherals correctly done 
@@ -151,14 +153,14 @@ BEGIN
     done_lcd <='1';
     done_meas <='1';
 	wait for clk_period; -- idle state
-		ASSERT cmd="1000000" REPORT "not in idle state" SEVERITY FAILURE;
+		ASSERT cmd="10000000" REPORT "not in idle state" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';
     done_lcd <='0';
     done_meas <='0';
 	wait for clk_period; -- idle state
-		ASSERT cmd="0000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
+		ASSERT cmd="00000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
 		
 		-- transaction on the switch  start measurement
 		reset<='0';
@@ -169,7 +171,7 @@ BEGIN
 	FOR i IN 0 TO 5  LOOP
 	wait for clk_period; 
 	END LOOP;
-		ASSERT cmd="0100001" REPORT "no started measurements" SEVERITY FAILURE;
+		ASSERT cmd="01000010" REPORT "no started measurements" SEVERITY FAILURE;
 	
 
 
@@ -183,7 +185,7 @@ BEGIN
 	
 	wait for clk_period; 
 	-- in out is still set to one 
-		ASSERT cmd="0100001" REPORT "not started comparison " SEVERITY FAILURE;
+		ASSERT cmd="01000010" REPORT "not started comparison " SEVERITY FAILURE;
 		-- make comparison and waiting for it
 
 
@@ -196,7 +198,7 @@ BEGIN
 	
 	wait for clk_period; 
 	-- no changes during the comparison
-		ASSERT cmd="0110000" REPORT "changed value on in out " SEVERITY FAILURE;
+		ASSERT cmd="01100000" REPORT "changed value on in out " SEVERITY FAILURE;
 		
 	reset<='0';
 		in_out_sel <= '1';
@@ -205,7 +207,7 @@ BEGIN
     done_meas <='0';
 	 	wait for clk_period; 
 
-	 	ASSERT cmd="0110000" REPORT "not completed comparison" SEVERITY FAILURE;
+	 	ASSERT cmd="01100000" REPORT "not completed comparison" SEVERITY FAILURE;
 
 	-- display max
 
@@ -216,7 +218,7 @@ BEGIN
     done_meas <='0';
 	
 	wait for clk_period; 
-		ASSERT cmd="0100110" REPORT "not showing max tmp" SEVERITY FAILURE;
+		ASSERT cmd="01001100" REPORT "not showing max tmp" SEVERITY FAILURE;
 		
 
 
@@ -230,7 +232,7 @@ BEGIN
     done_meas <='0';
 	
 	wait for clk_period; 
-		ASSERT cmd="0101010" REPORT "not showing min tmp" SEVERITY FAILURE;
+		ASSERT cmd="01010100" REPORT "not showing min tmp" SEVERITY FAILURE;
 		
 		
 		-- dispaly curr 
@@ -241,14 +243,14 @@ BEGIN
     done_meas <='0';
 	
 	wait for clk_period; 
-		ASSERT cmd="0101110" REPORT "not showing curr tmp" SEVERITY FAILURE;
+		ASSERT cmd="01011100" REPORT "not showing curr tmp" SEVERITY FAILURE;
 		
 		
 		done_lcd<='0';
 		
 		--idle state 
 	wait for clk_period;
-			ASSERT cmd="0100000" REPORT "not in idle state" SEVERITY FAILURE;
+			ASSERT cmd="01000000" REPORT "not in idle state" SEVERITY FAILURE;
 
  --- transition from high to low detect
  reset<='0';
@@ -259,7 +261,7 @@ BEGIN
 	
 	wait for clk_period*2; 
 	
-		ASSERT cmd="0000001" REPORT "transition h to l not detected" SEVERITY FAILURE;
+		ASSERT cmd="00000010" REPORT "transition h to l not detected" SEVERITY FAILURE;
 	
 
 
@@ -268,7 +270,7 @@ BEGIN
 		FOR I IN 0 TO 5 LOOP
 		wait until clk='1' AND clk'EVENT;
 		END LOOP;
-		ASSERT cmd="1000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
+		ASSERT cmd="10000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
       wait for clk_period*10;
 
 
@@ -279,7 +281,7 @@ BEGIN
 		END LOOP;
 				wait until clk='1' AND clk'EVENT;
 
-		ASSERT cmd="0000000"  REPORT "reset values of cu are wrong watchdog not active" SEVERITY FAILURE;
+		ASSERT cmd="00000001"  REPORT "reset values of cu are wrong watchdog not active" SEVERITY FAILURE;
 		
 -- watchdog expire into the idle state
 		-- set up of peripherals correctly done 
@@ -289,14 +291,14 @@ BEGIN
     done_lcd <='1';
     done_meas <='1';
 	wait for clk_period; -- idle state
-		ASSERT cmd="1000000" REPORT "not in idle state" SEVERITY FAILURE;
+		ASSERT cmd="10000000" REPORT "not in idle state" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';
     done_lcd <='0';
     done_meas <='0';
 	wait for clk_period; -- idle state
-		ASSERT cmd="0000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
+		ASSERT cmd="00000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
 		
 		-- watchdog expires
 			FOR I IN 0 TO 100 LOOP
@@ -305,12 +307,12 @@ BEGIN
 		-- tc is activated and cu understands
 				wait until clk='1' AND clk'EVENT;
 
-		ASSERT cmd="0000001" REPORT "no started measurements after wd expired" SEVERITY FAILURE;
+		ASSERT cmd="00000010" REPORT "no started measurements after wd expired" SEVERITY FAILURE;
 
       wait;
    end process;
 
 
-cmd<=init_set_up & in_out & start_comparison & select_data &  display &   start_meas;
+cmd<=init_set_up & in_out & start_comparison & select_data &  display &   start_meas & reset_i;
 
 END;
