@@ -27,6 +27,7 @@ entity counter is
 generic ( N : integer := 8;
 			MAX_VAL: integer :=200);
     Port ( clk : in  STD_LOGIC;
+				enable: in std_logic;
            reset : in  STD_LOGIC;
            tc : out  STD_LOGIC);
 end counter;
@@ -44,6 +45,7 @@ IF(reset='1') THEN
 cnt<=(OTHERS=>'0');
 tc<='0';
 ELSE 
+IF (enable='1') THEN 
 IF(clk='1' and clk'event) THEN
 	IF( to_integer(unsigned(cnt))>=MAX_VAL-1) THEN
 	tc<='1';
@@ -52,8 +54,11 @@ IF(clk='1' and clk'event) THEN
 	cnt<=std_logic_vector(unsigned(cnt)+1);
 	tc<='0';
 	END IF;
+END IF;
 
+ELSE 
 
+cnt<=(OTHERS=>'0');
 END IF;
 
 END IF;

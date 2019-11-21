@@ -1,0 +1,11 @@
+[Inputs]
+clk
+reset
+in_out_sel
+start_comparison
+=data_in[7:0]=
+=select_data[1:0]=
+[Outputs]
+done_comparison
+=data_out[7:0]=
+[BiDir]

@@ -1,0 +1,35 @@
+Command line:
+   tb_comparison_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  51697
+
+Thu Nov 21 18:48:31 2019
+
+
+ Elaboration Time: 0.046875 sec
+
+ Current Memory Usage: 5160.14 Meg
+
+ Total Signals          : 99
+ Total Nets             : 143
+ Total Signal Drivers   : 28
+ Total Blocks           : 19
+ Total Primitive Blocks : 17
+ Total Processes        : 23
+ Total Traceable Variables  : 29
+ Total Scalar Nets and Variables : 642
+Total Line Count : 157
+
+** Failure:wrong max in inital data
+User(VHDL) Code Called Simulation Stop
+In process tb_comparison.vhd:stim_proc 
+ 
+
+
+ Total Simulation Time: 0.0625 sec
+
+ Current Memory Usage: 5002.86 Meg
+
+Thu Nov 21 18:50:03 2019
+

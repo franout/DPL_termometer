@@ -1,0 +1,6 @@
+work	"comparator.vhd"
+work	"comparison.vhd"
+work	"counter_comparison.vhd"
+work	"mux.vhd"
+work	"mux4_1.vhd"
+work	"reg.vhd"

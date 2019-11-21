@@ -55,7 +55,7 @@ type  state_t is (set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_cu
 
 SIGNAL curr_state,next_state: state_t;
 SIGNAL in_out_val: std_logic:='0';
-SIGNAL tc_wd: std_logic;
+SIGNAL tc_wd,enable_wd: std_logic;
 
 -- component declaration it works like a watchdog timer for the setup phase and the idle period ( for refreshing the temperature) 
 
@@ -64,6 +64,7 @@ component counter is
 generic ( N : integer := 8;
 			MAX_VAL: integer :=255);
     Port ( clk : in  STD_LOGIC;
+	 				enable: in std_logic;
            reset : in  STD_LOGIC;
            tc : out  STD_LOGIC);
 end component counter;
@@ -72,7 +73,7 @@ end component counter;
 begin
 
 
-watch_dog: counter GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)))),MAX_VAL=>WATCH_DOG_COUNT) PORT MAP(clk=>clk,reset=>reset,tc=> tc_wd);
+watch_dog: counter GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)))),MAX_VAL=>WATCH_DOG_COUNT) PORT MAP(enable=>enable_wd,clk=>clk,reset=>reset,tc=> tc_wd);
 
 
 regs:PROCESS(clk,reset)
@@ -99,9 +100,11 @@ display<='0';
 select_data<="00";
 in_out<=in_out_val;
 start_comparison<='0';init_set_up<='0';
+enable_wd<='0';
 
 CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
+				enable_wd<='1';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
 			IF ( done_comparison='1' AND done_lcd='1' AND done_meas='1' ) THEN
 			next_state<=idle;
@@ -112,7 +115,7 @@ WHEN set_up=> init_set_up<='1';
 			END IF;
 WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
 					next_state<=set_up;
-WHEN idle=> 
+WHEN idle=> enable_wd<='1';
 				IF( in_out_sel'EVENT OR tc_wd='1' ) THEN
 				next_state<=measure_tmp;
 				in_out_val<=in_out_sel; -- keeping constant until next idle period

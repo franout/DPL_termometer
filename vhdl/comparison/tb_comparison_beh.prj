@@ -1,0 +1,7 @@
+vhdl work "reg.vhd"
+vhdl work "mux4_1.vhd"
+vhdl work "mux.vhd"
+vhdl work "counter_comparison.vhd"
+vhdl work "comparator.vhd"
+vhdl work "comparison.vhd"
+vhdl work "tb_comparison.vhd"
