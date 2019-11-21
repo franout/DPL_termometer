@@ -66,7 +66,7 @@ begin
 								dq<='Z';
 								cnt<=cnt+1;
 					end if;
-					if(dq='0')                                                              --detect the response
+					if(dq='0') then                                                          --detect the response
 								state<=PRE1;
 					else
 								dq<='z';
@@ -188,7 +188,7 @@ begin
 		when GET_TEMP	=> 	case get_temp_cnt is												--read temperature from dq
 							when 0			=>	state<=READ_BIT;
 												get_temp_cnt<=get_temp_cnt+1;
-							when 1 to 9		=>	dataout(get_temp_cnt-1)<=datatemp;				--0 to 8: 9 bits 8LSB+1MSB(sign)sign
+							when 1 to 9		=>	dataout(get_temp_cnt-1)<=datatemp;				--0 to 8: 9 bits 8LSB+1MSB
 												state<=READ_BIT;
 												get_temp_cnt<=get_temp_cnt+1;
 							when 10			=>  dataout(8)<=dataout(8);
