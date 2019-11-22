@@ -107,7 +107,7 @@ CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
-			IF ( done_comparison='1' AND done_lcd='1' AND done_meas='1' ) THEN
+			IF ( done_lcd='1' ) THEN
 			next_state<=idle;
 			ELSIF ( tc_wd='1' ) THEN 
 			next_state<=set_up_hang;

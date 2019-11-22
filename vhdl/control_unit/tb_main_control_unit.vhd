@@ -149,9 +149,9 @@ BEGIN
 		-- set up of peripherals correctly done 
 		reset<='0';
 		in_out_sel <= '0';
-    done_comparison<='1';
+    done_comparison<='0';
     done_lcd <='1';
-    done_meas <='1';
+    done_meas <='0';
 	wait for clk_period; -- idle state
 		ASSERT cmd="10000000" REPORT "not in idle state" SEVERITY FAILURE;
 		reset<='0';
