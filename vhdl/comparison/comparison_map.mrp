@@ -10,7 +10,7 @@ Target Device  : xc7a100t
 Target Package : csg324
 Target Speed   : -1
 Mapper Version : artix7 -- $Revision: 1.55 $
-Mapped Date    : Thu Nov 21 18:22:03 2019
+Mapped Date    : Thu Nov 21 22:04:21 2019
 
 Design Summary
 --------------
@@ -22,21 +22,21 @@ Slice Logic Utilization:
     Number used as Latches:                      1
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         46 out of  63,400    1%
-    Number used as logic:                       46 out of  63,400    1%
-      Number using O6 output only:              26
+  Number of Slice LUTs:                         59 out of  63,400    1%
+    Number used as logic:                       59 out of  63,400    1%
+      Number using O6 output only:              53
       Number using O5 output only:               0
-      Number using O5 and O6:                   20
+      Number using O5 and O6:                    6
       Number used as ROM:                        0
     Number used as Memory:                       0 out of  19,000    0%
     Number used exclusively as route-thrus:      0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    20 out of  15,850    1%
-  Number of LUT Flip Flop pairs used:           52
-    Number with an unused Flip Flop:            21 out of      52   40%
-    Number with an unused LUT:                   6 out of      52   11%
-    Number of fully used LUT-FF pairs:          25 out of      52   48%
+  Number of occupied Slices:                    23 out of  15,850    1%
+  Number of LUT Flip Flop pairs used:           60
+    Number with an unused Flip Flop:            25 out of      60   41%
+    Number with an unused LUT:                   1 out of      60    1%
+    Number of fully used LUT-FF pairs:          34 out of      60   56%
     Number of unique control sets:               4
     Number of slice register sites lost
       to control set restrictions:              13 out of 126,800    1%
@@ -89,11 +89,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of XADCs:                               0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                2.76
+Average Fanout of Non-Clock Nets:                3.55
 
-Peak Memory Usage:  5043 MB
-Total REAL time to MAP completion:  44 secs 
-Total CPU time to MAP completion:   31 secs 
+Peak Memory Usage:  5037 MB
+Total REAL time to MAP completion:  40 secs 
+Total CPU time to MAP completion:   38 secs 
 
 Table of Contents
 -----------------
@@ -119,10 +119,10 @@ Section 2 - Warnings
 WARNING:LIT:701 - PAD symbol "start_comparison" has an undefined IOSTANDARD.
 WARNING:LIT:702 - PAD symbol "start_comparison" is not constrained (LOC) to a
    specific location.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net clk_outd is sourced by a
+WARNING:PhysDesignRules:372 - Gated clock. Clock net clk_ind is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net clk_ind is sourced by a
+WARNING:PhysDesignRules:372 - Gated clock. Clock net clk_outd is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net clk_enable is sourced by a

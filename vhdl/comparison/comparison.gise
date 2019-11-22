@@ -23,10 +23,14 @@
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/bitgen.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="comparator_stx_beh.prj"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="comparison.bgn" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="comparison.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="comparison.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="comparison.lso"/>
@@ -43,7 +47,10 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="comparison.stx"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="comparison.sym" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="comparison.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="comparison.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="comparison.twx" xil_pn:subbranch="Par"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="comparison.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="comparison.ut" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:fileType="FILE_XPI" xil_pn:name="comparison.xpi"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="comparison.xst"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="comparison_guide.ncd" xil_pn:origination="imported"/>
@@ -63,6 +70,8 @@
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="reg_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="tb_comparison_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="tb_comparison_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="tb_comparison_isim_beh.wdb"/>
@@ -78,7 +87,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574357463" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1574357463">
+    <transform xil_pn:end_ts="1574420755" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1574420755">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="comparator.vhd"/>
@@ -101,7 +110,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574357465" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1574357465">
+    <transform xil_pn:end_ts="1574420762" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1574420762">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="comparator.vhd"/>
@@ -112,19 +121,25 @@
       <outfile xil_pn:name="reg.vhd"/>
       <outfile xil_pn:name="tb_comparison.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1574357469" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="5339242203427352956" xil_pn:start_ts="1574357465">
+    <transform xil_pn:end_ts="1574420767" xil_pn:in_ck="2547949254645884579" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="5339242203427352956" xil_pn:start_ts="1574420762">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="tb_comparison_beh.prj"/>
       <outfile xil_pn:name="tb_comparison_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1574357470" xil_pn:in_ck="-2952761940712694689" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-8587345501789065111" xil_pn:start_ts="1574357469">
+    <transform xil_pn:end_ts="1574420767" xil_pn:in_ck="-2952761940712694689" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-8587345501789065111" xil_pn:start_ts="1574420767">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="tb_comparison_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1574356735" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1574356735">
@@ -155,12 +170,12 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574356888" xil_pn:in_ck="677650937901105347" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="-2130519077397115419" xil_pn:start_ts="1574356873">
+    <transform xil_pn:end_ts="1574370599" xil_pn:in_ck="677650937901105347" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="-2130519077397115419" xil_pn:start_ts="1574370578">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="comparison.lso"/>
       <outfile xil_pn:name="comparison.ngc"/>
@@ -177,19 +192,25 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574356920" xil_pn:in_ck="-4887611715092700639" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="7397323053989293625" xil_pn:start_ts="1574356908">
+    <transform xil_pn:end_ts="1574370260" xil_pn:in_ck="-4887611715092700639" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="7397323053989293625" xil_pn:start_ts="1574370248">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="comparison.bld"/>
       <outfile xil_pn:name="comparison.ngd"/>
       <outfile xil_pn:name="comparison_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1574356969" xil_pn:in_ck="-4887611715092700638" xil_pn:name="TRANEXT_map_virtex7" xil_pn:prop_ck="-7188367874928765557" xil_pn:start_ts="1574356920">
+    <transform xil_pn:end_ts="1574370303" xil_pn:in_ck="-4887611715092700638" xil_pn:name="TRANEXT_map_virtex7" xil_pn:prop_ck="-7188367874928765557" xil_pn:start_ts="1574370260">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
       <outfile xil_pn:name="comparison.pcf"/>
       <outfile xil_pn:name="comparison_map.map"/>
@@ -200,9 +221,10 @@
       <outfile xil_pn:name="comparison_summary.xml"/>
       <outfile xil_pn:name="comparison_usage.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1574356996" xil_pn:in_ck="-3896675422240656837" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-2283627392121029586" xil_pn:start_ts="1574356969">
-      <status xil_pn:value="AbortedRun"/>
+    <transform xil_pn:end_ts="1574370359" xil_pn:in_ck="-3896675422240656837" xil_pn:name="TRANEXT_par_virtex5" xil_pn:prop_ck="-2283627392121029586" xil_pn:start_ts="1574370303">
+      <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
       <outfile xil_pn:name="comparison.ncd"/>
       <outfile xil_pn:name="comparison.pad"/>
@@ -213,6 +235,25 @@
       <outfile xil_pn:name="comparison_pad.csv"/>
       <outfile xil_pn:name="comparison_pad.txt"/>
       <outfile xil_pn:name="comparison_par.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1574370380" xil_pn:in_ck="-4887611715092700770" xil_pn:name="TRANEXT_bitFile_virtex7" xil_pn:prop_ck="306664139534459597" xil_pn:start_ts="1574370359">
+      <status xil_pn:value="FailedRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+      <outfile xil_pn:name="comparison.bgn"/>
+      <outfile xil_pn:name="comparison.ut"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1574370359" xil_pn:in_ck="-4887611715092700770" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416183" xil_pn:start_ts="1574370335">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="comparison.twr"/>
+      <outfile xil_pn:name="comparison.twx"/>
     </transform>
   </transforms>
 

@@ -1,4 +1,4 @@
-Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "secureip" -o "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_isim_beh.exe" -prj "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_beh.prj" "work.tb_comparison" 
+Running: D:\programmi\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_isim_beh.exe -prj D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_beh.prj work.tb_comparison 
 ISim P.20131013 (signature 0x7708f090)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
@@ -27,5 +27,5 @@ Waiting for 1 sub-compilation(s) to finish...
 WARNING:Simulator - Unable to copy libPortabilityNOSH.dll to the simulation executable directory: boost::filesystem::copy_file: The system cannot find the path specified, "isim\tb_comparison_isim_beh.exe.sim\libPortability.dll".
 Compiled 16 VHDL Units
 Built simulation executable D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_isim_beh.exe
-Fuse Memory Usage: 35820 KB
-Fuse CPU Usage: 608 ms
+Fuse Memory Usage: 35704 KB
+Fuse CPU Usage: 577 ms

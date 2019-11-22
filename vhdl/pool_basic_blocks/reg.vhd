@@ -33,6 +33,8 @@ end entity reg;
 
 architecture  Behavioral of reg is
 
+SIGNAL data:  std_logic_vector(N-1 DOWNTO 0);
+
 begin
 
 
@@ -40,9 +42,13 @@ PROCESS(clk,reset)
 BEGIN
 IF( reset='1') THEN
 data_out<=(OTHERS=>'0');
+data<=(OTHERS=>'0');
 ELSE 
 IF(clk='1' AND clk'EVENT) THEN
 data_out<=data_in;
+data<=data_in;
+ELSE
+data_out<=data;
 END IF;
 END IF;
 

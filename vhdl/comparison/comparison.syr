@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Reading design: comparison.prj
 
@@ -270,13 +270,12 @@ Top Level Output File Name         : comparison.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 66
+# BELS                             : 65
 #      INV                         : 1
 #      LUT2                        : 1
-#      LUT3                        : 40
-#      LUT4                        : 5
-#      LUT5                        : 6
-#      LUT6                        : 13
+#      LUT3                        : 38
+#      LUT5                        : 11
+#      LUT6                        : 14
 # FlipFlops/Latches                : 43
 #      FDC                         : 42
 #      LD                          : 1
@@ -294,14 +293,14 @@ Selected Device : 7a100tcsg324-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:              35  out of  126800     0%  
- Number of Slice LUTs:                   66  out of  63400     0%  
-    Number used as Logic:                66  out of  63400     0%  
+ Number of Slice LUTs:                   65  out of  63400     0%  
+    Number used as Logic:                65  out of  63400     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     67
-   Number with an unused Flip Flop:      32  out of     67    47%  
-   Number with an unused LUT:             1  out of     67     1%  
-   Number of fully used LUT-FF pairs:    34  out of     67    50%  
+ Number of LUT Flip Flop pairs used:     66
+   Number with an unused Flip Flop:      31  out of     66    46%  
+   Number with an unused LUT:             1  out of     66     1%  
+   Number of fully used LUT-FF pairs:    34  out of     66    51%  
    Number of unique control sets:         4
 
 IO Utilization: 
@@ -352,9 +351,9 @@ Timing Summary:
 Speed Grade: -1
 
    Minimum period: 1.511ns (Maximum Frequency: 661.813MHz)
-   Minimum input arrival time before clock: 4.846ns
-   Maximum output required time after clock: 2.336ns
-   Maximum combinational path delay: 2.133ns
+   Minimum input arrival time before clock: 4.669ns
+   Maximum output required time after clock: 2.276ns
+   Maximum combinational path delay: 2.068ns
 
 Timing Details:
 ---------------
@@ -385,7 +384,7 @@ Delay:               1.511ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk_outd'
   Clock period: 1.067ns (frequency: 937.207MHz)
-  Total number of paths / destination ports: 8 / 8
+  Total number of paths / destination ports: 16 / 16
 -------------------------------------------------------------------------
 Delay:               1.067ns (Levels of Logic = 1)
   Source:            min_tmp_reg_out/data_out_7 (FF)
@@ -407,7 +406,7 @@ Delay:               1.067ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk_ind'
   Clock period: 1.067ns (frequency: 937.207MHz)
-  Total number of paths / destination ports: 8 / 8
+  Total number of paths / destination ports: 16 / 16
 -------------------------------------------------------------------------
 Delay:               1.067ns (Levels of Logic = 1)
   Source:            min_tmp_reg_ind/data_out_7 (FF)
@@ -449,7 +448,7 @@ Offset:              1.049ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'start_comparison'
   Total number of paths / destination ports: 9 / 1
 -------------------------------------------------------------------------
-Offset:              4.846ns (Levels of Logic = 6)
+Offset:              4.669ns (Levels of Logic = 6)
   Source:            in_out_sel (PAD)
   Destination:       comp/res (LATCH)
   Destination Clock: start_comparison falling
@@ -458,16 +457,16 @@ Offset:              4.846ns (Levels of Logic = 6)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            20   0.001   1.044  in_out_sel_IBUF (in_out_sel_IBUF)
+     IBUF:I->O            25   0.001   1.070  in_out_sel_IBUF (in_out_sel_IBUF)
      LUT6:I1->O            1   0.124   0.939  mux_1/Mmux_y31 (b_io<2>)
-     LUT6:I0->O            1   0.124   0.776  comp/b[7]_a[7]_LessThan_1_o (comp/b[7]_a[7]_LessThan_1_o1)
-     LUT5:I1->O            1   0.124   0.536  comp/b[7]_a[7]_LessThan_1_o1_SW0 (N4)
-     LUT5:I3->O            1   0.124   0.919  comp/b[7]_a[7]_LessThan_1_o1 (comp/b[7]_a[7]_LessThan_1_o2)
-     LUT5:I0->O            1   0.124   0.000  comp/b[7]_a[7]_LessThan_1_o22 (comp/b[7]_a[7]_LessThan_1_o)
+     LUT6:I0->O            1   0.124   0.776  comp/a[7]_b[7]_LessThan_1_o (comp/a[7]_b[7]_LessThan_1_o1)
+     LUT5:I1->O            1   0.124   0.536  comp/a[7]_b[7]_LessThan_1_o1_SW0 (N4)
+     LUT5:I3->O            1   0.124   0.716  comp/a[7]_b[7]_LessThan_1_o1 (comp/a[7]_b[7]_LessThan_1_o2)
+     LUT5:I2->O            1   0.124   0.000  comp/a[7]_b[7]_LessThan_1_o2 (comp/a[7]_b[7]_LessThan_1_o)
      LD:D                      0.011          comp/res
     ----------------------------------------
-    Total                      4.846ns (0.632ns logic, 4.214ns route)
-                                       (13.0% logic, 87.0% route)
+    Total                      4.669ns (0.632ns logic, 4.037ns route)
+                                       (13.5% logic, 86.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_outd'
@@ -508,86 +507,87 @@ Offset:              1.049ns (Levels of Logic = 1)
                                        (47.2% logic, 52.8% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_enable'
-  Total number of paths / destination ports: 9 / 9
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_ind'
+  Total number of paths / destination ports: 16 / 8
 -------------------------------------------------------------------------
-Offset:              1.750ns (Levels of Logic = 2)
-  Source:            curr_tmp_reg/data_out_6 (FF)
-  Destination:       data_out<6> (PAD)
-  Source Clock:      clk_enable rising
+Offset:              2.276ns (Levels of Logic = 3)
+  Source:            max_tmp_reg_ind/data_out_7 (FF)
+  Destination:       data_out<7> (PAD)
+  Source Clock:      clk_ind rising
 
-  Data Path: curr_tmp_reg/data_out_6 to data_out<6>
+  Data Path: max_tmp_reg_ind/data_out_7 to data_out<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              6   0.478   0.749  curr_tmp_reg/data_out_6 (curr_tmp_reg/data_out_6)
-     LUT5:I2->O            1   0.124   0.399  mux_out/Mmux_y7 (data_out_6_OBUF)
-     OBUF:I->O                 0.000          data_out_6_OBUF (data_out<6>)
+     FDC:C->Q              3   0.478   0.730  max_tmp_reg_ind/data_out_7 (max_tmp_reg_ind/data_out_7)
+     LUT5:I2->O            1   0.124   0.421  mux_out/Mmux_y81 (mux_out/Mmux_y8)
+     LUT6:I5->O            1   0.124   0.399  mux_out/Mmux_y82 (data_out_7_OBUF)
+     OBUF:I->O                 0.000          data_out_7_OBUF (data_out<7>)
     ----------------------------------------
-    Total                      1.750ns (0.602ns logic, 1.148ns route)
-                                       (34.4% logic, 65.6% route)
+    Total                      2.276ns (0.726ns logic, 1.550ns route)
+                                       (31.9% logic, 68.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_outd'
   Total number of paths / destination ports: 16 / 8
 -------------------------------------------------------------------------
-Offset:              2.336ns (Levels of Logic = 3)
-  Source:            max_tmp_reg_out/data_out_7 (FF)
-  Destination:       data_out<7> (PAD)
+Offset:              2.211ns (Levels of Logic = 3)
+  Source:            min_tmp_reg_out/data_out_0 (FF)
+  Destination:       data_out<0> (PAD)
   Source Clock:      clk_outd rising
 
-  Data Path: max_tmp_reg_out/data_out_7 to data_out<7>
+  Data Path: min_tmp_reg_out/data_out_0 to data_out<0>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              3   0.478   0.790  max_tmp_reg_out/data_out_7 (max_tmp_reg_out/data_out_7)
-     LUT6:I2->O            1   0.124   0.421  mux_out/Mmux_y81 (mux_out/Mmux_y8)
-     LUT4:I3->O            1   0.124   0.399  mux_out/Mmux_y82 (data_out_7_OBUF)
-     OBUF:I->O                 0.000          data_out_7_OBUF (data_out<7>)
-    ----------------------------------------
-    Total                      2.336ns (0.726ns logic, 1.610ns route)
-                                       (31.1% logic, 68.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_ind'
-  Total number of paths / destination ports: 16 / 8
--------------------------------------------------------------------------
-Offset:              2.211ns (Levels of Logic = 3)
-  Source:            max_tmp_reg_ind/data_out_6 (FF)
-  Destination:       data_out<6> (PAD)
-  Source Clock:      clk_ind rising
-
-  Data Path: max_tmp_reg_ind/data_out_6 to data_out<6>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDC:C->Q              3   0.478   0.550  max_tmp_reg_ind/data_out_6 (max_tmp_reg_ind/data_out_6)
-     LUT3:I1->O            1   0.124   0.536  in_out_sel41 (in_out_sel_mmx_out12)
-     LUT5:I3->O            1   0.124   0.399  mux_out/Mmux_y7 (data_out_6_OBUF)
-     OBUF:I->O                 0.000          data_out_6_OBUF (data_out<6>)
+     FDC:C->Q              3   0.478   0.550  min_tmp_reg_out/data_out_0 (min_tmp_reg_out/data_out_0)
+     LUT3:I1->O            1   0.124   0.536  in_out_sel21 (in_out_sel_mmx_out10)
+     LUT5:I3->O            1   0.124   0.399  mux_out/Mmux_y11 (data_out_0_OBUF)
+     OBUF:I->O                 0.000          data_out_0_OBUF (data_out<0>)
     ----------------------------------------
     Total                      2.211ns (0.726ns logic, 1.485ns route)
                                        (32.8% logic, 67.2% route)
 
 =========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 32 / 8
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_enable'
+  Total number of paths / destination ports: 9 / 9
 -------------------------------------------------------------------------
-Delay:               2.133ns (Levels of Logic = 4)
-  Source:            in_out_sel (PAD)
+Offset:              2.000ns (Levels of Logic = 3)
+  Source:            curr_tmp_reg/data_out_7 (FF)
   Destination:       data_out<7> (PAD)
+  Source Clock:      clk_enable rising
 
-  Data Path: in_out_sel to data_out<7>
+  Data Path: curr_tmp_reg/data_out_7 to data_out<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            20   0.001   1.064  in_out_sel_IBUF (in_out_sel_IBUF)
-     LUT6:I0->O            1   0.124   0.421  mux_out/Mmux_y21 (mux_out/Mmux_y2)
-     LUT4:I3->O            1   0.124   0.399  mux_out/Mmux_y22 (data_out_1_OBUF)
+     FDC:C->Q              6   0.478   0.454  curr_tmp_reg/data_out_7 (curr_tmp_reg/data_out_7)
+     LUT5:I4->O            1   0.124   0.421  mux_out/Mmux_y81 (mux_out/Mmux_y8)
+     LUT6:I5->O            1   0.124   0.399  mux_out/Mmux_y82 (data_out_7_OBUF)
+     OBUF:I->O                 0.000          data_out_7_OBUF (data_out<7>)
+    ----------------------------------------
+    Total                      2.000ns (0.726ns logic, 1.274ns route)
+                                       (36.3% logic, 63.7% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 38 / 8
+-------------------------------------------------------------------------
+Delay:               2.068ns (Levels of Logic = 4)
+  Source:            select_data<1> (PAD)
+  Destination:       data_out<7> (PAD)
+
+  Data Path: select_data<1> to data_out<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            13   0.001   0.999  select_data_1_IBUF (select_data_1_IBUF)
+     LUT5:I0->O            1   0.124   0.421  mux_out/Mmux_y21 (mux_out/Mmux_y2)
+     LUT6:I5->O            1   0.124   0.399  mux_out/Mmux_y22 (data_out_1_OBUF)
      OBUF:I->O                 0.000          data_out_1_OBUF (data_out<1>)
     ----------------------------------------
-    Total                      2.133ns (0.249ns logic, 1.884ns route)
-                                       (11.7% logic, 88.3% route)
+    Total                      2.068ns (0.249ns logic, 1.819ns route)
+                                       (12.0% logic, 88.0% route)
 
 =========================================================================
 
@@ -607,9 +607,8 @@ Clock to Setup on destination clock clk_ind
                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock    |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------+---------+---------+---------+---------+
-clk_enable      |    1.201|         |         |         |
+clk_enable      |    1.381|         |         |         |
 clk_ind         |    1.067|         |         |         |
-clk_outd        |    1.182|         |         |         |
 start_comparison|         |    1.648|         |         |
 ----------------+---------+---------+---------+---------+
 
@@ -618,8 +617,7 @@ Clock to Setup on destination clock clk_outd
                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock    |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------+---------+---------+---------+---------+
-clk_enable      |    1.201|         |         |         |
-clk_ind         |    1.182|         |         |         |
+clk_enable      |    1.381|         |         |         |
 clk_outd        |    1.067|         |         |         |
 start_comparison|         |    1.648|         |         |
 ----------------+---------+---------+---------+---------+
@@ -629,20 +627,20 @@ Clock to Setup on destination clock start_comparison
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk_enable     |         |         |    5.277|         |
-clk_ind        |         |         |    5.069|         |
-clk_outd       |         |         |    5.009|         |
+clk_enable     |         |         |    5.074|         |
+clk_ind        |         |         |    4.806|         |
+clk_outd       |         |         |    4.866|         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 13.00 secs
-Total CPU time to Xst completion: 12.85 secs
+Total REAL time to Xst completion: 18.00 secs
+Total CPU time to Xst completion: 17.71 secs
  
 --> 
 
-Total memory usage is 4626228 kilobytes
+Total memory usage is 4626224 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)

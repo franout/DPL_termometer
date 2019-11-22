@@ -37,6 +37,7 @@ begin
 
 PROCESS(a,b,enable)
 BEGIN
+
 IF(enable='1')THEN
 	IF(signed(a)>=signed(b))THEN
 	res<='1';
