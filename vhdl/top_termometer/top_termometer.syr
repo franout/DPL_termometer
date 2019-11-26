@@ -1,0 +1,186 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.20 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.20 secs
+ 
+--> Reading design: top_termometer.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top_termometer.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top_termometer"
+Output Format                      : NGC
+Target Device                      : xc7a100tl-2L-csg324
+
+---- Source Options
+Top Module Name                    : top_termometer
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\top_display\mux8_1.vhd" into library work
+Parsing entity <mux8_1>.
+Parsing architecture <Behavioral> of entity <mux8_1>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\top_display\counter.vhd" into library work
+Parsing entity <counter>.
+Parsing architecture <Behavioral> of entity <counter>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_tmp_sensor\clock_enable.vhdl" into library work
+Parsing entity <clock_enable>.
+Parsing architecture <beh> of entity <clock_enable>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\top_display\translator.vhd" into library work
+Parsing entity <translator>.
+Parsing architecture <Behavioral> of entity <translator>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\lcd.vhd" into library work
+Parsing entity <LCD>.
+Parsing architecture <arch_LCD> of entity <lcd>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\counter_clk_enable.vhd" into library work
+Parsing entity <counter_clk_enable>.
+Parsing architecture <Arch_counter_clk_enable> of entity <counter_clk_enable>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\counter_wd.vhd" into library work
+Parsing entity <counter_wd>.
+Parsing architecture <Behavioral> of entity <counter_wd>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\reg.vhd" into library work
+Parsing entity <reg>.
+Parsing architecture <Behavioral> of entity <reg>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\mux4_1.vhd" into library work
+Parsing entity <mux4_1>.
+Parsing architecture <Behavioral> of entity <mux4_1>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\mux.vhd" into library work
+Parsing entity <mux>.
+Parsing architecture <Behavioral> of entity <mux>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\counter_comparison.vhd" into library work
+Parsing entity <counter_comparison>.
+Parsing architecture <Behavioral> of entity <counter_comparison>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\comparator.vhd" into library work
+Parsing entity <comparator>.
+Parsing architecture <Behavioral> of entity <comparator>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_tmp_sensor\temperature.vhdl" into library work
+Parsing entity <temperature>.
+Parsing architecture <beh> of entity <temperature>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\interface_lcd\top_display\top_display.vhd" into library work
+Parsing entity <top_display>.
+Parsing architecture <Behavioral> of entity <top_display>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\control_unit.vhd" into library work
+Parsing entity <control_unit>.
+Parsing architecture <Behavioral> of entity <control_unit>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\comparison\comparison.vhd" into library work
+Parsing entity <comparison>.
+Parsing architecture <structural> of entity <comparison>.
+Parsing VHDL file "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" into library work
+Parsing entity <top_termometer>.
+Parsing architecture <structural> of entity <top_termometer>.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 114: <reset_top> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 116: <reset_top> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 117: <init_set_up> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 118: <data_from_comparison> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 119: <done_display> is not declared.
+ERROR:HDLCompiler:192 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 119: Actual of formal out port done_lcd cannot be an expression
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 120: <lcd_data> is not declared.
+ERROR:HDLCompiler:192 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 120: Actual of formal out port data_out cannot be an expression
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 124: <reset_top> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 125: <in_out_sel> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 126: <data_from_tmp_interface> is not declared.
+ERROR:HDLCompiler:192 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 126: Actual of formal out port data cannot be an expression
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 127: <reset_top> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 128: <in_out_sel> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 129: <data_from_tmp_interface> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 130: <data_from_comparison> is not declared.
+ERROR:HDLCompiler:192 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 130: Actual of formal out port data_out cannot be an expression
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 131: <start_comparison> is not declared.
+ERROR:HDLCompiler:69 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 132: <done_comparison> is not declared.
+Sorry, too many errors..
+--> 
+
+Total memory usage is 4506572 kilobytes
+
+Number of errors   :   19 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

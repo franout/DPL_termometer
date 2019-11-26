@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 114: &lt;<arg fmt="%s" index="1">reset_top</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 116: &lt;<arg fmt="%s" index="1">reset_top</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 117: &lt;<arg fmt="%s" index="1">init_set_up</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 118: &lt;<arg fmt="%s" index="1">data_from_comparison</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 119: &lt;<arg fmt="%s" index="1">done_display</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 119: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">done_lcd</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 120: &lt;<arg fmt="%s" index="1">lcd_data</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 120: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">data_out</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 124: &lt;<arg fmt="%s" index="1">reset_top</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 125: &lt;<arg fmt="%s" index="1">in_out_sel</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 126: &lt;<arg fmt="%s" index="1">data_from_tmp_interface</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 126: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">data</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 127: &lt;<arg fmt="%s" index="1">reset_top</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 128: &lt;<arg fmt="%s" index="1">in_out_sel</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 129: &lt;<arg fmt="%s" index="1">data_from_tmp_interface</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 130: &lt;<arg fmt="%s" index="1">data_from_comparison</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="192" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 130: Actual of formal <arg fmt="%s" index="1">out</arg> port <arg fmt="%s" index="2">data_out</arg> cannot be an expression
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 131: &lt;<arg fmt="%s" index="1">start_comparison</arg>&gt; is not declared.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="69" delta="new" >"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.vhd" Line 132: &lt;<arg fmt="%s" index="1">done_comparison</arg>&gt; is not declared.
+</msg>
+
+</messages>
+
