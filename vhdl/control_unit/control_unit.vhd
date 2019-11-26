@@ -61,20 +61,21 @@ SIGNAL tc_wd,enable_wd: std_logic;
 -- component declaration it works like a watchdog timer for the setup phase and the idle period ( for refreshing the temperature) 
 
 
-component counter is
+component counter_wd is
 generic ( N : integer := 8;
 			MAX_VAL: integer :=255);
     Port ( clk : in  STD_LOGIC;
 	 				enable: in std_logic;
            reset : in  STD_LOGIC;
            tc : out  STD_LOGIC);
-end component counter;
+end component counter_wd;
 
+signal edge_detect : std_logic_vector( 1 downto 0 );
 
 begin
 
 
-watch_dog: counter GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)))),MAX_VAL=>WATCH_DOG_COUNT) PORT MAP(enable=>enable_wd,clk=>clk,reset=>reset,tc=> tc_wd);
+watch_dog: counter_wd GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)))),MAX_VAL=>WATCH_DOG_COUNT) PORT MAP(enable=>enable_wd,clk=>clk,reset=>reset,tc=> tc_wd);
 
 
 regs:PROCESS(clk,reset)
@@ -84,6 +85,7 @@ curr_state<=set_up;
 
 ELSE 
 	IF(clk='1' AND clk'EVENT) THEN
+	    edge_detect <= edge_detect(0) &in_out_sel ;
 	curr_state<=next_state;
 	END IF;
 
@@ -118,7 +120,15 @@ WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
 					reset_i<='1';
 					next_state<=set_up;
 WHEN idle=> enable_wd<='1';
-				IF( in_out_sel'EVENT OR tc_wd='1' ) THEN
+				IF( edge_detect="01" ) THEN
+				-- rising edge  INDOOR
+				next_state<=measure_tmp;
+				in_out_val<=in_out_sel; -- keeping constant until next idle period
+				ELSIF (edge_detect="10") THEN 
+				-- falling edge outdoor
+				next_state<=measure_tmp;
+				in_out_val<=in_out_sel; -- keeping constant until next idle period	
+				ELSIF ( tc_wd='1') THEN 
 				next_state<=measure_tmp;
 				in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSE 

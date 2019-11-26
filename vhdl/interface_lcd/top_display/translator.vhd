@@ -78,8 +78,8 @@ IF( start='1') THEN
 IF(data_in(N-1)='1')THEN
 -- ascii of minus
 sign_value<=x"2D";
-remainder:=unsigned(not(signed(data_in(N-1 DOWNTO 0)))+1);
-quotient:= unsigned(not(signed(data_in(N-1 DOWNTO 0)))+1);
+remainder:=unsigned(not(signed(data_in(N-1 DOWNTO 1)))+1);
+quotient:= unsigned(not(signed(data_in(N-1 DOWNTO 1)))+1);
 ELSE 
 -- ascii of plus
 sign_value<=x"2B";

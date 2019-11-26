@@ -31,7 +31,7 @@ entity top_termometer is
            lcd_enable : out  STD_LOGIC;
            lcd_rw : out  STD_LOGIC;
            lcd_rs : out  STD_LOGIC;
-           ldc_data : out  STD_LOGIC_VECTOR (7 downto 0));
+           lcd_data : out  STD_LOGIC_VECTOR (7 downto 0));
 end top_termometer;
 
 architecture structural of top_termometer is
@@ -107,7 +107,9 @@ PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 
 end  COMPONENT top_display;
 
-
+SIGNAL reset_top,start_display,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
+SIGNAL select_data_comparison: std_logic_vector(1 DOWNTO 0);
+SIGNAL data_from_comparison,data_from_tmp_interface: std_logic_vector(8 DOWNTO 0);
 
 begin
 
@@ -130,7 +132,7 @@ comparison_block:comparison GENERIC MAP (9) PORT MAP(clk=>clk,reset=>reset_top,
            data_out=>data_from_comparison ,
            start_comparison=>start_comparison ,
            done_comparison=>done_comparison ,
-           select_data =>select_data);
+           select_data =>select_data_comparison);
 cu: control_unit GENERIC MAP (100) PORT MAP(clk=>clk,reset=>reset,
 									in_out_sel=>ind_outd_sw,
 									init_set_up=> init_set_up,
