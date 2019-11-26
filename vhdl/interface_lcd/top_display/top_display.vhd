@@ -22,12 +22,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 
 entity top_display is
-GENERIC(n: INTEGER := 8);
+GENERIC(n: INTEGER := 9);
 PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 		data_in: in std_logic_vector(N-1 DOWNTO 0);
 		done_lcd: out std_logic;
 		-- for lcd
-		data_out: OUT std_logic_vector(N-1 downto 0);
+		data_out: OUT std_logic_vector(N-2 downto 0);
 		rs,r_w,enable: out std_logic
 	);
 
@@ -56,21 +56,36 @@ COMPONENT LCD IS
 END COMPONENT LCD;
 
 
+component counter_clk_enable IS
+
+Port(
+		areset		:IN STD_LOGIC;
+		clk		:IN STD_LOGIC;                                 
+		clk_enable	:OUT STD_LOGIC);                               
+		
+end  component counter_clk_enable;
+
 component  translator is
 GENERIC ( n: integer:= 8);
     Port ( reset : in  STD_LOGIC;
            clk : in  STD_LOGIC;
            start : in  STD_LOGIC;
            data_in : in  STD_LOGIC_VECTOR (N-1  downto 0);
-           data_out : out  STD_LOGIC_VECTOR (N-1 downto 0));
+           data_out : out  STD_LOGIC_VECTOR (N-2 downto 0));
 end component translator;
 
-signal data_in_inter: std_logic_vector(N-1 DOWNTO 0);
-
+signal data_in_inter: std_logic_vector(N-2 DOWNTO 0);
+signal clk_enable: std_logic;
 begin
 
-interface: lcd PORT MAP(reset=>reset,clk=>clk,start=>clk_enable,dataIN=>data_in_inter,); ???
-translate_int: translator GENERIC MAP(N=>8) PORT MAP(clk=>clk,reset=>reset,data_in=>dataIN,data_out=> data_in_inter);
+-- displaly comes from CU , enables goes to lcd
+enable<=start_lcd;
+
+interface: lcd PORT MAP(reset=>reset,clk=>clk,clk_enable=>clk_enable,
+				enable=>start_lcd,dataIN=>data_in_inter,done=> done_lcd,
+					enable_init=>init_set_up,ind_outd_select=>ind_outd_select ,dataOUT=>data_out,RS=> rs, R_W=>r_w);
+translate_int: translator GENERIC MAP(N=>9) PORT MAP(start=>start_lcd, clk=>clk,reset=>reset,data_in=>data_in,data_out=> data_in_inter);
+clk_enable_unit: counter_clk_enable PORT MAP (areset=>reset,clk=>clk,clk_enable=>clk_enable);
 
 
 end Behavioral;

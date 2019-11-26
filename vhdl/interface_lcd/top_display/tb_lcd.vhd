@@ -67,6 +67,8 @@ ARCHITECTURE behavior OF tb_lcd IS
    signal done : std_logic;
    signal RS : std_logic;
    signal R_W : std_logic;
+	
+	signal output: std_logic_vector( 10 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -111,13 +113,34 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
+		reset<='1';
+      wait for 50 ns;	
+		wait until clk='1' AND clk'event;
+		-- stimulus
+		reset<='0';
+		
+    dataIN <="001100110"; -- +051.0
+		ind_outd_select<='1'; -- indoor 
+		
 
-      wait for clk_period*10;
+	 signal clk_enable : std_logic := '0';
+   signal enable_init : std_logic := '0';
+   signal enable : std_logic := '0';
+	
+		wait until clk='1' AND clk'event;
+		assert output="" REPORT "" SEVERITY FAILURE;
 
-      -- insert stimulus here 
+		
+		
+				data_in<="100110011"; -- -103.5
+		ind_outd_select<='0'; -- outdoor 
 
+		
+		
+		
       wait;
    end process;
+	
+	output<=dataOUT & RS & R_W &done;
 
 END;

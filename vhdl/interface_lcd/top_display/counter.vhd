@@ -45,9 +45,9 @@ cnt<=(OTHERS=>'0');
 tc<='0';
 ELSE 
 IF(clk='1' and clk'event) THEN
-	IF( unsigned(cnt)>=N-1) THEN
+	IF( unsigned(cnt)>=2**N-1) THEN
 	tc<='1';
-cnt<=(OTHERS=>'0');
+	cnt<=(OTHERS=>'0');
 	ELSE 
 	cnt<=std_logic_vector(unsigned(cnt)+1);
 	tc<='0';
@@ -60,5 +60,6 @@ END IF;
 END PROCESS;
 
 cnt_val<=cnt;
+
 end Behavioral;
 

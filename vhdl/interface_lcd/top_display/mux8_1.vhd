@@ -44,8 +44,7 @@ PROCESS(a,b,c,d,e,f,g,h,s)
 BEGIN
 
 CASE s IS
-WHEN "000" =>y<=a;
-
+WHEN "000" => y<=a;
 WHEN "001" => y<=b;
 
 WHEN "010" =>y<=c;

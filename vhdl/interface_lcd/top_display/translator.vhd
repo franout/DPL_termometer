@@ -27,7 +27,7 @@ GENERIC ( n: integer:= 8);
            clk : in  STD_LOGIC;
            start : in  STD_LOGIC;
            data_in : in  STD_LOGIC_VECTOR (N-1  downto 0);
-           data_out : out  STD_LOGIC_VECTOR (N-1 downto 0));
+           data_out : out  STD_LOGIC_VECTOR (N-2 downto 0));
 end translator;
 
 architecture Behavioral of translator is
@@ -59,36 +59,46 @@ end COMPONENT counter;
 signal dot: std_logic_vector(7 downto 0):=x"2E";
 signal x1,x2,x3,decimal_value,sign_value: std_logic_vector(7 DOWNTO 0);
 signal cnt_val: std_logic_vector(2 DOWNTO 0);
-signal clk_enable: std_logic;
+signal reset_i: std_logic;
 
 begin
 
-clk_enable<='1' WHEN start='1' else '0';
+reset_i<='0' WHEN start='1' else '1';
 
-counter_select: counter  PORT MAP(clk=>clk_enable,reset=>reset,cnt_val=>cnt_val);
+counter_select: counter  GENERIC MAP(N=>3)  PORT MAP(clk=>clk,reset=>reset_i,cnt_val=>cnt_val);
 
 mux:  mux8_1 GENERIC MAP (N=>8) PORT MAP(a=>sign_value,b=>x1,c=>x2,d=>x3,e=>dot,f=>decimal_value,
 g=>(OTHERS=>'0'),h=>(OTHERS=>'0'),s=>cnt_val,y=>data_out);
 
 
 translation:process (data_in,start)
-
+variable remainder,quotient: unsigned(7 DOWNTO 0);
 begin
 IF( start='1') THEN 
 IF(data_in(N-1)='1')THEN
 -- ascii of minus
 sign_value<=x"2D";
+remainder:=unsigned(not(signed(data_in(N-1 DOWNTO 0)))+1);
+quotient:= unsigned(not(signed(data_in(N-1 DOWNTO 0)))+1);
 ELSE 
 -- ascii of plus
 sign_value<=x"2B";
+remainder:=unsigned(data_in(N-1 DOWNTO 1));
+quotient:=unsigned(data_in(N-1 DOWNTO 1));
 END IF;
 
 -- x1x2x3
-x1<=std_logic_vector(to_integer(signed(data_in(N-1 downto 1)))/100); -- most significan value
+remainder:= remainder mod 10;
+quotient:=(quotient/10);
+x3<=std_logic_vector(x"30"+remainder); -- less significan value
+remainder:= quotient mod 10;
+quotient:= ((quotient) / 10);
 
-x2<=std_logic_vector(to_integer(signed(data_in(N-1 downto 1)))/10); -- most significan value -1
+x2<=std_logic_vector(X"30"+remainder); -- most significan value -1
+remainder:= quotient mod 10;
+--quotient:= quotient /10; not needed 
+x1<=std_logic_vector(X"30"+remainder); -- most significan value
 
-x3<=std_logic_vector(to_integer(signed(data_in(N-1 downto 1)))); -- less significan value
 
 
 -- decimal part
