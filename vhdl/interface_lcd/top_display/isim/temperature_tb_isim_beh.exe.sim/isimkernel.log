@@ -1,0 +1,29 @@
+Command line:
+   temperature_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  64764
+
+Thu Nov 28 10:59:15 2019
+
+
+ Elaboration Time: 0.078125 sec
+
+ Current Memory Usage: 5160.64 Meg
+
+ Total Signals          : 33
+ Total Nets             : 111
+ Total Signal Drivers   : 26
+ Total Blocks           : 4
+ Total Primitive Blocks : 2
+ Total Processes        : 7
+ Total Traceable Variables  : 8
+ Total Scalar Nets and Variables : 471
+Total Line Count : 164
+
+ Total Simulation Time: 0.203125 sec
+
+ Current Memory Usage: 5003.35 Meg
+
+Thu Nov 28 11:01:10 2019
+

@@ -6,7 +6,7 @@ port (	clk: in std_logic;
 		nrst:in std_logic;
 		in_out_door:in std_logic;
 		dq	:inout std_logic;
-		led1,led2,led3: out std_logic;
+		led1: out std_logic;
 		data:out std_logic_vector(8 downto 0));
 end temperature;
 

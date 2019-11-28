@@ -1,0 +1,3 @@
+vhdl work "../interface_tmp_sensor/clock_enable.vhdl"
+vhdl work "../interface_tmp_sensor/temperature.vhdl"
+vhdl work "../interface_tmp_sensor/temperature_tb.vhdl"

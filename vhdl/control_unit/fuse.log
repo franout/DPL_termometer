@@ -12,12 +12,12 @@ Compiling package standard
 Compiling package std_logic_1164
 Compiling package math_real
 Compiling package numeric_std
-Compiling architecture behavioral of entity counter [\counter(8,100)\]
+Compiling architecture behavioral of entity counter_wd [\counter_wd(8,100)\]
 Compiling architecture behavioral of entity control_unit [\control_unit(100)\]
 Compiling architecture behavior of entity tb_main_control_unit
 Time Resolution for simulation is 1ps.
 WARNING:Simulator - Unable to copy libPortabilityNOSH.dll to the simulation executable directory: boost::filesystem::copy_file: The system cannot find the path specified, "isim\tb_main_control_unit_isim_beh.exe.sim\libPortability.dll".
 Compiled 9 VHDL Units
 Built simulation executable D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit_isim_beh.exe
-Fuse Memory Usage: 36284 KB
-Fuse CPU Usage: 686 ms
+Fuse Memory Usage: 36732 KB
+Fuse CPU Usage: 624 ms

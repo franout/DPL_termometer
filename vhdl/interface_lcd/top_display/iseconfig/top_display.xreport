@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2019-11-26T10:47:27</DateModified>
+  <DateModified>2019-11-28T10:38:07</DateModified>
   <ModuleName>top_display</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display/iseconfig/top_display.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display\</ImplementationReportsDirectory>
   <DateInitialized>2019-11-26T10:47:27</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

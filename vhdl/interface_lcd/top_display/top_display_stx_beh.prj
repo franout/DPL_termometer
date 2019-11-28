@@ -1,0 +1,6 @@
+vhdl isim_temp "mux8_1.vhd"
+vhdl isim_temp "counter.vhd"
+vhdl isim_temp "translator.vhd"
+vhdl isim_temp "../lcd.vhd"
+vhdl isim_temp "../counter_clk_enable.vhd"
+vhdl isim_temp "top_display.vhd"

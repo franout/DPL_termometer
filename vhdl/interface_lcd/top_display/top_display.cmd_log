@@ -1,0 +1,9 @@
+xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display/top_display.xst" -ofn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display/top_display.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_display.ucf -p xc7a100t-csg324-1 top_display.ngc top_display.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o top_display_map.ncd top_display.ngd top_display.pcf 
+xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display/top_display.xst" -ofn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_lcd/top_display/top_display.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_display.ucf -p xc7a100t-csg324-1 top_display.ngc top_display.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o top_display_map.ncd top_display.ngd top_display.pcf 
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o top_display_map.ncd top_display.ngd top_display.pcf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_display.ucf -p xc7a100t-csg324-1 top_display.ngc top_display.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o top_display_map.ncd top_display.ngd top_display.pcf 

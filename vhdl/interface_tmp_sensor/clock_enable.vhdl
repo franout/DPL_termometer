@@ -17,5 +17,6 @@ begin
 	else
 		clk_1us<='0';
 		cnt<=cnt+1;
+		end if;
 end process;
 end beh;

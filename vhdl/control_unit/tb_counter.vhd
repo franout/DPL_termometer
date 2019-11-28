@@ -36,7 +36,7 @@ ARCHITECTURE behavior OF tb_counter IS
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT counter
+    COMPONENT counter_wd
 	 
 generic ( N : integer := 8;
 			MAX_VAL: integer :=255);
@@ -63,7 +63,7 @@ BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
 	-- for 60 s it should be enough 26 bit ( 1 Mhz ) 
-   uut: counter GENERIC MAP (N=>8, MAX_VAL=>200) PORT MAP (
+   uut: counter_wd GENERIC MAP (N=>8, MAX_VAL=>200) PORT MAP (
           clk => clk,
           reset => reset,
           tc => tc

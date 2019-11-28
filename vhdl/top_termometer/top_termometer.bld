@@ -3,19 +3,16 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 Command Line:
 D:\programmi\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -intstyle
-ise -dd _ngo -nt timestamp -i -p xc7a100tl-csg324-2L top_termometer.ngc
-top_termometer.ngd
+ise -dd _ngo -nt timestamp -uc top_termometer.ucf -p xc7a100tl-csg324-2L
+top_termometer.ngc top_termometer.ngd
 
 Reading NGO file
 "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top
 _termometer.ngc" ...
-Loading design module
-"D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer/top
-_termometer.ngc"...
-WARNING:NgdBuild:578 - Design contains no instances.
 Gathering constraint information from source properties...
 Done.
 
+Annotating constraints to design from ucf file "top_termometer.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
 Done...
@@ -31,12 +28,12 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings:   1
+  Number of warnings:   0
 
-Total memory usage is 4470528 kilobytes
+Total memory usage is 4470620 kilobytes
 
 Writing NGD file "top_termometer.ngd" ...
-Total REAL time to NGDBUILD completion:  11 sec
-Total CPU time to NGDBUILD completion:   10 sec
+Total REAL time to NGDBUILD completion:  8 sec
+Total CPU time to NGDBUILD completion:   7 sec
 
 Writing NGDBUILD log file "top_termometer.bld"...

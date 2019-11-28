@@ -25,9 +25,7 @@ entity top_termometer is
     Port ( reset : in  STD_LOGIC;
            clk : in  STD_LOGIC;
 			  ind_outd_sw: in STD_LOGIC;
-           in_sensor : inout  STD_LOGIC;
-           out_sensor : inout  STD_LOGIC;
-           in_out_s : in  STD_LOGIC;
+           tmp_sensor : inout  STD_LOGIC;
            lcd_enable : out  STD_LOGIC;
            lcd_rw : out  STD_LOGIC;
            lcd_rs : out  STD_LOGIC;
@@ -89,7 +87,7 @@ port (	clk: in std_logic;
 		nrst:in std_logic;
 		in_out_door:in std_logic;
 		dq	:inout std_logic;
-		led1,led2,led3: out std_logic;
+		led1: out std_logic;
 		data:out std_logic_vector(8 downto 0));
 end component temperature;
 
@@ -107,7 +105,7 @@ PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 
 end  COMPONENT top_display;
 
-SIGNAL reset_top,start_display,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
+SIGNAL reset_top,start_display,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
 SIGNAL select_data_comparison: std_logic_vector(1 DOWNTO 0);
 SIGNAL data_from_comparison,data_from_tmp_interface: std_logic_vector(8 DOWNTO 0);
 
@@ -123,9 +121,12 @@ interface_lcd: top_display GENERIC MAP(9) PORT MAP(clk=>clk,reset=>reset_top,sta
 									enable=>lcd_enable,
 									r_w=>lcd_rw,
 									rs=>lcd_rs );
-interface_tmp_sensor: temperature PORT MAP(clk=>clk,nrst=>reset_top,
+interface_tmp_sensor: temperature PORT MAP(clk=>clk,
 														in_out_door=>in_out_sel,
-														data=>data_from_tmp_interface);
+														led1=>done_meas,
+														data=>data_from_tmp_interface,
+														dq=> tmp_sensor,
+														nrst=>reset_start_tmp);
 comparison_block:comparison GENERIC MAP (9) PORT MAP(clk=>clk,reset=>reset_top,
 				in_out_sel=>in_out_sel,
 				data_in=>data_from_tmp_interface ,
@@ -146,6 +147,7 @@ cu: control_unit GENERIC MAP (100) PORT MAP(clk=>clk,reset=>reset,
 									done_meas=>done_meas ,
 									reset_i=>reset_i);
 
+reset_start_tmp<=not(start_meas or reset_top);
 
 end structural;
 

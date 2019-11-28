@@ -23,9 +23,8 @@ Compiling architecture behavioral of entity mux4_1 [\mux4_1(8)\]
 Compiling architecture structural of entity comparison [\comparison(8)\]
 Compiling architecture behavior of entity tb_comparison
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 WARNING:Simulator - Unable to copy libPortabilityNOSH.dll to the simulation executable directory: boost::filesystem::copy_file: The system cannot find the path specified, "isim\tb_comparison_isim_beh.exe.sim\libPortability.dll".
 Compiled 16 VHDL Units
 Built simulation executable D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/comparison/tb_comparison_isim_beh.exe
-Fuse Memory Usage: 35704 KB
-Fuse CPU Usage: 577 ms
+Fuse Memory Usage: 35744 KB
+Fuse CPU Usage: 780 ms

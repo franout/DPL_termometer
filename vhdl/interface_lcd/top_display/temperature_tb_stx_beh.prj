@@ -1,0 +1,3 @@
+vhdl isim_temp "../../interface_tmp_sensor/clock_enable.vhdl"
+vhdl isim_temp "../../interface_tmp_sensor/temperature.vhdl"
+vhdl isim_temp "../../interface_tmp_sensor/temperature_tb.vhdl"
