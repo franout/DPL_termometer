@@ -1,7 +1,0 @@
-vhdl isim_temp "reg.vhd"
-vhdl isim_temp "mux4_1.vhd"
-vhdl isim_temp "mux.vhd"
-vhdl isim_temp "counter_comparison.vhd"
-vhdl isim_temp "comparator.vhd"
-vhdl isim_temp "comparison.vhd"
-vhdl isim_temp "tb_comparison.vhd"

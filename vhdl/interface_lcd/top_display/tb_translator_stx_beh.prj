@@ -1,4 +1,0 @@
-vhdl isim_temp "mux8_1.vhd"
-vhdl isim_temp "counter.vhd"
-vhdl isim_temp "translator.vhd"
-vhdl isim_temp "tb_translator.vhd"

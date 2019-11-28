@@ -1,6 +1,0 @@
-work	"../counter_clk_enable.vhd"
-work	"../lcd.vhd"
-work	"counter.vhd"
-work	"mux8_1.vhd"
-work	"top_display.vhd"
-work	"translator.vhd"
