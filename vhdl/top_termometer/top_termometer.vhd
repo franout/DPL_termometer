@@ -29,7 +29,8 @@ entity top_termometer is
            lcd_enable : out  STD_LOGIC;
            lcd_rw : out  STD_LOGIC;
            lcd_rs : out  STD_LOGIC;
-           lcd_data : out  STD_LOGIC_VECTOR (7 downto 0));
+           lcd_data : out  STD_LOGIC_VECTOR (7 downto 0);
+				system_ready: out std_logic); -- signal to an led on the board
 end top_termometer;
 
 architecture structural of top_termometer is
@@ -58,7 +59,9 @@ done_lcd: IN std_logic;
 -- from/to sensor interface
 start_meas: OUT std_logic;
 done_meas:IN std_logic;
-reset_i: OUT std_logic -- internal reset for all interfaces 
+reset_i: OUT std_logic; -- internal reset for all interfaces 
+ready: OUT std_logic -- switch on an led for notifyinh that the system is operative
+
 );
 end COMPONENT control_unit;
 
@@ -145,9 +148,12 @@ cu: control_unit GENERIC MAP (100) PORT MAP(clk=>clk,reset=>reset,
 									done_lcd=>done_display,
 									start_meas=>start_meas,
 									done_meas=>done_meas ,
-									reset_i=>reset_i);
+									reset_i=>reset_i,
+									ready=> system_ready);
 
 reset_start_tmp<=not(start_meas or reset_top);
+
+-- additional components 
 
 end structural;
 

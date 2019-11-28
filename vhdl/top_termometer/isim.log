@@ -1,5 +1,5 @@
 ISim log file
-Running: D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\temperature_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/temperature_tb_isim_beh.wdb 
+Running: D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\tb_main_control_unit_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/tb_main_control_unit_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -11,8 +11,12 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run 1 s
-Stopped at time : 58098605 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_tmp_sensor/temperature_tb.vhdl" Line 29
+
+** Failure:system not ready 
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
 ISim P.20131013 (signature 0x7708f090)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -21,7 +25,5 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run all
-Stopped at time : 368446415 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/interface_tmp_sensor/temperature_tb.vhdl" Line 29
-# cd ..
-# cd interface_tmp_sensor
+# run 1 ms
+# run 1 ms

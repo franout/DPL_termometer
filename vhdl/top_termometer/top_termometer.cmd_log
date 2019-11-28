@@ -20,3 +20,6 @@ ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_termometer.ucf -p xc7a100t
 ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_termometer.ucf -p xc7a100tl-csg324-2L top_termometer.ngc top_termometer.ngd  
 map -intstyle ise -p xc7a100tl-csg324-2L -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o top_termometer_map.ncd top_termometer.ngd top_termometer.pcf 
 xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.xst" -ofn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.syr" 
+xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.xst" -ofn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.syr" 
+xst -intstyle ise -ifn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.xst" -ofn "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/top_termometer.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc top_termometer.ucf -p xc7a100tl-csg324-2L top_termometer.ngc top_termometer.ngd  

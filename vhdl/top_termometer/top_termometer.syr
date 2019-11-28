@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.20 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.20 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: top_termometer.prj
 
@@ -213,8 +213,8 @@ Elaborating entity <control_unit> (architecture <Behavioral>) with generics from
 
 Elaborating entity <counter_wd> (architecture <Behavioral>) with generics from library <work>.
 WARNING:HDLCompiler:92 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\counter_wd.vhd" Line 48: enable should be on the sensitivity list of the process
-WARNING:HDLCompiler:92 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\control_unit.vhd" Line 104: in_out_val should be on the sensitivity list of the process
-INFO:HDLCompiler:679 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\control_unit.vhd" Line 177. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:92 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\control_unit.vhd" Line 105: in_out_val should be on the sensitivity list of the process
+INFO:HDLCompiler:679 - "D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\control_unit\control_unit.vhd" Line 181. Case statement is complete. others clause is never selected
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -667,7 +667,7 @@ Synthesizing Unit <control_unit>.
     | States             | 8                                              |
     | Transitions        | 19                                             |
     | Inputs             | 6                                              |
-    | Outputs            | 11                                             |
+    | Outputs            | 12                                             |
     | Clock              | clk (rising_edge)                              |
     | Reset              | reset (positive)                               |
     | Reset type         | asynchronous                                   |
@@ -960,8 +960,8 @@ INFO:Xst:2261 - The FF/Latch <_i000104_2> in Unit <LCD> is equivalent to the fol
 INFO:Xst:2261 - The FF/Latch <_i000104_3> in Unit <LCD> is equivalent to the following 2 FFs/Latches, which will be removed : <_i000150_3> <_i000127_3> 
 INFO:Xst:2261 - The FF/Latch <writetemp_1> in Unit <temperature> is equivalent to the following 2 FFs/Latches, which will be removed : <writetemp_5> <writetemp_7> 
 WARNING:Xst:2170 - Unit top_termometer : the following signal(s) form a combinatorial loop: interface_tmp_sensor/clk_1us, interface_tmp_sensor/clk_com/Madd_cnt[6]_GND_373_o_add_1_OUT_lut<6>.
-WARNING:Xst:2170 - Unit LCD : the following signal(s) form a combinatorial loop: state<0>, state[3]_X_5_o_wide_mux_155_OUT<0>1, state[3]_X_5_o_wide_mux_155_OUT<1>, state<1>.
-WARNING:Xst:2170 - Unit LCD : the following signal(s) form a combinatorial loop: state[3]_X_5_o_wide_mux_155_OUT<3>, state<3>, state<2>, state[3]_X_5_o_wide_mux_155_OUT<2>.
+WARNING:Xst:2170 - Unit LCD : the following signal(s) form a combinatorial loop: state[3]_X_5_o_wide_mux_155_OUT<0>1, state<1>, state<0>, state[3]_X_5_o_wide_mux_155_OUT<1>.
+WARNING:Xst:2170 - Unit LCD : the following signal(s) form a combinatorial loop: state<2>, state[3]_X_5_o_wide_mux_155_OUT<2>, state[3]_X_5_o_wide_mux_155_OUT<3>, state<3>.
 
 Optimizing unit <reg> ...
 
@@ -1030,11 +1030,11 @@ Top Level Output File Name         : top_termometer.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 878
+# BELS                             : 879
 #      GND                         : 1
 #      INV                         : 7
 #      LUT1                        : 79
-#      LUT2                        : 44
+#      LUT2                        : 45
 #      LUT3                        : 71
 #      LUT4                        : 120
 #      LUT5                        : 144
@@ -1055,10 +1055,10 @@ Primitive and Black Box Usage:
 #      LDE_1                       : 65
 # Clock Buffers                    : 2
 #      BUFG                        : 2
-# IO Buffers                       : 15
+# IO Buffers                       : 16
 #      IBUF                        : 3
 #      IOBUF                       : 1
-#      OBUF                        : 11
+#      OBUF                        : 12
 
 Device utilization summary:
 ---------------------------
@@ -1068,19 +1068,19 @@ Selected Device : 7a100tlcsg324-2l
 
 Slice Logic Utilization: 
  Number of Slice Registers:             396  out of  126800     0%  
- Number of Slice LUTs:                  688  out of  63400     1%  
-    Number used as Logic:               688  out of  63400     1%  
+ Number of Slice LUTs:                  689  out of  63400     1%  
+    Number used as Logic:               689  out of  63400     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    749
-   Number with an unused Flip Flop:     353  out of    749    47%  
-   Number with an unused LUT:            61  out of    749     8%  
-   Number of fully used LUT-FF pairs:   335  out of    749    44%  
+ Number of LUT Flip Flop pairs used:    750
+   Number with an unused Flip Flop:     354  out of    750    47%  
+   Number with an unused LUT:            61  out of    750     8%  
+   Number of fully used LUT-FF pairs:   335  out of    750    44%  
    Number of unique control sets:        28
 
 IO Utilization: 
- Number of IOs:                          15
- Number of bonded IOBs:                  15  out of    210     7%  
+ Number of IOs:                          16
+ Number of bonded IOBs:                  16  out of    210     7%  
     IOB Flip Flops/Latches:              10
 
 Specific Feature Utilization:
@@ -1109,10 +1109,10 @@ Clock Signal                                                                    
 ---------------------------------------------------------------------------------+-----------------------------------------------------+-------+
 clk                                                                              | IBUF+BUFG                                           | 217   |
 interface_tmp_sensor/clk_1us(interface_tmp_sensor/clk_com/clk_1us<6>:O)          | NONE(*)(interface_tmp_sensor/state_FSM_FFd1)        | 55    |
-cu/curr_state[2]_GND_394_o_Mux_25_o(cu/Mmux_curr_state[2]_GND_394_o_Mux_25_o11:O)| NONE(*)(cu/in_out_val)                              | 1     |
+cu/curr_state[2]_GND_394_o_Mux_26_o(cu/Mmux_curr_state[2]_GND_394_o_Mux_26_o11:O)| NONE(*)(cu/in_out_val)                              | 1     |
 reset_top(reset_top1:O)                                                          | BUFG(*)(interface_lcd/interface/dataOUT_0)          | 85    |
 comparison_block/clk_enable(comparison_block/Mmux_clk_enable11:O)                | NONE(*)(comparison_block/state_count/cnt)           | 11    |
-start_comparison(cu/curr_state__n0065<3>1:O)                                     | NONE(*)(comparison_block/comp/res)                  | 1     |
+start_comparison(cu/curr_state__n0066<3>1:O)                                     | NONE(*)(comparison_block/comp/res)                  | 1     |
 comparison_block/clk_outd(comparison_block/Mmux_clk_ind111:O)                    | NONE(*)(comparison_block/min_tmp_reg_out/data_out_8)| 18    |
 comparison_block/clk_ind(comparison_block/Mmux_clk_ind12:O)                      | NONE(*)(comparison_block/min_tmp_reg_ind/data_out_8)| 18    |
 ---------------------------------------------------------------------------------+-----------------------------------------------------+-------+
@@ -1311,13 +1311,13 @@ Offset:              2.756ns (Levels of Logic = 4)
                                        (12.0% logic, 88.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'cu/curr_state[2]_GND_394_o_Mux_25_o'
+Timing constraint: Default OFFSET IN BEFORE for Clock 'cu/curr_state[2]_GND_394_o_Mux_26_o'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              0.345ns (Levels of Logic = 1)
   Source:            ind_outd_sw (PAD)
   Destination:       cu/in_out_val (LATCH)
-  Destination Clock: cu/curr_state[2]_GND_394_o_Mux_25_o falling
+  Destination Clock: cu/curr_state[2]_GND_394_o_Mux_26_o falling
 
   Data Path: ind_outd_sw to cu/in_out_val
                                 Gate     Net
@@ -1459,7 +1459,7 @@ Offset:              1.204ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 3 / 1
+  Total number of paths / destination ports: 5 / 2
 -------------------------------------------------------------------------
 Offset:              1.643ns (Levels of Logic = 2)
   Source:            cu/curr_state_FSM_FFd1 (FF)
@@ -1470,8 +1470,8 @@ Offset:              1.643ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             32   0.398   0.729  cu/curr_state_FSM_FFd1 (cu/curr_state_FSM_FFd1)
-     LUT3:I0->O           14   0.105   0.411  cu/curr_state__n0065<6>1 (start_display)
+     FDC:C->Q             33   0.398   0.729  cu/curr_state_FSM_FFd1 (cu/curr_state_FSM_FFd1)
+     LUT3:I0->O           14   0.105   0.411  cu/curr_state__n0066<6>1 (start_display)
      OBUF:I->O                 0.000          lcd_enable_OBUF (lcd_enable)
     ----------------------------------------
     Total                      1.643ns (0.503ns logic, 1.140ns route)
@@ -1491,7 +1491,7 @@ clk                                |    7.189|         |         |         |
 comparison_block/clk_enable        |    5.471|         |         |         |
 comparison_block/clk_ind           |    6.061|         |         |         |
 comparison_block/clk_outd          |    6.155|         |         |         |
-cu/curr_state[2]_GND_394_o_Mux_25_o|         |    6.543|         |         |
+cu/curr_state[2]_GND_394_o_Mux_26_o|         |    6.543|         |         |
 interface_tmp_sensor/clk_1us       |    1.184|         |         |         |
 reset_top                          |    6.827|         |         |         |
 -----------------------------------+---------+---------+---------+---------+
@@ -1534,7 +1534,7 @@ Clock to Setup on destination clock interface_tmp_sensor/clk_1us
 Source Clock                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------------------+---------+---------+---------+---------+
 clk                                |    3.172|         |         |         |
-cu/curr_state[2]_GND_394_o_Mux_25_o|         |    1.777|         |         |
+cu/curr_state[2]_GND_394_o_Mux_26_o|         |    1.777|         |         |
 interface_tmp_sensor/clk_1us       |    4.630|         |         |         |
 -----------------------------------+---------+---------+---------+---------+
 
@@ -1554,18 +1554,18 @@ Source Clock                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 comparison_block/clk_enable        |         |         |    4.657|         |
 comparison_block/clk_ind           |         |         |    4.655|         |
 comparison_block/clk_outd          |         |         |    4.749|         |
-cu/curr_state[2]_GND_394_o_Mux_25_o|         |         |    5.144|         |
+cu/curr_state[2]_GND_394_o_Mux_26_o|         |         |    5.144|         |
 -----------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 42.00 secs
-Total CPU time to Xst completion: 41.29 secs
+Total REAL time to Xst completion: 41.00 secs
+Total CPU time to Xst completion: 40.95 secs
  
 --> 
 
-Total memory usage is 5102364 kilobytes
+Total memory usage is 5101956 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  107 (   0 filtered)

@@ -51,7 +51,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
          done_lcd : IN  std_logic;
          start_meas : OUT  std_logic;
          done_meas : IN  std_logic;
-			reset_i:OUT std_logic
+			reset_i:OUT std_logic;
+			ready: OUT std_logic
         );
     END COMPONENT;
     
@@ -72,6 +73,7 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
    signal start_meas : std_logic;
 	signal cmd : std_logic_vector(7 DOWNTO 0) ;
 	signal reset_i: std_logic;
+	signal ready: std_logic;
 	
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -92,7 +94,8 @@ BEGIN
           done_lcd => done_lcd,
           start_meas => start_meas,
           done_meas => done_meas, 
-			 reset_i=> reset_i
+			 reset_i=> reset_i,
+			 ready=> ready
 			 );
 
    -- Clock process definitions
@@ -158,7 +161,8 @@ BEGIN
     done_meas <='0';
 	wait for clk_period; -- idle state
 		ASSERT cmd="00000000" REPORT "cu doens't remain in idle state" SEVERITY FAILURE;
-		
+				ASSERT ready='1' REPORT "system not ready " SEVERITY FAILURE;
+
 		-- transaction on the switch  start measurement
 		reset<='0';
 		in_out_sel <= '1';

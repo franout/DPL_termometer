@@ -29,6 +29,10 @@
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="tb_main_control_unit_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="tb_main_control_unit_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="tb_main_control_unit_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="temperature_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="temperature_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="temperature_tb_isim_beh.wdb"/>
@@ -60,19 +64,43 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574938031" xil_pn:in_ck="3201498498468279315" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1574938031">
+    <transform xil_pn:end_ts="1574953562" xil_pn:in_ck="5826797929272782635" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1574953561">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="../comparison/comparator.vhd"/>
+      <outfile xil_pn:name="../comparison/comparison.vhd"/>
+      <outfile xil_pn:name="../comparison/counter_comparison.vhd"/>
+      <outfile xil_pn:name="../comparison/mux.vhd"/>
+      <outfile xil_pn:name="../comparison/mux4_1.vhd"/>
+      <outfile xil_pn:name="../comparison/reg.vhd"/>
+      <outfile xil_pn:name="../comparison/tb_comparison.vhd"/>
+      <outfile xil_pn:name="../control_unit/control_unit.vhd"/>
+      <outfile xil_pn:name="../control_unit/counter_wd.vhd"/>
+      <outfile xil_pn:name="../control_unit/tb_counter.vhd"/>
+      <outfile xil_pn:name="../control_unit/tb_main_control_unit.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/counter_clk_enable.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/lcd.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/counter.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/mux8_1.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/tb_top_lcd.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/tb_translator.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/top_display.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/translator.vhd"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/clock_enable.vhdl"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/temperature.vhdl"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/temperature_tb.vhdl"/>
+      <outfile xil_pn:name="tb_top_termometer.vhd"/>
+      <outfile xil_pn:name="top_termometer.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1574938031" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-6628073677704834145" xil_pn:start_ts="1574938031">
+    <transform xil_pn:end_ts="1574953562" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-5482634416973686257" xil_pn:start_ts="1574953562">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574938031" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="8714597348327573581" xil_pn:start_ts="1574938031">
+    <transform xil_pn:end_ts="1574953562" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-7053196763452412739" xil_pn:start_ts="1574953562">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -80,34 +108,65 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574938031" xil_pn:in_ck="3201498498468279315" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1574938031">
+    <transform xil_pn:end_ts="1574953562" xil_pn:in_ck="5826797929272782635" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1574953562">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="../comparison/comparator.vhd"/>
+      <outfile xil_pn:name="../comparison/comparison.vhd"/>
+      <outfile xil_pn:name="../comparison/counter_comparison.vhd"/>
+      <outfile xil_pn:name="../comparison/mux.vhd"/>
+      <outfile xil_pn:name="../comparison/mux4_1.vhd"/>
+      <outfile xil_pn:name="../comparison/reg.vhd"/>
+      <outfile xil_pn:name="../comparison/tb_comparison.vhd"/>
+      <outfile xil_pn:name="../control_unit/control_unit.vhd"/>
+      <outfile xil_pn:name="../control_unit/counter_wd.vhd"/>
+      <outfile xil_pn:name="../control_unit/tb_counter.vhd"/>
+      <outfile xil_pn:name="../control_unit/tb_main_control_unit.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/counter_clk_enable.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/lcd.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/counter.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/mux8_1.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/tb_top_lcd.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/tb_translator.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/top_display.vhd"/>
+      <outfile xil_pn:name="../interface_lcd/top_display/translator.vhd"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/clock_enable.vhdl"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/temperature.vhdl"/>
+      <outfile xil_pn:name="../interface_tmp_sensor/temperature_tb.vhdl"/>
+      <outfile xil_pn:name="tb_top_termometer.vhd"/>
+      <outfile xil_pn:name="top_termometer.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1574938035" xil_pn:in_ck="3201498498468279315" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-5215250496162397388" xil_pn:start_ts="1574938031">
+    <transform xil_pn:end_ts="1574953566" xil_pn:in_ck="5826797929272782635" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-120984812223032934" xil_pn:start_ts="1574953562">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="tb_main_control_unit_beh.prj"/>
+      <outfile xil_pn:name="tb_main_control_unit_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1574938035" xil_pn:in_ck="1855649950033929842" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5204171780526678815" xil_pn:start_ts="1574938035">
+    <transform xil_pn:end_ts="1574953566" xil_pn:in_ck="-6430139115840690598" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="6411117574972799623" xil_pn:start_ts="1574953566">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="tb_main_control_unit_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1574421805" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1574421805">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -137,7 +196,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574937432" xil_pn:in_ck="1159887424921489765" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="2387863705722814825" xil_pn:start_ts="1574937387">
+    <transform xil_pn:end_ts="1574953965" xil_pn:in_ck="-1089496088484131715" xil_pn:name="TRANEXT_xstsynthesize_virtex6" xil_pn:prop_ck="2387863705722814825" xil_pn:start_ts="1574953921">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -157,11 +216,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1574934293" xil_pn:in_ck="-6440912136568552322" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-5107127630544551299" xil_pn:start_ts="1574934282">
+    <transform xil_pn:end_ts="1574953975" xil_pn:in_ck="-6440912136568552322" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-5107127630544551299" xil_pn:start_ts="1574953965">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="top_termometer.bld"/>
@@ -172,18 +229,15 @@
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
-      <outfile xil_pn:name="top_termometer_map.map"/>
-      <outfile xil_pn:name="top_termometer_map.mrp"/>
-      <outfile xil_pn:name="top_termometer_map.ngm"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1574934202" xil_pn:in_ck="-3260136165378970945" xil_pn:name="TRAN_createTimingConstraints" xil_pn:start_ts="1574934202">
+    <transform xil_pn:end_ts="1574953975" xil_pn:in_ck="-3260136165378970945" xil_pn:name="TRAN_createTimingConstraints" xil_pn:start_ts="1574953975">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="InputChanged"/>
     </transform>
   </transforms>
 

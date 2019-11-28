@@ -46,7 +46,8 @@ done_lcd: IN std_logic;
 -- from/to sensor interface
 start_meas: OUT std_logic;
 done_meas:IN std_logic;
-reset_i: OUT std_logic -- internal reset for all interfaces 
+reset_i: OUT std_logic; -- internal reset for all interfaces 
+ready: OUT std_logic -- switch on an led for notifyinh that the system is operative
 );
 end entity control_unit;
 
@@ -105,9 +106,11 @@ in_out<=in_out_val;
 start_comparison<='0';init_set_up<='0';
 enable_wd<='0';
 reset_i<='0';
+ready<='1';
 CASE curr_state IS
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
+			ready<='0';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
 			IF ( done_lcd='1' ) THEN
 			next_state<=idle;
@@ -117,6 +120,7 @@ WHEN set_up=> init_set_up<='1';
 			next_state<=curr_state;
 			END IF;
 WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
+					ready<='0';
 					reset_i<='1';
 					next_state<=set_up;
 WHEN idle=> enable_wd<='1';
