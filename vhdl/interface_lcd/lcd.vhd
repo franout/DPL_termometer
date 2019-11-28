@@ -129,7 +129,7 @@ BEGIN
 								end if;
 
 					when WRITING_MAX =>
-
+								done<='0';
 								case writing_counter is
 
 									when 0 =>									
@@ -149,25 +149,28 @@ BEGIN
 										dataOUT<=x"58";                           -- Sending x
 										writing_counter<= writing_counter+1;
 
-									when 3 =>									
+									when 3 =>
+										enable_translator<='1';									
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"3A";                           -- Sending :
 										writing_counter<= writing_counter+1;
 
-									when 10 =>									
+									when 10 =>
+										enable_translator<='0';
+									
 										RS<='1';
 										R_W<='0';
-										dataOUT<=x"DF";                           -- Sending :
+										dataOUT<=x"43";                           -- Sending C
 										writing_counter<= writing_counter+1;
 									when 11 =>									
 										RS<='0';
 										R_W<='0';
 										dataOUT<="11000000";
+										done<='1';
 										state<=WRITING_MIN;
 										writing_counter<= 0;
 									when OTHERS =>		
-										enable_translator<='1';
 										RS<='1';
 										R_W<='0';
 										dataOUT<=dataIN;                           
@@ -181,7 +184,7 @@ BEGIN
 					when WRITING_MIN =>
 
 
-
+							done<='0';
 								case writing_counter is
 
 									when 0 =>									
@@ -201,29 +204,33 @@ BEGIN
 										dataOUT<=x"4E";                           -- Sending N
 										writing_counter<= writing_counter+1;
 
-									when 3 =>									
+									when 3 =>	
+										enable_translator<='1';
+									
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"3A";                           -- Sending :
 										writing_counter<= writing_counter+1;
 
-									when 10 =>									
+									when 10 =>		
+										enable_translator<='0';
+									
 										RS<='1';
 										R_W<='0';
-										dataOUT<=x"DF";                           
+										dataOUT<=x"43";                           
 										writing_counter<= writing_counter+1;
 									when 11 =>									
 										RS<='0';
 										R_W<='0';
 										dataOUT<=clear_data_display;
 										state<=WRITING_NOW;
+										done<='1';
 										writing_counter<= 0;
 
 									when OTHERS =>
-										enable_translator<='1';
 										RS<='1';
 										R_W<='0';
-										dataOUT<=dataIN;                           -- Sending :
+										dataOUT<=dataIN; 
 										writing_counter<= writing_counter+1;
 
 
@@ -232,10 +239,11 @@ BEGIN
 
 			
 					when WRITING_NOW=>
-
+							done<='0';
 								case writing_counter is
 
-									when 0 =>									
+									when 0 =>
+									
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"4E"; 
@@ -252,22 +260,27 @@ BEGIN
 										dataOUT<=x"57";                           -- Sending W
 										writing_counter<= writing_counter+1;
 
-									when 3 =>									
+									when 3 =>	
+										enable_translator<='1';
+									
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"3A";                           -- Sending :
 										writing_counter<= writing_counter+1;
 
-									when 10 =>									
+									when 10 =>
+										enable_translator<='0';
+									
 										RS<='1';
 										R_W<='0';
-										dataOUT<=x"DF";                           
+										dataOUT<=x"43";                           
 										writing_counter<= writing_counter+1;
 									when 11 =>									
 										RS<='0';
 										R_W<='0';
 										dataOUT<="11000000";
 										state<=IND_OUTD;
+										done<='1';
 										writing_counter<= 0;
 
 									when OTHERS =>	
@@ -284,8 +297,8 @@ BEGIN
 
 
 				when IND_OUTD=>
-
-							    if(ind_outd_select<='1')     then                          -- indoor
+								done<='0';
+							    if(ind_outd_select='1')     then                          -- indoor
 								case writing_counter is
 
 									when 0 =>									
@@ -320,19 +333,21 @@ BEGIN
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"52";                           -- sending R
-										state<=IND_OUTD;
+										state<=IDLE;
+										done<='1';
+
 										writing_counter<= 0;
 
 									when OTHERS =>									
 										RS<='0';
 										R_W<='0';
-                         							done<='1';
+                         		done<='1';
 										writing_counter<= 0;
 										state<=IDLE;
 
 								end case;
 
-							    else
+							    elsif (ind_outd_select='0') then 
 
 								case writing_counter is
 
@@ -375,7 +390,8 @@ BEGIN
 										RS<='1';
 										R_W<='0';
 										dataOUT<=x"52";                           -- sending R
-										state<=IND_OUTD;
+										state<=IDLE;
+										                         							done<='1';
 										writing_counter<= 0;
 
 									when OTHERS =>									
@@ -390,7 +406,7 @@ BEGIN
 
 									
 							    end if; 
-
+					WHEN OTHERS=> state<=INIT_1;
 				end case;
 			end if;
 

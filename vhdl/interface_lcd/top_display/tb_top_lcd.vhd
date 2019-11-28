@@ -52,7 +52,7 @@ ARCHITECTURE behavior OF tb_top_lcd IS
          enable : OUT  std_logic
         );
     END COMPONENT;
-    
+   
 
    --Inputs
    signal clk : std_logic := '0';
@@ -209,11 +209,11 @@ BEGIN
   		assert outputs="0101"&x"30" REPORT "wrong x1 max" severity failure;
 		WAIT until clk='1' and clk'event;
 		--x2
-		assert outputs="0101"&x"35" REPORT "wrong x2 max" severity failure;
+		assert outputs="0101"&x"30" REPORT "wrong x2 max" severity failure;
 		WAIT until clk='1' and clk'event;
 		
 		--x3
-		assert outputs="0101"&x"31" REPORT "wrong x3 max" severity failure;
+		assert outputs="0101"&x"30" REPORT "wrong x3 max" severity failure;
 		WAIT until clk='1' and clk'event;
 		
 		-- dot
@@ -224,20 +224,22 @@ BEGIN
 		assert outputs="0101"&x"30" REPORT "wrong dec max" severity failure;
 		WAIT until clk='1' and clk'event;
 
-		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
+		ASSERT outputs="0101"&x"43" REPORT " failure print ° " SEVERITY FAILURE; --- c
 		
 
 
 		data_in<="001100110"; -- +051.0
 
 		WAIT until clk='1' and clk'event;
+		ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
+		wait until clk='1' and clk'event;
 		
 		-- min
 		ASSERT outputs="0101"&x"4D" REPORT " failure print m " SEVERITY FAILURE; --- m
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"41" REPORT " failure failure print i " SEVERITY FAILURE; --- i
+		ASSERT outputs="0101"&x"49" REPORT " failure failure print i " SEVERITY FAILURE; --- i
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"58" REPORT " failure print m " SEVERITY FAILURE; --- n
+		ASSERT outputs="0101"&x"4e" REPORT " failure print n " SEVERITY FAILURE; --- n
 		WAIT until clk='1' and clk'event;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
 		WAIT until clk='1' and clk'event;
@@ -249,11 +251,11 @@ BEGIN
 		assert outputs="0101"&x"30" REPORT "wrong x1 min" severity failure;
 		WAIT until clk='1' and clk'event;
 		--x2
-		assert outputs="0101"&x"30" REPORT "wrong x2  min" severity failure;
+		assert outputs="0101"&x"35" REPORT "wrong x2  min" severity failure;
 		WAIT until clk='1' and clk'event;
 		
 		--x3
-		assert outputs="0101"& x"30" REPORT "wrong x3 min" severity failure;
+		assert outputs="0101"& x"31" REPORT "wrong x3 min" severity failure;
 		WAIT until clk='1' and clk'event;
 		
 		-- dot
@@ -264,14 +266,17 @@ BEGIN
 		assert outputs="0101"&x"30" REPORT "wrong dec min" severity failure;
 		WAIT until clk='1' and clk'event;
 
-		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
+		ASSERT outputs="0101"&x"43" REPORT " failure print ° " SEVERITY FAILURE; --- °
 		WAIT until clk='1' and clk'event;
+				ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
+
+		wait until clk='1' and clk'event;
 		-- curr 
-			ASSERT outputs="0101"&x"4D" REPORT " failure print n " SEVERITY FAILURE; --- N
+			ASSERT outputs="0101"&x"4e" REPORT " failure print n " SEVERITY FAILURE; --- N
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"41" REPORT " failure print o " SEVERITY FAILURE; --- O
+		ASSERT outputs="0101"&x"4f" REPORT " failure print o " SEVERITY FAILURE; --- O
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"58" REPORT " failure print w " SEVERITY FAILURE; --- W
+		ASSERT outputs="0101"&x"57" REPORT " failure print w " SEVERITY FAILURE; --- W
 		WAIT until clk='1' and clk'event;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
 		WAIT until clk='1' and clk'event;
@@ -298,39 +303,44 @@ BEGIN
 		assert outputs="0101"&x"30" REPORT "wrong dec  now" severity failure;
 		WAIT until clk='1' and clk'event;
 
-		ASSERT outputs="010111000000" REPORT " failure to print ° " SEVERITY FAILURE; --- °
+		ASSERT outputs="0101"&x"43"  REPORT " failure to print ° " SEVERITY FAILURE; --- °
 		WAIT until clk='1' and clk'event;
-		
+				ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
+				WAIT until clk='1' and clk'event;
+
 		
 		-- check indoor print
-		ASSERT outputs="0101"&x"49" REPORT " failure to print ° " SEVERITY FAILURE; --- I
+		ASSERT outputs="0101"&x"49" REPORT " failure to print i " SEVERITY FAILURE; --- I
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"4e" REPORT " failure to print ° " SEVERITY FAILURE; --- n
+		ASSERT outputs="0101"&x"4e" REPORT " failure to print n " SEVERITY FAILURE; --- n
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"44" REPORT " failure to print ° " SEVERITY FAILURE; --- d
+		ASSERT outputs="0101"&x"44" REPORT " failure to print d " SEVERITY FAILURE; --- d
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"4f" REPORT " failure to print ° " SEVERITY FAILURE; --- o
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print o " SEVERITY FAILURE; --- o
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"4f" REPORT " failure to print ° " SEVERITY FAILURE; --- o
-		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"52" REPORT " failure to print ° " SEVERITY FAILURE; --- r
-		WAIT until clk='1' and clk'event;
-		
-		WAIT until clk='1' and clk'event;
-		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print 0 " SEVERITY FAILURE; --- o
+
 
 		-- outdoor 
 		ind_outd_select<='0';
-		data_in<="100110011"; -- -103.5
+		data_in<=(OTHERS=>'0'); 
 		start_lcd<='1';
-		ASSERT outputs="0101"&x"4D" REPORT " failure print m  " SEVERITY FAILURE; --- M
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="1101"&x"52" REPORT " failure to print r " SEVERITY FAILURE; --- r
+
+
+
+		WAIT until clk='1' and clk'event;
 		WAIT until clk='1' and clk'event;
 
-		ASSERT outputs="0101"&x"41" REPORT " failure print a  " SEVERITY FAILURE; --- a
+		ASSERT outputs="0101"&x"4D" REPORT " failure print m  outdorr" SEVERITY FAILURE; --- M
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"58" REPORT " failure print x  " SEVERITY FAILURE; --- x
+
+		ASSERT outputs="0101"&x"41" REPORT " failure print a  outdorr" SEVERITY FAILURE; --- a
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
+		ASSERT outputs="0101"&x"58" REPORT " failure print x outdorr " SEVERITY FAILURE; --- x
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"3a" REPORT " failure print outdorr : " SEVERITY FAILURE; --- :
 		WAIT until clk='1' and clk'event;
 
 		-- sign
@@ -355,17 +365,22 @@ BEGIN
 		assert outputs="0101"&x"30" REPORT "wrong dec max out" severity failure;
 		WAIT until clk='1' and clk'event;
 
-		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
+		ASSERT outputs="0101"&x"43" REPORT " failure print ° " SEVERITY FAILURE; --- °
 		WAIT until clk='1' and clk'event;
+				ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
+		data_in<="100110011"; -- -103.5
+
+		wait until clk='1' and clk'event;
+
 		
 		-- min
-		ASSERT outputs="0101"&x"4D" REPORT " failure print m " SEVERITY FAILURE; --- m
+		ASSERT outputs="0101"&x"4D" REPORT " failure print m outdorr" SEVERITY FAILURE; --- m
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"41" REPORT " failure failure print i " SEVERITY FAILURE; --- i
+		ASSERT outputs="0101"&x"49" REPORT " failure failure print i outdorr" SEVERITY FAILURE; --- i
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"58" REPORT " failure print m " SEVERITY FAILURE; --- n
+		ASSERT outputs="0101"&x"4e" REPORT " failure print n outdorr" SEVERITY FAILURE; --- n
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
+		ASSERT outputs="0101"&x"3a" REPORT " failure print :outdorr " SEVERITY FAILURE; --- :
 		WAIT until clk='1' and clk'event;
 
 		-- sign
@@ -389,17 +404,20 @@ BEGIN
 		--decimal
 		assert outputs="0101"&x"35" REPORT "wrong dec min out" severity failure;
 		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"43" REPORT " failure print ° " SEVERITY FAILURE; --- °
+		WAIT until clk='1' and clk'event;
+				ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
 
-		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
-		WAIT until clk='1' and clk'event;
+		wait until clk='1' and clk'event;
+
 		-- curr 
-			ASSERT outputs="0101"&x"4D" REPORT " failure print n " SEVERITY FAILURE; --- N
+			ASSERT outputs="0101"&x"4e" REPORT " failure print n outdorr" SEVERITY FAILURE; --- N
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"41" REPORT " failure print o " SEVERITY FAILURE; --- O
+		ASSERT outputs="0101"&x"4f" REPORT " failure print ooutdorr " SEVERITY FAILURE; --- O
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"58" REPORT " failure print w " SEVERITY FAILURE; --- W
+		ASSERT outputs="0101"&x"57" REPORT " failure print w outdorr" SEVERITY FAILURE; --- W
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
+		ASSERT outputs="0101"&x"3a" REPORT " failure print : outdorr " SEVERITY FAILURE; --- :
 		WAIT until clk='1' and clk'event;
 
 		-- sign
@@ -422,11 +440,28 @@ BEGIN
 		
 		--decimal
 		assert outputs="0101"&x"35" REPORT "wrong dec now outd" severity failure;
-
-		WAIT until clk='1' and clk'event;
-		ASSERT outputs="010111000000" REPORT " failure to print ° " SEVERITY FAILURE; --- °
 		WAIT until clk='1' and clk'event;
 
+		ASSERT outputs="0101"&x"43" REPORT " failure print ° " SEVERITY FAILURE; --- °
+		WAIT until clk='1' and clk'event;
+				ASSERT done_LCD='1' REPORT "lcd not done" SEVERITY FAILURE;
+
+		wait until clk='1' and clk'event;
+
+-- check outdorr print
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print o " SEVERITY FAILURE; --- o
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"55" REPORT " failure to print u " SEVERITY FAILURE; --- u
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"54" REPORT " failure to print t " SEVERITY FAILURE; --- t
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"44" REPORT " failure to print d " SEVERITY FAILURE; --- d
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print 0 " SEVERITY FAILURE; --- o
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print o " SEVERITY FAILURE; --- o
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="1101"&x"52" REPORT " failure to print r " SEVERITY FAILURE; --- r
 				
 		wait;
    end process;
