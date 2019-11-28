@@ -45,7 +45,8 @@ COMPONENT LCD IS
 		enable_init:    IN STD_LOGIC;
 		enable:         IN STD_LOGIC;                             -- called display in control unit
 		ind_outd_select:IN STD_LOGIC;
-		                     
+		
+		enable_translator: OUT STD_LOGIC;
 		dataOUT:        OUT STD_LOGIC_VECTOR(7 downto 0);
 		done:	        OUT STD_LOGIC;
 		RS:             OUT STD_LOGIC;			       -- 0 instruction register (write) /  1 (write, read)
@@ -75,16 +76,17 @@ GENERIC ( n: integer:= 8);
 end component translator;
 
 signal data_in_inter: std_logic_vector(N-2 DOWNTO 0);
-signal clk_enable: std_logic;
+signal clk_enable,request,enable_tr: std_logic;
 begin
 
 -- displaly comes from CU , enables goes to lcd
-enable<=start_lcd;
-
-interface: lcd PORT MAP(reset=>reset,clk=>clk,clk_enable=>clk_enable,
+enable<=start_lcd or init_set_up;
+enable_tr<=request and start_lcd;
+interface: lcd PORT MAP(enable_translator=>request,reset=>reset,clk=>clk,clk_enable=>clk_enable,
 				enable=>start_lcd,dataIN=>data_in_inter,done=> done_lcd,
 					enable_init=>init_set_up,ind_outd_select=>ind_outd_select ,dataOUT=>data_out,RS=> rs, R_W=>r_w);
-translate_int: translator GENERIC MAP(N=>9) PORT MAP(start=>start_lcd, clk=>clk,reset=>reset,data_in=>data_in,data_out=> data_in_inter);
+translate_int: translator GENERIC MAP(N=>9) PORT MAP(start=>enable_tr, 
+								clk=>clk,reset=>reset,data_in=>data_in,data_out=> data_in_inter);
 clk_enable_unit: counter_clk_enable PORT MAP (areset=>reset,clk=>clk,clk_enable=>clk_enable);
 
 

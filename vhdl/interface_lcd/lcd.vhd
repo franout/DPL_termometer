@@ -6,12 +6,13 @@ ENTITY LCD IS
 	PORT(	
 		clk:            IN STD_LOGIC;
 		reset:          IN STD_LOGIC;
-	        dataIN:         IN STD_LOGIC_VECTOR(7 downto 0);
+	   dataIN:         IN STD_LOGIC_VECTOR(7 downto 0);
 		clk_enable:     IN STD_LOGIC;
 		enable_init:    IN STD_LOGIC;
 		enable:         IN STD_LOGIC;                             -- called display in control unit
 		ind_outd_select:IN STD_LOGIC;
-		                     
+		
+		enable_translator: OUT STD_LOGIC;
 		dataOUT:        OUT STD_LOGIC_VECTOR(7 downto 0);
 		done:	        OUT STD_LOGIC;
 		RS:             OUT STD_LOGIC;			       -- 0 instruction register (write) /  1 (write, read)
@@ -31,77 +32,81 @@ ARCHITECTURE arch_LCD OF LCD IS
 
 
 BEGIN
-	process (reset, clk)
+	process (reset, clk,dataIn, clk_enable,enable_init,enable,ind_outd_select,state,init_count,writing_counter)
 		begin
 			if (reset ='1') then
 
 				state <= INIT_1;
 
-			else 
+			elsif RISING_EDGE(clk) then 
 				case state is
 
 					when INIT_1 => 
-						if RISING_EDGE(clk)then
 							if ((clk_enable='1') and (enable_init='1')) then 
 
 								if init_count<3 then
 									dataOUT<="00110000";
 									RS<='0';
 									R_W<='0';
+									done<='0';
 									init_count<=init_count+1;
-
+								
 								else state<=INIT_2; end if;
 								
 							end if;
-						end if;
+
 
 					when INIT_2 =>	
 
-						if (RISING_EDGE(clk) and (enable_init='1')) then 
+						if (  (enable_init='1')) then 
 							
 							dataOUT<="00111100";
 							RS<='0';
 							R_W<='0';
+							done<='0';
 							state<=INIT_3;
 							
 						end if;
 
 					when INIT_3 =>	
 
-						if (RISING_EDGE(clk) and (enable_init='1')) then 
+						if ( (enable_init='1')) then 
 							
 							dataOUT<="00001000";
 							RS<='0';
 							R_W<='0';
+							done<='0';
 							state<=INIT_4;
 							
 						end if;
 
 					when INIT_4 =>	
 
-						if (RISING_EDGE(clk) and (enable_init='1')) then 
+						if ( (enable_init='1')) then 
 							
 							dataOUT <= clear_data_display;
 							RS<='0';
 							R_W<='0';
+							done<='0';
 							state<=INIT_5;
 							
 						end if;
 			
 					when INIT_5 =>	
 
-						if (RISING_EDGE(clk) and (enable_init='1')) then 
+						if ( (enable_init='1')) then 
 							
 							dataOUT<="00000110";
 							RS<='0';
 							R_W<='0';
+							done<='0';
 							state<=INIT_6;
 							
 						end if;
 
 					when INIT_6 =>	
 
-						if (RISING_EDGE(clk) and (enable_init='1')) then 
+						if (enable_init='1') then 
 							
 							dataOUT<="00001111";
 							RS<='0';
@@ -113,7 +118,6 @@ BEGIN
 
 					when IDLE => 
 
-						if RISING_EDGE(clk)then
 							
 								done<='0';
  								RS<='0';
@@ -123,13 +127,8 @@ BEGIN
 								if enable='1' then
 									state<=WRITING_MAX;
 								end if;
-						end if;
 
 					when WRITING_MAX =>
-
-						if RISING_EDGE(clk)then
-
-							if(clk_enable ='1') then
 
 								case writing_counter is
 
@@ -167,7 +166,8 @@ BEGIN
 										dataOUT<="11000000";
 										state<=WRITING_MIN;
 										writing_counter<= 0;
-									when OTHERS =>									
+									when OTHERS =>		
+										enable_translator<='1';
 										RS<='1';
 										R_W<='0';
 										dataOUT<=dataIN;                           
@@ -177,14 +177,10 @@ BEGIN
 								end case;
 								 
 
-							end if;
-						end if;
 
 					when WRITING_MIN =>
 
-						if RISING_EDGE(clk)then
 
-							if(clk_enable ='1') then
 
 								case writing_counter is
 
@@ -223,7 +219,8 @@ BEGIN
 										state<=WRITING_NOW;
 										writing_counter<= 0;
 
-									when OTHERS =>									
+									when OTHERS =>
+										enable_translator<='1';
 										RS<='1';
 										R_W<='0';
 										dataOUT<=dataIN;                           -- Sending :
@@ -233,17 +230,9 @@ BEGIN
 								end case;
 								 
 
-							end if;
-						end if;
-
-
-
-
-
+			
 					when WRITING_NOW=>
 
-						if RISING_EDGE(clk)then
-							if(clk_enable ='1') then
 								case writing_counter is
 
 									when 0 =>									
@@ -281,7 +270,9 @@ BEGIN
 										state<=IND_OUTD;
 										writing_counter<= 0;
 
-									when OTHERS =>									
+									when OTHERS =>	
+										enable_translator<='1';
+									
 										RS<='1';
 										R_W<='0';
 										dataOUT<=dataIN;                           
@@ -291,14 +282,9 @@ BEGIN
 								end case;
 								 
 
-							end if;
-						end if;
-
 
 				when IND_OUTD=>
 
-						if RISING_EDGE(clk)then
-							if(clk_enable ='1') then
 							    if(ind_outd_select<='1')     then                          -- indoor
 								case writing_counter is
 
@@ -405,11 +391,6 @@ BEGIN
 									
 							    end if; 
 
-							end if;
-						end if;
-
-
-		
 				end case;
 			end if;
 

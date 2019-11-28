@@ -47,7 +47,7 @@ port map ( clk=>clk, clk_1us=>clk_1us);
 
 
 ------------------------------------------state machine --------------------------------
-process( clk_1us)
+process(nrst, clk_1us)
 begin
 	if(nrst='0') then
 		state<=RESET1;
@@ -266,8 +266,8 @@ begin
 		END CASE;
 	end if ;
 	END IF;
-data<=  dataout;
 
 end process;
+data<=  dataout;
 
 end beh;

@@ -15,7 +15,7 @@ end counter_clk_enable;
 
 Architecture Arch_counter_clk_enable of counter_clk_enable IS 
 
-		Constant N:integer:=166667;
+		Constant N:integer:=15000;
 		signal count: integer range 0  to N;
 	begin
 		process(clk, areset) is

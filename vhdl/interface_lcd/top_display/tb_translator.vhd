@@ -102,7 +102,7 @@ reset<='1';
 		wait until clk='1' AND clk'event;
 		
 		--x3
-		assert data_out=x"31" REPORT "wrong x3" severity failure;
+		assert data_out=x"31" REPORT "wrong x3 1" severity failure;
 		wait until clk='1' AND clk'event;
 		
 		-- dot
@@ -129,7 +129,7 @@ reset<='1';
 		wait until clk='1' AND clk'event;
 		
 		--x3
-		assert data_out=x"32" REPORT "wrong x3" severity failure;
+		assert data_out=x"33" REPORT "wrong x3" severity failure;
 		wait until clk='1' AND clk'event;
 		
 		-- dot

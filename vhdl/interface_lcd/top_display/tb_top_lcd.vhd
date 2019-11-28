@@ -71,12 +71,11 @@ ARCHITECTURE behavior OF tb_top_lcd IS
 	signal outputs: std_logic_vector( 11 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 10 ns;
-	constant clk_counter : integer := 166666; 
+   constant clk_period : time :=10  ns;
+	constant clk_counter : integer := 15000; 
  
 BEGIN
 	
-	outputs<=done_lcd & rs &r_w &enable &data_out;
 	-- Instantiate the Unit Under Test (UUT)
    uut: top_display PORT MAP (
           clk => clk,
@@ -101,6 +100,7 @@ BEGIN
 		wait for clk_period/2;
    end process;
  
+	outputs<= done_lcd & rs &r_w &enable &data_out;
 
    -- Stimulus process
    stim_proc: process
@@ -113,16 +113,37 @@ BEGIN
 		---------- initialization --------
 		----------------------------------
 		reset<='0';
+		wait until clk='1' AND clk'event;
 		init_set_up<='1';
 		start_lcd<='0';
 		ind_outd_select<='0';
 		data_in<=(OTHERS=>'0');
 		--outputs<=done_lcd & rs &r_w &enable &data_out; 
+		-- same output for three state
+		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
+		end loop;	
+
 		ASSERT outputs="000100110000" REPORT " failure first set up stet " SEVERITY FAILURE;
+
+		for i in 0 to clk_counter loop
+		WAIT until clk='1' and clk'event;
+		end loop;	
+
+		ASSERT outputs="000100110000" REPORT " failure first set up stet 2" SEVERITY FAILURE;
+		
+		for i in 0 to clk_counter loop
+		WAIT until clk='1' and clk'event;
+		end loop;	
+
+		ASSERT outputs="000100110000" REPORT " failure first set up stet 3" SEVERITY FAILURE;
+		
 		
 		--outputs<=done_lcd & rs &r_w &enable &data_out;
+		for i in 0 to clk_counter-2 loop
 		WAIT until clk='1' and clk'event;
+		end loop;	
+
 		ASSERT outputs="000100111100" REPORT " failure second set up stet " SEVERITY FAILURE;
 		
 		
@@ -132,7 +153,7 @@ BEGIN
 		
 		
 		--outputs<=done_lcd & rs &r_w &enable &data_out;
-		WAIT until clk='1' and clk'event; 
+		WAIT until clk='1' and clk'event;
 		-- clear data on display
 		ASSERT outputs="000100000001" REPORT " failure fourth set up stet " SEVERITY FAILURE;
 		
@@ -151,12 +172,13 @@ BEGIN
 		
 		-- idle state
 		start_lcd<='0';
+		init_set_up<='0';
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="000000111100" REPORT " failure first set up stet " SEVERITY FAILURE;
+		ASSERT outputs="000000111100" REPORT " idle wrong " SEVERITY FAILURE;
 		
 		init_set_up<='0';
 		WAIT until clk='1' and clk'event;
-		ASSERT outputs="000000111100" REPORT " failure first set up stet " SEVERITY FAILURE;
+		ASSERT outputs="000000111100" REPORT " idle wrong" SEVERITY FAILURE;
 		
 		-- start to display 
 		---------------------
@@ -164,184 +186,136 @@ BEGIN
 		---------------------
 		ind_outd_select<='1';
 		start_lcd<='1';
-		data_in<="001100110"; -- +051.0
-		
-		for i in 0 to clk_counter loop
+		data_in<=(OTHERS=>'0');
 		WAIT until clk='1' and clk'event;
-		end loop;
+
+		WAIT until clk='1' and clk'event;
+		WAIT until clk='1' and clk'event;
 		-- max
 		--outputs<=done_lcd & rs &r_w &enable &data_out;
 		ASSERT outputs="0101"&x"4D" REPORT " failure print m  " SEVERITY FAILURE; --- M
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"41" REPORT " failure print a  " SEVERITY FAILURE; --- a
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print x  " SEVERITY FAILURE; --- x
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2b" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2b" REPORT "wrong sign max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"30" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+  		assert outputs="0101"&x"30" REPORT "wrong x1 max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"35" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"35" REPORT "wrong x2 max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"&x"31" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"31" REPORT "wrong x3 max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"30" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong dec max" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
+		
+
+
+		data_in<="001100110"; -- +051.0
+
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- min
 		ASSERT outputs="0101"&x"4D" REPORT " failure print m " SEVERITY FAILURE; --- m
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"41" REPORT " failure failure print i " SEVERITY FAILURE; --- i
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print m " SEVERITY FAILURE; --- n
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2b" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2b" REPORT "wrong sign mix" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"30" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x1 min" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"30" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x2  min" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"& x"30" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"& x"30" REPORT "wrong x3 min" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot  min" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"30" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong dec min" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- curr 
 			ASSERT outputs="0101"&x"4D" REPORT " failure print n " SEVERITY FAILURE; --- N
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"41" REPORT " failure print o " SEVERITY FAILURE; --- O
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print w " SEVERITY FAILURE; --- W
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2b" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2b" REPORT "wrong sign now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"30" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x1 now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"35" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"35" REPORT "wrong x2 now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"&x"31" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"31" REPORT "wrong x3 now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"30" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong dec  now" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		ASSERT outputs="010111000000" REPORT " failure to print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
-
-
+		
+		-- check indoor print
+		ASSERT outputs="0101"&x"49" REPORT " failure to print ° " SEVERITY FAILURE; --- I
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4e" REPORT " failure to print ° " SEVERITY FAILURE; --- n
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"44" REPORT " failure to print ° " SEVERITY FAILURE; --- d
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print ° " SEVERITY FAILURE; --- o
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"4f" REPORT " failure to print ° " SEVERITY FAILURE; --- o
+		WAIT until clk='1' and clk'event;
+		ASSERT outputs="0101"&x"52" REPORT " failure to print ° " SEVERITY FAILURE; --- r
+		WAIT until clk='1' and clk'event;
+		
 		WAIT until clk='1' and clk'event;
 		WAIT until clk='1' and clk'event;
 
@@ -350,173 +324,108 @@ BEGIN
 		data_in<="100110011"; -- -103.5
 		start_lcd<='1';
 		ASSERT outputs="0101"&x"4D" REPORT " failure print m  " SEVERITY FAILURE; --- M
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
+
 		ASSERT outputs="0101"&x"41" REPORT " failure print a  " SEVERITY FAILURE; --- a
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print x  " SEVERITY FAILURE; --- x
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2b" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2b" REPORT "wrong sign max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"30" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x1 max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"30" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x2 max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"&x"30" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x3 max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"30" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong dec max out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- min
 		ASSERT outputs="0101"&x"4D" REPORT " failure print m " SEVERITY FAILURE; --- m
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"41" REPORT " failure failure print i " SEVERITY FAILURE; --- i
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print m " SEVERITY FAILURE; --- n
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2d" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2d" REPORT "wrong sign min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"31" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"31" REPORT "wrong x1 min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"30" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x2 min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"& x"33" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"& x"33" REPORT "wrong x3 min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"35" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"35" REPORT "wrong dec min out" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		ASSERT outputs="010111000000" REPORT " failure print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- curr 
 			ASSERT outputs="0101"&x"4D" REPORT " failure print n " SEVERITY FAILURE; --- N
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"41" REPORT " failure print o " SEVERITY FAILURE; --- O
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"58" REPORT " failure print w " SEVERITY FAILURE; --- W
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 		ASSERT outputs="0101"&x"3a" REPORT " failure print : " SEVERITY FAILURE; --- :
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
 
 		-- sign
-		assert outputs="0101"&x"2d" REPORT "wrong sign" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2d" REPORT "wrong sign now outd" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		-- x1
-		assert outputs="0101"&x"31" REPORT "wrong x1" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"31" REPORT "wrong x1 now outd" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		--x2
-		assert outputs="0101"&x"30" REPORT "wrong x2" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"30" REPORT "wrong x2 now outd" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--x3
-		assert outputs="0101"&x"33" REPORT "wrong x3" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"33" REPORT "wrong x3 now outd" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		-- dot
-		assert outputs="0101"&x"2E" REPORT "wrong dot" severity failure;
-		for i in 0 to clk_counter loop
+		assert outputs="0101"&x"2E" REPORT "wrong dot now outd" severity failure;
 		WAIT until clk='1' and clk'event;
-		end loop;
 		
 		--decimal
-		assert outputs="0101"&x"35" REPORT "wrong dec" severity failure;
-		for i in 0 to clk_counter loop
-		WAIT until clk='1' and clk'event;
-		end loop;
+		assert outputs="0101"&x"35" REPORT "wrong dec now outd" severity failure;
 
-		ASSERT outputs="010111000000" REPORT " failure to print ° " SEVERITY FAILURE; --- °
-		for i in 0 to clk_counter loop
 		WAIT until clk='1' and clk'event;
-		end loop;
+		ASSERT outputs="010111000000" REPORT " failure to print ° " SEVERITY FAILURE; --- °
+		WAIT until clk='1' and clk'event;
 
 				
 		wait;
