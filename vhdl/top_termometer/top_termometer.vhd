@@ -23,7 +23,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity top_termometer is
     Port ( reset : in  STD_LOGIC;
-           clk : in  STD_LOGIC;
+           main_clk : in  STD_LOGIC;
 			  ind_outd_sw: in STD_LOGIC;
            tmp_sensor : inout  STD_LOGIC;
            lcd_enable : out  STD_LOGIC;
@@ -34,6 +34,21 @@ entity top_termometer is
 end top_termometer;
 
 architecture structural of top_termometer is
+ 
+ 
+ 
+ 
+ component clock_generator
+port
+ (-- Clock in ports  100 Mhz
+  CLK_IN1           : in    std_logic;
+  -- Clock out ports  10 Mhz
+  CLK_OUT1          : out    std_logic;
+  -- Status and control signals
+  RESET             : in     std_logic
+ );
+end component;
+ 
  
  -- main control unit
  COMPONENT control_unit is
@@ -108,7 +123,7 @@ PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 
 end  COMPONENT top_display;
 
-SIGNAL reset_top,start_display,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
+SIGNAL reset_top,start_display,clk,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
 SIGNAL select_data_comparison: std_logic_vector(1 DOWNTO 0);
 SIGNAL data_from_comparison,data_from_tmp_interface: std_logic_vector(8 DOWNTO 0);
 
@@ -152,6 +167,17 @@ cu: control_unit GENERIC MAP (300) PORT MAP(clk=>clk,reset=>reset,
 									ready=> system_ready);
 
 reset_start_tmp<=not(start_meas or reset_top);
+
+
+your_instance_name : clock_generator
+  port map
+   ( CLK_IN1 => main_clk,
+    -- Clock out ports
+    CLK_OUT1 => clk,
+    -- Status and control signals
+    RESET  => RESET
+    );
+
 
 -- additional components 
 
