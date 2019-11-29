@@ -107,14 +107,19 @@ BEGIN
 		ASSERT outputs="000000000" REPORT "computation started" SEVERITY FAILURE;
 				
 		start_comparison<='1';
+ 		wait until clk='1' AND clk'EVENT;
+
+ 		wait until clk='1' AND clk'EVENT;
+
 		wait until clk='1' AND clk'EVENT;
-		wait until clk='1' AND clk'EVENT;
+
 		ASSERT outputs="100000000" REPORT "computation not started" SEVERITY FAILURE;
 	
 -- checking inital data ( curr data should be x02)	
 			start_comparison<='0';
 		select_data<="01";
 		wait until clk='1' AND clk'EVENT;
+		
 		ASSERT outputs="000000010" REPORT "wrong max in inital data" SEVERITY FAILURE;
 	select_data<="10";
 		wait until clk='1' AND clk'EVENT;
@@ -129,35 +134,53 @@ BEGIN
 					data_in<=x"03";
 					select_data<="00";
 					start_comparison<='1';
+
 						wait until clk='1' AND clk'EVENT;
-						wait until clk='1' AND clk'EVENT;
+												wait until clk='1' AND clk'EVENT;
+ 		wait until clk='1' AND clk'EVENT;
+
 		ASSERT outputs="100000000" REPORT "computation not started new max" SEVERITY FAILURE;
+			start_comparison<='0';
+								wait until clk='1' AND clk'EVENT;
+						wait until clk='1' AND clk'EVENT;
+
 		-- new min 
 			data_in<=x"81";
 					select_data<="00";
 					start_comparison<='1';
 						wait until clk='1' AND clk'EVENT;
-												wait until clk='1' AND clk'EVENT;
+
+						wait until clk='1' AND clk'EVENT;
+
+						wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="100000000" REPORT "computation not started new min" SEVERITY FAILURE;
+		start_comparison<='0';
+								wait until clk='1' AND clk'EVENT;
+						wait until clk='1' AND clk'EVENT;
+
+		
 		-- curr data
 		data_in<=x"01";
 					select_data<="00";
 					start_comparison<='1';
 						wait until clk='1' AND clk'EVENT;
-												wait until clk='1' AND clk'EVENT;
+						wait until clk='1' AND clk'EVENT;
+
+						wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="100000000" REPORT "computation not started new curr" SEVERITY FAILURE;
 		--check data
 		start_comparison<='0';
 			select_data<="01";
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="000000011" REPORT "wrong max indoor" SEVERITY FAILURE;
-	select_data<="10";
+		select_data<="10";
 		wait until clk='1' AND clk'EVENT;
-		ASSERT outputs="010000001" REPORT "wrong min indoor " SEVERITY FAILURE;
+		ASSERT outputs='0'&x"81" REPORT "wrong min indoor 1" SEVERITY FAILURE;
 			select_data<="11";
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="000000001" REPORT "wrong currindoor" SEVERITY FAILURE;
 		
+				wait until clk='1' AND clk'EVENT;
 	--outdoor
 		in_out_sel<='0';
 
@@ -169,9 +192,15 @@ BEGIN
 				
 		start_comparison<='1';
 		wait until clk='1' AND clk'EVENT;
+
 		wait until clk='1' AND clk'EVENT;
-		ASSERT outputs="100000000" REPORT "computation not started outdoor" SEVERITY FAILURE;
-	
+		wait until clk='1' AND clk'EVENT;
+		ASSERT outputs="100000000" REPORT "computation not started outdoor" SEVERITY FAILURE;	
+		start_comparison<='0';
+			wait until clk='1' AND clk'EVENT;
+
+			wait until clk='1' AND clk'EVENT;
+
 -- checking inital data ( curr data should be x02)	
 			start_comparison<='0';
 		select_data<="01";
@@ -183,26 +212,41 @@ BEGIN
 			select_data<="11";
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="000000010" REPORT "wrong curr in inital data outdoor" SEVERITY FAILURE;
-		
+			start_comparison<='0';
+		wait until clk='1' AND clk'EVENT;
+
 		-- new max
 					data_in<=x"03";
 					select_data<="00";
 					start_comparison<='1';
 						wait until clk='1' AND clk'EVENT;
+						wait until clk='1' AND clk'EVENT;
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="100000000" REPORT "computation not started outdoor" SEVERITY FAILURE;
 		-- new min 
+
+			start_comparison<='0';
+		wait until clk='1' AND clk'EVENT;
+		wait until clk='1' AND clk'EVENT;
+
 			data_in<=x"81";
 					select_data<="00";
 					start_comparison<='1';
 						wait until clk='1' AND clk'EVENT;
+						wait until clk='1' AND clk'EVENT;
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="100000000" REPORT "computation not started outdoor" SEVERITY FAILURE;
 		-- curr data
+		
+			start_comparison<='0';
+		wait until clk='1' AND clk'EVENT;
+		wait until clk='1' AND clk'EVENT;
+
 		data_in<=x"01";
 					select_data<="00";
 					start_comparison<='1';
 						wait until clk='1' AND clk'EVENT;
+		wait until clk='1' AND clk'EVENT;
 		wait until clk='1' AND clk'EVENT;
 		ASSERT outputs="100000000" REPORT "computation not started outdoor" SEVERITY FAILURE;
 		--check data

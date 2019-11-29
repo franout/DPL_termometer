@@ -3,7 +3,6 @@
 NET "clk" TNM_NET = "clk";
 TIMESPEC TS_clk = PERIOD "clk" 1 MHz HIGH 50 %;
 
-# PlanAhead Generated physical constraints 
 
 NET "system_ready" LOC = T8;
 NET "ind_outd_sw" LOC = U9;
@@ -21,3 +20,38 @@ NET "lcd_data[3]" LOC = K16;
 NET "lcd_data[2]" LOC = R16;
 NET "lcd_data[1]" LOC = T9;
 NET "lcd_data[0]" LOC = U11;
+
+
+NET "lcd_data[7]" IOSTANDARD = LVCMOS18;
+NET "tmp_sensor" IOSTANDARD = LVCMOS18;
+
+
+NET "clk" IOSTANDARD = LVCMOS18;
+
+
+NET "lcd_data[6]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[5]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[4]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[3]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[2]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[1]" IOSTANDARD = LVCMOS18;
+NET "lcd_data[0]" IOSTANDARD = LVCMOS18;
+NET "ind_outd_sw" IOSTANDARD = LVCMOS18;
+NET "lcd_enable" IOSTANDARD = LVCMOS18;
+NET "lcd_rs" IOSTANDARD = LVCMOS18;
+NET "lcd_rw" IOSTANDARD = LVCMOS18;
+NET "reset" IOSTANDARD = LVCMOS18;
+NET "system_ready" IOSTANDARD = LVCMOS18;
+#Created by Constraints Editor (xc7a100tl-csg324-2l) - 2019/11/29
+NET "cu/curr_state_FSM_FFd1" TNM_NET = cu/curr_state_FSM_FFd1;
+TIMESPEC TS_cu_curr_state_FSM_FFd1 = PERIOD "cu/curr_state_FSM_FFd1" TS_clk HIGH 50%;
+NET "cu/curr_state_FSM_FFd2" TNM_NET = cu/curr_state_FSM_FFd2;
+TIMESPEC TS_cu_curr_state_FSM_FFd2 = PERIOD "cu/curr_state_FSM_FFd2" TS_clk HIGH 50%;
+NET "cu/curr_state_FSM_FFd3" TNM_NET = cu/curr_state_FSM_FFd3;
+TIMESPEC TS_cu_curr_state_FSM_FFd3 = PERIOD "cu/curr_state_FSM_FFd3" TS_clk HIGH 50%;
+NET "cu/edge_detect<0>" TNM_NET = cu/edge_detect<0>;
+TIMESPEC TS_cu_edge_detect_0_ = PERIOD "cu/edge_detect<0>" TS_clk HIGH 50%;
+NET "cu/edge_detect<1>" TNM_NET = cu/edge_detect<1>;
+TIMESPEC TS_cu_edge_detect_1_ = PERIOD "cu/edge_detect<1>" TS_clk HIGH 50%;
+NET "cu/watch_dog/tc" TNM_NET = cu/watch_dog/tc;
+TIMESPEC TS_cu_watch_dog_tc = PERIOD "cu/watch_dog/tc" TS_clk HIGH 50%;

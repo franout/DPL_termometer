@@ -39,22 +39,15 @@ PROCESS(a,b,enable)
 BEGIN
 
 IF(enable='1')THEN
-	IF(signed(a(N-1 DOWNTO 1))>=signed(b(N-1 DOWNTO 1 )))THEN
-		IF (a(0) =b(0) ) THEN
+	IF(signed(a)>=signed(b))THEN
+		
 		res<='1';
-		ELSIF(a(0)='1') THEN
-		-- decimal part of a is bigger
-		res<='1';
-		ELSE
-		-- decimal part of b is bigger
-		res<='0';
-		END IF;
-
+	
 	ELSE	
 	-- < and other beh.
 	res<='0';
 	END IF;
-END IF;
+	END IF;
 END PROCESS;
 
 

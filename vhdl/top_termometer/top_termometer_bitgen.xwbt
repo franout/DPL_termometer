@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.ncd
+OUTFILE=D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\top_termometer.bit
+FAMILY=Artix7 Low Voltage
+PART=xc7a100tl-2lcsg324
+WORKINGDIR=D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer
+LICENSE=WebPack
+USER_INFO=211614688_0_0_534

@@ -26,7 +26,7 @@ use ieee.numeric_std.ALL;
 entity counter_comparison is
 
     Port ( clk : in  STD_LOGIC;
-           reset : in  STD_LOGIC;
+           reset,enable : in  STD_LOGIC;
            tc : out  STD_LOGIC;
 			cnt_val: out std_logic);
 end counter_comparison;
@@ -43,8 +43,8 @@ IF(reset='1') THEN
 
 cnt<='0';
 tc<='0';
-ELSE 
-IF(clk='1' and clk'event) THEN
+ELSIF(clk='1' and clk'event ) THEN
+		IF(enable='1') THEN 
 	IF( cnt='1') THEN
 	tc<='1';
 	cnt<='0';	
@@ -52,10 +52,10 @@ IF(clk='1' and clk'event) THEN
 	cnt<='1';
 	tc<='0';
 	END IF;
-
-
+elsif (enable='0') THEN 
+tc<='0';
+	cnt<='0';	
 END IF;
-
 END IF;
 END PROCESS;
 

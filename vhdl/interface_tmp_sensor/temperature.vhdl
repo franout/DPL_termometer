@@ -42,9 +42,10 @@ address64 <= "1111111111111111111111111111111111111111111111111111111111111111" 
 			 "1111011111111111111111111111111111111111111111111111111111111111" ;                                --outdoor ds18s20
 
 -------------------------------------------component----------------------------------
-clk_com:component clock_enable
-port map ( clk=>clk, clk_1us=>clk_1us);
+--clk_com:component clock_enable
+--port map ( clk=>clk, clk_1us=>clk_1us);
 
+clk_1us<=clk;
 
 ------------------------------------------state machine --------------------------------
 process(nrst, clk_1us)

@@ -60,12 +60,12 @@ signal dot: std_logic_vector(7 downto 0):=x"2E";
 signal x1,x2,x3,decimal_value,sign_value: std_logic_vector(7 DOWNTO 0);
 signal cnt_val: std_logic_vector(2 DOWNTO 0);
 signal reset_i: std_logic;
-
+signal dummy: std_logic;
 begin
 
 reset_i<='0' WHEN start='1' else '1';
 
-counter_select: counter  GENERIC MAP(N=>3)  PORT MAP(clk=>clk,reset=>reset_i,cnt_val=>cnt_val);
+counter_select: counter  GENERIC MAP(N=>3)  PORT MAP(clk=>clk,reset=>reset_i,cnt_val=>cnt_val,tc=>dummy);
 
 mux:  mux8_1 GENERIC MAP (N=>8) PORT MAP(a=>sign_value,b=>x1,c=>x2,d=>x3,e=>dot,f=>decimal_value,
 g=>(OTHERS=>'0'),h=>(OTHERS=>'0'),s=>cnt_val,y=>data_out);

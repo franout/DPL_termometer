@@ -45,8 +45,8 @@ IF(reset='1') THEN
 cnt<=(OTHERS=>'0');
 tc<='0';
 ELSE 
-IF (enable='1') THEN 
 IF(clk='1' and clk'event) THEN
+IF (enable='1') THEN 
 	IF( to_integer(unsigned(cnt))>=MAX_VAL-1) THEN
 	tc<='1';
 	cnt<=(OTHERS=>'0');	
@@ -54,12 +54,15 @@ IF(clk='1' and clk'event) THEN
 	cnt<=std_logic_vector(unsigned(cnt)+1);
 	tc<='0';
 	END IF;
-END IF;
-
+	
+	
 ELSE 
 
 cnt<=(OTHERS=>'0');
 END IF;
+	
+END IF;
+
 
 END IF;
 END PROCESS;

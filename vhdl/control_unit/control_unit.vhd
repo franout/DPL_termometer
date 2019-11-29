@@ -95,7 +95,7 @@ END PROCESS regs;
 
 
 
-comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect)
+comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect,in_out_val)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;

@@ -137,7 +137,7 @@ comparison_block:comparison GENERIC MAP (9) PORT MAP(clk=>clk,reset=>reset_top,
            start_comparison=>start_comparison ,
            done_comparison=>done_comparison ,
            select_data =>select_data_comparison);
-cu: control_unit GENERIC MAP (100) PORT MAP(clk=>clk,reset=>reset,
+cu: control_unit GENERIC MAP (300) PORT MAP(clk=>clk,reset=>reset,
 									in_out_sel=>ind_outd_sw,
 									init_set_up=> init_set_up,
 									in_out=>in_out_sel,
