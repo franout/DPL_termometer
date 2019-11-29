@@ -52,7 +52,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
          start_meas : OUT  std_logic;
          done_meas : IN  std_logic;
 			reset_i:OUT std_logic;
-			ready: OUT std_logic
+			ready: OUT std_logic;
+			locked_clock: IN std_logic
         );
     END COMPONENT;
     
@@ -64,6 +65,8 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
    signal done_comparison : std_logic := '0';
    signal done_lcd : std_logic := '0';
    signal done_meas : std_logic := '0';
+	signal 			locked_clock: std_logic:='0';
+
  	--Outputs
    signal init_set_up : std_logic;
    signal in_out : std_logic;
@@ -95,7 +98,8 @@ BEGIN
           start_meas => start_meas,
           done_meas => done_meas, 
 			 reset_i=> reset_i,
-			 ready=> ready
+			 ready=> ready,
+			 			locked_clock=> locked_clock
 			 );
 
    -- Clock process definitions
@@ -116,17 +120,20 @@ BEGIN
 		FOR I IN 0 TO 5 LOOP
 		wait until clk='1' AND clk'EVENT;
 		END LOOP;
-		ASSERT cmd="10000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
-      wait for clk_period*10;
+		
 
-     --  stimulus for uut 
+		ASSERT cmd="00000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
+           --  stimulus for uut 
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';
     done_lcd <='0';
     done_meas <='0';
-		wait for clk_period;
-		ASSERT cmd="10000000" REPORT "failed to set set up signal for interfaces" SEVERITY FAILURE;
+			locked_clock<='1';
+				wait until clk='1' AND clk'EVENT;
+locked_clock<='0';
+
+		ASSERT cmd="00000000" REPORT "failed to lock the clock" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '1';
     done_comparison<='0';
@@ -271,9 +278,10 @@ BEGIN
 		FOR I IN 0 TO 5 LOOP
 		wait until clk='1' AND clk'EVENT;
 		END LOOP;
-		ASSERT cmd="10000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
-      wait for clk_period*10;
-
+		ASSERT cmd="00000000"  REPORT "reset values of cu are wrong" SEVERITY FAILURE;
+	locked_clock<='1';
+	locked_clock<='1';
+				wait until clk='1' AND clk'EVENT;
 
 -- watchdog exppired into the setup state
 	reset<='0';

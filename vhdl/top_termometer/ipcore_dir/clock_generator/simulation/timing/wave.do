@@ -55,6 +55,7 @@ add wave -noupdate -divider {Output clocks}
 add wave -noupdate /clock_generator_tb/clk_in1
 add wave -noupdate /clock_generator_tb/count
 add wave -noupdate /clock_generator_tb/counter_reset
+add wave -noupdate /clock_generator_tb/locked
 add wave -noupdate /clock_generator_tb/reset
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {3223025 ps} 0}

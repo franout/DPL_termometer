@@ -75,7 +75,8 @@ port
   -- High bits of counters driven by clocks
   COUNT             : out std_logic;
   -- Status and control signals
-  RESET             : in  std_logic
+  RESET             : in  std_logic;
+  LOCKED            : out std_logic
  );
 end clock_generator_exdes;
 
@@ -87,7 +88,8 @@ architecture xilinx of clock_generator_exdes is
   constant C_W        : integer := 16;
 
 
-  -- Reset for counters when lock status changes
+  -- When the clock goes out of lock, reset the counters
+  signal   locked_int : std_logic;
   signal   reset_int  : std_logic                     := '0';
 
   -- Declare the clocks and counter
@@ -107,13 +109,17 @@ port
   -- Clock out ports
   CLK_OUT1          : out    std_logic;
   -- Status and control signals
-  RESET             : in     std_logic
+  RESET             : in     std_logic;
+  LOCKED            : out    std_logic
  );
 end component;
 
 begin
-  -- Create reset for the counters
-  reset_int <= RESET or COUNTER_RESET;
+  -- Alias output to internally used signal
+  LOCKED    <= locked_int;
+
+  -- When the clock goes out of lock, reset the counters
+  reset_int <= (not locked_int) or RESET or COUNTER_RESET;
 
 
  process (clk, reset_int) begin
@@ -140,7 +146,8 @@ begin
     -- Clock out ports
     CLK_OUT1           => clk_int,
     -- Status and control signals
-    RESET              => RESET);
+    RESET              => RESET,
+    LOCKED             => locked_int);
 
   clkout_oddr : ODDR port map
    (Q  => CLK_OUT(1),

@@ -105,7 +105,8 @@ group set -comment {}
 group clear 0 end
 
 group insert \
-   {nc::clock_generator_tb.RESET}  \ 
+   {nc::clock_generator_tb.RESET}    {nc::clock_generator_tb.LOCKED}
+
 
 set id [waveform add -signals [list {nc::clock_generator_tb.COUNT} ]]
 

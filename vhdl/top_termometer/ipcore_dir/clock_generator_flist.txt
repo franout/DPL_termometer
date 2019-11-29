@@ -2,7 +2,6 @@
 _xmsgs\pn_parser.xmsgs
 clock_generator.asy
 clock_generator.gise
-clock_generator.sym
 clock_generator.ucf
 clock_generator.vhd
 clock_generator.vho

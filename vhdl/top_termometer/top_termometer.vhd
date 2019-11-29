@@ -38,14 +38,16 @@ architecture structural of top_termometer is
  
  
  
- component clock_generator
+ component clock_generator_pll
 port
  (-- Clock in ports  100 Mhz
   CLK_IN1           : in    std_logic;
   -- Clock out ports  10 Mhz
   CLK_OUT1          : out    std_logic;
   -- Status and control signals
-  RESET             : in     std_logic
+  RESET             : in     std_logic;
+    LOCKED            : out    std_logic
+
  );
 end component;
  
@@ -75,8 +77,8 @@ done_lcd: IN std_logic;
 start_meas: OUT std_logic;
 done_meas:IN std_logic;
 reset_i: OUT std_logic; -- internal reset for all interfaces 
-ready: OUT std_logic -- switch on an led for notifyinh that the system is operative
-
+ready: OUT std_logic; -- switch on an led for notifyinh that the system is operative
+locked_clock: IN std_logic -- notify from pll that clock speed has been reached
 );
 end COMPONENT control_unit;
 
@@ -123,7 +125,7 @@ PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 
 end  COMPONENT top_display;
 
-SIGNAL reset_top,start_display,clk,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
+SIGNAL reset_top,start_display,clk,locked_clock,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
 SIGNAL select_data_comparison: std_logic_vector(1 DOWNTO 0);
 SIGNAL data_from_comparison,data_from_tmp_interface: std_logic_vector(8 DOWNTO 0);
 
@@ -152,7 +154,7 @@ comparison_block:comparison GENERIC MAP (9) PORT MAP(clk=>clk,reset=>reset_top,
            start_comparison=>start_comparison ,
            done_comparison=>done_comparison ,
            select_data =>select_data_comparison);
-cu: control_unit GENERIC MAP (300) PORT MAP(clk=>clk,reset=>reset,
+cu: control_unit GENERIC MAP (300) PORT MAP(locked_clock=>locked_clock,clk=>clk,reset=>reset,
 									in_out_sel=>ind_outd_sw,
 									init_set_up=> init_set_up,
 									in_out=>in_out_sel,
@@ -168,18 +170,18 @@ cu: control_unit GENERIC MAP (300) PORT MAP(clk=>clk,reset=>reset,
 
 reset_start_tmp<=not(start_meas or reset_top);
 
-
-your_instance_name : clock_generator
-  port map
-   ( CLK_IN1 => main_clk,
+-- pll 
+clk_gen : clock_generator_pll   port map    ( CLK_IN1 => main_clk,
     -- Clock out ports
     CLK_OUT1 => clk,
     -- Status and control signals
-    RESET  => RESET
+    RESET  => RESET,
+	 locked=> locked_clock
     );
-
-
+	 
 -- additional components 
+
+
 
 end structural;
 

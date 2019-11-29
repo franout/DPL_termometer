@@ -71,7 +71,8 @@ port
   -- Clock out ports
   CLK_OUT1          : out    std_logic;
   -- Status and control signals
-  RESET             : in     std_logic
+  RESET             : in     std_logic;
+  LOCKED            : out    std_logic
  );
 end component;
 
@@ -86,5 +87,6 @@ your_instance_name : clock_generator
     -- Clock out ports
     CLK_OUT1 => CLK_OUT1,
     -- Status and control signals
-    RESET  => RESET);
+    RESET  => RESET,
+    LOCKED => LOCKED);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

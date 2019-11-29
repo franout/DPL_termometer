@@ -1,0 +1,543 @@
+ISim log file
+Running: D:\uni\2019-2020\CTH\Digital_project_laboratory\project\vhdl\top_termometer\tb_main_control_unit_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/top_termometer/tb_main_control_unit_isim_beh.wdb 
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:reset values of cu are wrong
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:failed to set set up signal for interfaces
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:there is a change in the cmd during the set up phase
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:there is a change in the cmd during the set up phase
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+
+** Failure:cu doesn't wait for the interfaces
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+# step
+Simulator is doing circuit initialization process.
+Stopped at time : 0 fs : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 0 fs : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# run all
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 129
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 130
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 131
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 132
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 87
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 45
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 46
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 133
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 134
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 135
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 137
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 138
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 139
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 140
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 141
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 142
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 143
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 91
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 92
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# run all
+
+** Failure:cu doesn't wait for the interfaces
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+# run all
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 129
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 130
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 131
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 132
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 87
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 45
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 46
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 133
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 134
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 103
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 104
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 105
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 106
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 107
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 109
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 112
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 114
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 115
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 116
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 118
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 135
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 137
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 138
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 139
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 140
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 141
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 142
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 143
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 91
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 92
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 49
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 50
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 54
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 55
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 103
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 104
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 105
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 106
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 107
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 109
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 112
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 114
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 115
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 116
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 120
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# restart
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 129
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 130
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 131
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 132
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 133
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 87
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 45
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 46
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 103
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 104
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 105
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 106
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 107
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 109
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 110
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 111
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 112
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 114
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 115
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 116
+# step
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 118
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 60 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 134
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 136
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 137
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 138
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 139
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 140
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 141
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 142
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 91
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 92
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 49
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 50
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 54
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 55
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 103
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 104
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 105
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 106
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 107
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 108
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 109
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 110
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 111
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 112
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 122
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 123
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 124
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 126
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 131
+# step
+Stopped at time : 65 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 324
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 108
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 109
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 86
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 90
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 43
+# step
+Stopped at time : 70 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/counter_wd.vhd" Line 48
+# step
+Stopped at time : 75 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 143
+# step
+
+** Failure:there is a change in the cmd during the set up phase
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# step
+INFO: Simulator is stopped.
+# restart
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# run all
+
+** Failure:reset values of cu are wrong
+User(VHDL) Code Called Simulation Stop
+In process tb_main_control_unit.vhd:stim_proc 
+ 
+INFO: Simulator is stopped.
+# restart
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 55 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/tb_main_control_unit.vhd" Line 128
+# run all
+Stopped at time : 59514475 ns : File "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/control_unit/control_unit.vhd" Line 91

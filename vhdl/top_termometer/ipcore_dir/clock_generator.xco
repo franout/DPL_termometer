@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Fri Nov 29 14:41:43 2019
+# Date: Fri Nov 29 17:25:48 2019
 #
 ##############################################################
 #
@@ -84,7 +84,7 @@ CSET clkout3_requested_phase=0.000
 CSET clkout3_used=false
 CSET clkout4_drives=BUFG
 CSET clkout4_requested_duty_cycle=50.000
-CSET clkout4_requested_out_freq=100.000
+CSET clkout4_requested_out_freq=5.000
 CSET clkout4_requested_phase=0.000
 CSET clkout4_used=false
 CSET clkout5_drives=BUFG
@@ -99,7 +99,7 @@ CSET clkout6_requested_phase=0.000
 CSET clkout6_used=false
 CSET clkout7_drives=BUFG
 CSET clkout7_requested_duty_cycle=50.000
-CSET clkout7_requested_out_freq=100.000
+CSET clkout7_requested_out_freq=10.000
 CSET clkout7_requested_phase=0.000
 CSET clkout7_used=false
 CSET clock_mgr_type=MANUAL
@@ -161,24 +161,24 @@ CSET mmcm_clkout1_divide=100
 CSET mmcm_clkout1_duty_cycle=0.500
 CSET mmcm_clkout1_phase=0.000
 CSET mmcm_clkout1_use_fine_ps=false
-CSET mmcm_clkout2_divide=1
+CSET mmcm_clkout2_divide=10
 CSET mmcm_clkout2_duty_cycle=0.500
 CSET mmcm_clkout2_phase=0.000
 CSET mmcm_clkout2_use_fine_ps=false
-CSET mmcm_clkout3_divide=1
+CSET mmcm_clkout3_divide=120
 CSET mmcm_clkout3_duty_cycle=0.500
 CSET mmcm_clkout3_phase=0.000
 CSET mmcm_clkout3_use_fine_ps=false
 CSET mmcm_clkout4_cascade=false
-CSET mmcm_clkout4_divide=1
+CSET mmcm_clkout4_divide=6
 CSET mmcm_clkout4_duty_cycle=0.500
 CSET mmcm_clkout4_phase=0.000
 CSET mmcm_clkout4_use_fine_ps=false
-CSET mmcm_clkout5_divide=1
+CSET mmcm_clkout5_divide=6
 CSET mmcm_clkout5_duty_cycle=0.500
 CSET mmcm_clkout5_phase=0.000
 CSET mmcm_clkout5_use_fine_ps=false
-CSET mmcm_clkout6_divide=1
+CSET mmcm_clkout6_divide=60
 CSET mmcm_clkout6_duty_cycle=0.500
 CSET mmcm_clkout6_phase=0.000
 CSET mmcm_clkout6_use_fine_ps=false
@@ -251,7 +251,7 @@ CSET use_freeze=false
 CSET use_freq_synth=true
 CSET use_inclk_stopped=false
 CSET use_inclk_switchover=false
-CSET use_locked=false
+CSET use_locked=true
 CSET use_max_i_jitter=false
 CSET use_min_o_jitter=false
 CSET use_min_power=false
@@ -266,4 +266,4 @@ CSET use_status=false
 MISC pkg_timestamp=2012-05-10T12:44:55Z
 # END Extra information
 GENERATE
-# CRC: 4d21db6f
+# CRC: 3f7c614f

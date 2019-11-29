@@ -99,7 +99,7 @@ architecture test of clk_wiz_v3_6_tb is
   signal CLK_OUT : std_logic_vector(1 downto 1);
 --Freq Check using the M & D values setting and actual Frequency generated
   signal period1 : time := 0 ps;
-constant  ref_period1_clkin1 : time := (10.000*5*78.000/39.000)*1000 ps;
+constant  ref_period1_clkin1 : time := (10.000*5*128.000/32.000)*1000 ps;
    signal prev_rise1 : time := 0 ps;
 
 component clk_wiz_v3_6_exdes

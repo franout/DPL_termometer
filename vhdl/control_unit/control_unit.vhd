@@ -47,13 +47,15 @@ done_lcd: IN std_logic;
 start_meas: OUT std_logic;
 done_meas:IN std_logic;
 reset_i: OUT std_logic; -- internal reset for all interfaces 
-ready: OUT std_logic -- switch on an led for notifyinh that the system is operative
+ready: OUT std_logic; -- switch on an led for notifyinh that the system is operative
+locked_clock: IN std_logic -- notify from pll that clock speed has been reached
+
 );
 end entity control_unit;
 
 
 architecture Behavioral of control_unit is
-type  state_t is (set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
+type  state_t is (pll_lock_clock,set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
 
 SIGNAL curr_state,next_state: state_t;
 SIGNAL in_out_val: std_logic:='0';
@@ -82,7 +84,7 @@ watch_dog: counter_wd GENERIC MAP (N=> 1+integer(ceil(log2(real(WATCH_DOG_COUNT)
 regs:PROCESS(clk,reset)
 BEGIN
 IF (reset='1') THEN
-curr_state<=set_up;
+curr_state<=pll_lock_clock;
 
 ELSE 
 	IF(clk='1' AND clk'EVENT) THEN
@@ -95,7 +97,7 @@ END PROCESS regs;
 
 
 
-comb_logic:PROCESS(in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect,in_out_val)
+comb_logic:PROCESS(locked_clock,in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect,in_out_val)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
@@ -108,6 +110,15 @@ enable_wd<='0';
 reset_i<='0';
 ready<='1';
 CASE curr_state IS
+WHEN pll_lock_clock=> 
+						ready<='0';
+						enable_wd<='1';
+						IF (locked_clock='1') THEN 
+						-- desired frequnecy reached
+						next_state<=set_up;
+						ELSE
+						next_state<=curr_state;
+						END IF;
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
 			ready<='0';

@@ -53,6 +53,7 @@ add wave -noupdate -divider {Output clocks}
 add wave -noupdate -format Logic /clock_generator_tb/dut/clk
 add wave -noupdate -divider Status/control
 add wave -noupdate -format Logic /clock_generator_tb/RESET
+add wave -noupdate -format Logic /clock_generator_tb/LOCKED
 add wave -noupdate -divider Counters
 add wave -noupdate -format Literal -radix hexadecimal /clock_generator_tb/COUNT
 add wave -noupdate -format Literal -radix hexadecimal /clock_generator_tb/dut/counter

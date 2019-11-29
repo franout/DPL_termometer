@@ -91,6 +91,7 @@ architecture test of clock_generator_tb is
   signal COUNT         : std_logic;
   -- Status and control signals
   signal RESET         : std_logic := '0';
+  signal LOCKED        : std_logic;
   signal COUNTER_RESET : std_logic := '0';
   signal timeout_counter : std_logic_vector (13 downto 0) := (others => '0');
 --  signal defined to stop mti simulation without severity failure in the report
@@ -111,7 +112,8 @@ port
   -- High bits of counters driven by clocks
   COUNT             : out std_logic;
   -- Status and control signals
-  RESET             : in  std_logic
+  RESET             : in  std_logic;
+  LOCKED            : out std_logic
  );
 end component;
 
@@ -161,8 +163,7 @@ begin
     RESET      <= '1';
     wait for (PER1*6);
     RESET      <= '0';
-    -- can't probe into hierarchy, wait "some time" for lock
-    wait for (PER1*2500);
+    wait until LOCKED = '1';
     wait for (PER1*20);
     COUNTER_RESET <= '1';
     wait for (PER1*19.5);
@@ -181,6 +182,27 @@ begin
     wait;
   end process;
 
+ process (CLK_IN1)
+    procedure simtimeprint is
+      variable outline : line;
+    begin
+      write(outline, string'("## SYSTEM_CYCLE_COUNTER "));
+      write(outline, NOW/PER1);
+      write(outline, string'(" ns"));
+      writeline(output,outline);
+    end simtimeprint;
+   begin
+     if (CLK_IN1'event and CLK_IN1='1') then
+         timeout_counter <= timeout_counter + '1';
+       if (timeout_counter = "10000000000000") then
+          if (LOCKED /= '1') then
+            simtimeprint;
+            report "NO LOCK signal" severity failure;
+          end if;
+       end if;
+     end if;
+ end process; 
+
 
   -- Instantiation of the example design containing the clock
   --    network and sampling counters
@@ -195,7 +217,8 @@ begin
     -- High bits of the counters
     COUNT              => COUNT,
     -- Status and control signals
-    RESET              => RESET);
+    RESET              => RESET,
+    LOCKED             => LOCKED);
 
 -- Freq Check 
    process(CLK_OUT(1))
