@@ -10,16 +10,20 @@ entity receiver is
 end entity receiver;
 
 architecture arc_receiver of receiver is
---	signal data_temp:std_logic_vector(width-1 downto 0);
+	signal cnt: natural range 0 to width-1 :=0;
 begin
 --	data_temp<=data;
 	process(clk)
 		
 	begin
 		if(rising_edge(clk)) then
-			for i in 0 to width-1 loop
-				Outs(i)<=data;
-			end loop;
+			if(cnt= width-1) then
+				Outs(cnt)<=data;
+				cnt<=0;
+			else
+				Outs(cnt)<=data;
+				cnt<=cnt+1;
+			end if;
 		end if;
 	end process;
 end architecture arc_receiver;
