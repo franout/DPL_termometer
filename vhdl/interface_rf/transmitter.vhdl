@@ -10,16 +10,20 @@ entity transmitter is
 end entity transmitter;
 
 architecture arc_transmitter of transmitter is
---	signal data_temp:std_logic_vector(width-1 downto 0);
+	signal cnt: natural range 0 to width-1 :=0;
 begin
 --	data_temp<=data;
 	process( clk)
 		
 	begin
 		if(rising_edge(clk)) then
-			for i in 0 to width-1 loop
-				Outs<=data(i);
-			end loop;
+			if(cnt= width-1) then
+				Outs<=data(cnt);
+				cnt<=0;
+			else
+				Outs<=data(cnt);
+				cnt<=cnt+1;
+			end if;
 		end if;
 
 	end process;
