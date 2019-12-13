@@ -16,9 +16,7 @@ ENTITY LCD IS
 		dataOUT:        OUT STD_LOGIC_VECTOR(7 downto 0);
 		done:	        OUT STD_LOGIC;
 		RS:             OUT STD_LOGIC;			       -- 0 instruction register (write) /  1 (write, read)
-		R_W:            OUT STD_LOGIC     );                      -- 0 write  /   1 read
-
-	     
+		R_W:            OUT STD_LOGIC     );                      -- 0 write  /   1 rea
 
 END LCD;
 
