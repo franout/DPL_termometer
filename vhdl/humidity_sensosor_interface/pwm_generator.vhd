@@ -18,7 +18,7 @@ constant frequency_pwm: integer := 1000; -- Khz
 
 
 --required bits
- integer(ceil(log2(real(frequency_pwm))))
+-- integer(ceil(log2(real(frequency_pwm))))
  
  
 
@@ -28,8 +28,8 @@ BEGIN
 
 
 
-counter:
-reg:
+--counter:
+--reg:
 
 -- comparison 
 pwm_out<='1' when unsigned(cnt_val)>=unsigned(reg_val) else '0';
