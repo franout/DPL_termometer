@@ -48,7 +48,9 @@ start_meas: OUT std_logic;
 done_meas:IN std_logic;
 reset_i: OUT std_logic; -- internal reset for all interfaces 
 ready: OUT std_logic; -- switch on an led for notifyinh that the system is operative
-locked_clock: IN std_logic -- notify from pll that clock speed has been reached
+locked_clock: IN std_logic; -- notify from pll that clock speed has been reached
+-- to humidity sensor interface
+enable_humidity_sensor: OUT std_logic
 
 );
 end entity control_unit;
@@ -109,8 +111,9 @@ start_comparison<='0';init_set_up<='0';
 enable_wd<='0';
 reset_i<='0';
 ready<='1';
+enable_humidity_sensor<='1';
 CASE curr_state IS
-WHEN pll_lock_clock=> 
+WHEN pll_lock_clock=> 	enable_humidity_sensor<='0';
 						ready<='0';
 						enable_wd<='1';
 						IF (locked_clock='1') THEN 
@@ -121,6 +124,7 @@ WHEN pll_lock_clock=>
 						END IF;
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
+				enable_humidity_sensor<='0';
 			ready<='0';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
 			IF ( done_lcd='1' ) THEN
@@ -131,6 +135,7 @@ WHEN set_up=> init_set_up<='1';
 			next_state<=curr_state;
 			END IF;
 WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
+					enable_humidity_sensor<='0';
 					ready<='0';
 					reset_i<='1';
 					next_state<=set_up;
@@ -192,6 +197,7 @@ WHEN display_curr_tmp=>
 WHEN OTHERS=> 
 	next_state<=set_up;
 	start_meas<='0';display<='0';select_data<="00";in_out<='0';start_comparison<='0';init_set_up<='0';enable_wd<='0';
+	enable_humidity_sensor<='0';
 reset_i<='0';
 END CASE;
 

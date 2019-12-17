@@ -51,9 +51,10 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
          done_lcd : IN  std_logic;
          start_meas : OUT  std_logic;
          done_meas : IN  std_logic;
-			reset_i:OUT std_logic;
-			ready: OUT std_logic;
-			locked_clock: IN std_logic
+		reset_i:OUT std_logic;
+		ready: OUT std_logic;
+		locked_clock: IN std_logic;
+		enable_humidity_sensor: OUT std_logic
         );
     END COMPONENT;
     
@@ -77,6 +78,7 @@ ARCHITECTURE behavior OF tb_main_control_unit IS
 	signal cmd : std_logic_vector(7 DOWNTO 0) ;
 	signal reset_i: std_logic;
 	signal ready: std_logic;
+	signal enable_humidity_sensor: std_logic;
 	
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -99,7 +101,8 @@ BEGIN
           done_meas => done_meas, 
 			 reset_i=> reset_i,
 			 ready=> ready,
-			 			locked_clock=> locked_clock
+			 			locked_clock=> locked_clock,
+enable_humidity_sensor=>enable_humidity_sensor
 			 );
 
    -- Clock process definitions
@@ -141,7 +144,7 @@ locked_clock<='0';
     done_meas <='0';
 		wait for clk_period;
 		ASSERT cmd="10000000" REPORT "there is a change in the cmd during the set up phase" SEVERITY FAILURE; -- no changes becouse it waits for the interfaces set up
-		
+		ASSERT enable_humidity_sensor='1' REPORT "humidity sensor is active" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';
@@ -161,6 +164,8 @@ locked_clock<='0';
     done_meas <='0';
 	wait for clk_period; -- idle state
 		ASSERT cmd="10000000" REPORT "not in idle state" SEVERITY FAILURE;
+				ASSERT enable_humidity_sensor='0' REPORT "humidity sensor is not active" SEVERITY FAILURE;
+
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';
