@@ -30,7 +30,11 @@ entity top_termometer is
            lcd_rw : out  STD_LOGIC;
            lcd_rs : out  STD_LOGIC;
            lcd_data : out  STD_LOGIC_VECTOR (7 downto 0);
-				system_ready: out std_logic); -- signal to an led on the board
+				system_ready: out std_logic; -- signal to an led on the board
+				pwm_out: out std_logic;
+				sclk: inout std_logic;
+				sdata: inout std_logic
+				);
 end top_termometer;
 
 architecture structural of top_termometer is
@@ -78,7 +82,9 @@ start_meas: OUT std_logic;
 done_meas:IN std_logic;
 reset_i: OUT std_logic; -- internal reset for all interfaces 
 ready: OUT std_logic; -- switch on an led for notifyinh that the system is operative
-locked_clock: IN std_logic -- notify from pll that clock speed has been reached
+locked_clock: IN std_logic ; -- notify from pll that clock speed has been reached
+-- to humidity sensor interface
+enable_humidity_sensor: OUT std_logic
 );
 end COMPONENT control_unit;
 
@@ -125,7 +131,22 @@ PORT(clk,reset,start_lcd,init_set_up,ind_outd_select: in std_logic;
 
 end  COMPONENT top_display;
 
-SIGNAL reset_top,start_display,clk,locked_clock,reset_start_tmp,init_set_up,in_out_sel ,start_comparison,done_display,done_comparison,done_meas,start_meas,reset_i: std_logic;
+
+-- humidity sensor interface ( i2c internal ) 
+COMPONENT  top_humidity_sensors_interface is
+    Port ( clk : in  STD_LOGIC;
+           reset : in  STD_LOGIC;
+           enable : in  STD_LOGIC;
+           pwm_out : out  STD_LOGIC;
+           sclk : inout  STD_LOGIC;
+           sdata : inout  STD_LOGIC);
+end  COMPONENT top_humidity_sensors_interface;
+
+
+
+SIGNAL reset_top,start_display,clk,locked_clock,reset_start_tmp,init_set_up,
+			in_out_sel ,start_comparison,done_display,done_comparison,done_meas,
+			enable_humidity_sensor,start_meas,reset_i: std_logic;
 SIGNAL select_data_comparison: std_logic_vector(1 DOWNTO 0);
 SIGNAL data_from_comparison,data_from_tmp_interface: std_logic_vector(8 DOWNTO 0);
 
@@ -166,8 +187,18 @@ cu: control_unit GENERIC MAP (300) PORT MAP(locked_clock=>locked_clock,clk=>clk,
 									start_meas=>start_meas,
 									done_meas=>done_meas ,
 									reset_i=>reset_i,
-									ready=> system_ready);
-
+									ready=> system_ready,
+									enable_humidity_sensor=> enable_humidity_sensor);
+									
+									
+interface_humidity_sensor:  top_humidity_sensors_interface PORT MAP(clk =>clk,
+           reset => reset_top,
+           enable =>enable_humidity_sensor ,
+           pwm_out => pwm_out,
+           sclk =>sclk,
+           sdata => sdata);
+			  
+			  
 reset_start_tmp<=not(start_meas or reset_top);
 
 -- pll 
