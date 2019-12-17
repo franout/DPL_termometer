@@ -28,10 +28,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY tb_i2c IS
 END tb_i2c;
  
@@ -44,7 +41,7 @@ ARCHITECTURE behavior OF tb_i2c IS
          clk : IN  std_logic;
          reset : IN  std_logic;
          enable : IN  std_logic;
-         data_out : OUT  std_logic_vector(7 downto 0);
+         data_out : OUT  std_logic_vector(13 downto 0);
          ld_data : OUT  std_logic;
          enable_cnt : OUT  std_logic;
          sclk : INOUT  std_logic;
@@ -63,11 +60,11 @@ ARCHITECTURE behavior OF tb_i2c IS
    signal sdata : std_logic;
 
  	--Outputs
-   signal data_out : std_logic_vector(7 downto 0);
+   signal data_out : std_logic_vector(13 downto 0);
    signal ld_data : std_logic;
    signal enable_cnt : std_logic;
 	
-	signal outputs : std_logic_Vector( 11 DOWNTO 0);
+	signal outputs : std_logic_Vector( 17 DOWNTO 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -101,15 +98,19 @@ BEGIN
    stim_proc: process
    begin		
 		reset<='1';
+		sdata<='Z';
       wait for 10 ns;	
 		sclk<='H';
 		reset<='0';
 		wait until clk='1' and clk'event;
-		--ASSERT outputs="ZZ0000000000" REPORT "wrogn reset" SEVERITY FAILURE;
+		ASSERT outputs="UZ00"&"00000000000000" REPORT "wrogn reset" SEVERITY FAILURE;
 		WAIT FOR 5 ms;
+
 		enable<='1' ;
 		wait until clk='1' and clk'event;
-		--ASSERT outputs="Z00000000000" REPORT "wrogn reset" SEVERITY FAILURE;
+		ASSERT outputs="UZ00"&"00000000000000" REPORT "wrogn enable" SEVERITY FAILURE;
+	--30060.045 us
+	-- 2.5 us
       wait;
    end process;
 	
