@@ -144,7 +144,7 @@ locked_clock<='0';
     done_meas <='0';
 		wait for clk_period;
 		ASSERT cmd="10000000" REPORT "there is a change in the cmd during the set up phase" SEVERITY FAILURE; -- no changes becouse it waits for the interfaces set up
-		ASSERT enable_humidity_sensor='1' REPORT "humidity sensor is active" SEVERITY FAILURE;
+		ASSERT enable_humidity_sensor='0' REPORT "humidity sensor is active" SEVERITY FAILURE;
 		reset<='0';
 		in_out_sel <= '0';
     done_comparison<='0';

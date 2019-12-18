@@ -60,7 +60,7 @@ architecture Behavioral of control_unit is
 type  state_t is (pll_lock_clock,set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
 
 SIGNAL curr_state,next_state: state_t;
-SIGNAL in_out_val: std_logic:='0';
+SIGNAL curr_in_out_val,next_in_out_val: std_logic:='0';
 SIGNAL tc_wd,enable_wd: std_logic;
 
 -- component declaration it works like a watchdog timer for the setup phase and the idle period ( for refreshing the temperature) 
@@ -87,30 +87,32 @@ regs:PROCESS(clk,reset)
 BEGIN
 IF (reset='1') THEN
 curr_state<=pll_lock_clock;
-
+curr_in_out_val<='0';
 ELSE 
 	IF(clk='1' AND clk'EVENT) THEN
 	    edge_detect <= edge_detect(0) &in_out_sel ;
 	curr_state<=next_state;
+	curr_in_out_val<=next_in_out_val;
 	END IF;
 
 END IF;
 END PROCESS regs;
 
 
-
-comb_logic:PROCESS(locked_clock,in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect,in_out_val)
+comb_logic:PROCESS(locked_clock,in_out_sel,done_comparison,done_lcd,done_meas,curr_state,tc_wd,edge_detect,curr_in_out_val)
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
 start_meas<='0';
 display<='0';
 select_data<="00";
-in_out<=in_out_val;
-start_comparison<='0';init_set_up<='0';
+next_in_out_val<=curr_in_out_val;
+start_comparison<='0';
+init_set_up<='0';
 enable_wd<='0';
 reset_i<='0';
 ready<='1';
+in_out<=curr_in_out_val;
 enable_humidity_sensor<='1';
 CASE curr_state IS
 WHEN pll_lock_clock=> 	enable_humidity_sensor<='0';
@@ -143,14 +145,14 @@ WHEN idle=> enable_wd<='1';
 				IF( edge_detect="01" ) THEN
 				-- rising edge  INDOOR
 				next_state<=measure_tmp;
-				in_out_val<=in_out_sel; -- keeping constant until next idle period
+				next_in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSIF (edge_detect="10") THEN 
 				-- falling edge outdoor
 				next_state<=measure_tmp;
-				in_out_val<=in_out_sel; -- keeping constant until next idle period	
+				next_in_out_val<=in_out_sel; -- keeping constant until next idle period	
 				ELSIF ( tc_wd='1') THEN 
 				next_state<=measure_tmp;
-				in_out_val<=in_out_sel; -- keeping constant until next idle period
+				next_in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSE 
 				next_state<=curr_state;
 				END IF;
