@@ -82,7 +82,8 @@ end  component comparator;
 SIGNAL curr_tmp: std_logic_vector( N-1 DOWNTO 0);
 SIGNAL comparison_result_neg,comparison_result,in_out_sel_neg,enable_reg,enable_reg_out: std_logic;
 SIGNAL cnt_val,comparison_result_max,comparison_result_min,cnt_val_n: std_logic;
-SIGNAL data_in_max_ind,data_in_max_outd,data_in_min_outd,data_in_min_ind,max_ind,min_ind,max_outd,min_outd,b_io,min_i,max_i: std_logic_vector(N-1 DOWNTO 0);
+SIGNAL data_in_max_ind,data_in_max_outd,data_in_min_outd,
+			data_in_min_ind,max_ind,min_ind,max_outd,min_outd,b_io,min_i,max_i: std_logic_vector(N-1 DOWNTO 0);
 
 begin
 

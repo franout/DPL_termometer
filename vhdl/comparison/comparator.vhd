@@ -40,13 +40,13 @@ BEGIN
 
 IF(enable='1')THEN
 	IF(signed(a)>=signed(b))THEN
-		
 		res<='1';
-	
 	ELSE	
 	-- < and other beh.
 	res<='0';
 	END IF;
+	ELSE 
+	res<='0';
 	END IF;
 END PROCESS;
 
