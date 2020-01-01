@@ -1,0 +1,3 @@
+outdoor: one FPGA, ds18s20+, sender
+
+indoor for combination: one FPGA, ds18s20+, receiver
