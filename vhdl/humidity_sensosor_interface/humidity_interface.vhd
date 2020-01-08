@@ -45,7 +45,7 @@ SIGNAL counter: std_logic_vector(   1+integer(ceil(log2(real(freq_sclk/main_clk)
 SIGNAL counter_wait:  std_logic_vector(   1+integer(ceil(log2(real(25000)))) DOWNTO 0);  -- ms 
 SIGNAL prescaler_count:  std_logic_vector(   1+integer(ceil(log2(real((1000000-1)/main_clk)))) DOWNTO 0);  -- ms 
 
-SIGNAL reset_cnt_clk,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack,sclk_i: std_logic;
+SIGNAL check_ack,reset_cnt_clk,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack,sclk_i: std_logic;
 SIGNAL data: std_logic_vector(15 DOWNTO 0); -- first two bits are the status registers
 
 begin
@@ -81,7 +81,7 @@ END IF;
 END PROCESS state_reg;
 
 
-cl:PROCESS(curr_state,counter_cl,ack,enable,counter_wait,sclk,data)
+cl:PROCESS(curr_state,counter_cl,ack,enable,counter_wait,data)
 BEGIN
 -- default values 
 data_out<=(OTHERS=>'0');
@@ -92,6 +92,7 @@ generate_clk<='0';
 enable_cnt<='0';
 enable_wait<='0';
 shf_en<='0';
+check_ack<='0';
 
 CASE curr_state IS 
 WHEN power_up=> IF ( to_integer(unsigned(counter_cl))=5000000/main_clk) THEN  -- 5 ms
@@ -119,9 +120,9 @@ WHEN measure_request=>
 								next_state<=curr_state;
 								generate_clk<='0';
 
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*9) /main_clk) THEN 
+								  
 								-- write address 
-													IF (to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
+								ELSIF	(to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
 													sdata_i<='0'; -- first address bit msb
 															generate_clk<='1';
 															next_state<=curr_state;
@@ -150,8 +151,7 @@ WHEN measure_request=>
 															sdata_i<='0';
 															generate_clk<='1';
 															next_state<=curr_state;
-													END IF;
-															
+														
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*10) /main_clk) THEN 
 								-- write
 								sdata_i<='0';
@@ -160,13 +160,12 @@ WHEN measure_request=>
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*11) /main_clk) THEN 
 								-- ack
 								generate_clk<='1';
-								IF (rising_edge(sclk)) THEN
+								check_ack<='1';
 										IF ( ack='1' ) THEN
 										next_state<=hang;
 										ELSE 
 										next_state<=curr_state;
 										END IF;
-								END IF;
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*12) /main_clk) THEN 
 								-- wait 1 cc ( sclk)
 								next_state<=curr_state;
@@ -202,9 +201,9 @@ WHEN data_fetch=>	--  start bit
 								generate_clk<='0';
 								sdata_i<='Z';
 
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*9) /main_clk) THEN 
+					 
 								-- write address 
-													IF (to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
+													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
 													sdata_i<='0'; -- first address bit msb
 															
 															generate_clk<='1';
@@ -234,8 +233,7 @@ WHEN data_fetch=>	--  start bit
 															sdata_i<='0';
 															generate_clk<='1';
 															next_state<=curr_state;
-													END IF;
-															
+														
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*10) /main_clk) THEN 
 								-- read
 								sdata_i<='1';
@@ -244,13 +242,13 @@ WHEN data_fetch=>	--  start bit
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*11) /main_clk) THEN 
 								-- ack
 								generate_clk<='1';
-								IF (rising_edge(sclk)) THEN
+								check_ack<='1';
 										IF ( ack='1' ) THEN
 										next_state<=hang;
 										ELSE 
 										next_state<=curr_state;
 										END IF;
-								END IF;
+								
 								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*12) /main_clk) THEN 
 								-- wait 1 cc ( sclk)
 								sdata_i<='Z';
@@ -411,7 +409,9 @@ BEGIN
 IF(reset='1') THEN
 data<=(OTHERS=>'0');
 ELSIF ( rising_edge(sclk))THEN
-
+IF( check_ack='1') THEN
+    ack<=sdata;
+END IF; 
 IF (shf_en='1') THEN
 data(15 DOWNTO 1)<=data(14 downto 0);
 data(0)<=sdata;
@@ -471,8 +471,6 @@ clk_wr_neg<= not ( clk_wr );
 -- tristate output
 sclk<=sclk_i WHEN sclk_collision='0' ELSE 'Z';
 		
-ack<=sdata;
-
 sdata<=sdata_i;
 
 end Behavioral;
