@@ -1,37 +1,44 @@
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
-USE ieee.numeric_std.ALL;
-use IEEE.math_real."ceil";
-use IEEE.math_real."log2";
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
-ENTITY pwm_generator IS 
-GENERIC (N:integer:=8);
-PORT ( clk,reset,enable,ld_val_duty: IN std_logic;
-		data_in: IN std_logic_vector(N-1 DOWNTO 0);
-		pwm_out: OUT std_logic
-		);
-END entity pwm_generator;
+entity pwm_generator is
+	generic(
+		
+		N: integer := 8;
+		max_value: integer := 1000  -- set max_value and duty_value relation depending on the wanted duty cycle
+	);
+	port(
+		clk: in std_logic;
+		duty_value: in std_logic_vector((N-1) downto 0);
+		pwm_out: out std_logic
+	);
+end pwm_generator;
 
+architecture arch_pwm of pwm_generator is
+	signal count: std_logic_vector((N-1) downto 0);
+	
+  begin
 
-ARCHITECTURE structural OF pwm_generator IS
-constant frequency_pwm: integer := 1000; -- Khz 
+	process(clk) -- Counting
+	  begin
+		if(rising_edge(clk)) then
+			if (count < (max_value-1)) then
+				count <= count + 1;
+			else
+				count <= (others => '0');
+			end if;
+		end if;
+	end process;
 
-
---required bits
--- integer(ceil(log2(real(frequency_pwm))))
- 
- 
-
-
-BEGIN
-
-
-
-
---counter:
---reg:
-
--- comparison 
-pwm_out<='1' when unsigned(cnt_val)>=unsigned(reg_val) else '0';
-
-END structural;
+	process(clk) -- PWM generation
+  	  begin
+		if(rising_edge(clk)) then
+			if (duty_value > count) then
+				pwm_out <= '1';
+			else
+				pwm_out <= '0';
+			end if;
+		end if;
+	end process;
+end arch_pwm;
