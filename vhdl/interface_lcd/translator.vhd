@@ -71,10 +71,9 @@ mux:  mux8_1 GENERIC MAP (N=>8) PORT MAP(a=>sign_value,b=>x1,c=>x2,d=>x3,e=>dot,
 g=>(OTHERS=>'0'),h=>(OTHERS=>'0'),s=>cnt_val,y=>data_out);
 
 
-translation:process (data_in,start)
+translation:process (data_in)
 variable remainder,quotient: unsigned(7 DOWNTO 0);
 begin
-IF( start='1') THEN 
 IF(data_in(N-1)='1')THEN
 -- ascii of minus
 sign_value<=x"2D";
@@ -109,15 +108,7 @@ ELSE
 --  .0
 decimal_value<=x"30";
 END IF;
-ELSE 
--- default valus 
-decimal_value<=x"30";
-x1<=x"30";
-x2<=x"30";
-x3<=x"30";
-sign_value<=x"2B";
 
-END IF;
 end process translation;
 
 
