@@ -27,7 +27,6 @@ use IEEE.math_real."ceil";
 
 
 entity humidity_interface is
-GENERIC ( main_clk: integer:= 10); -- 100 mHz
 PORT ( clk,reset,enable: IN std_logic;
 		data_out: out std_logic_vector(13 DOWNTO 0);
 			ld_data,enable_cnt: out std_logic;
@@ -36,52 +35,107 @@ end humidity_interface;
 
 architecture Behavioral of humidity_interface is
 
-TYPE state_t IS (power_up, idle, data_fetch , measure_request, wait_measure,update_duty_cycle_pwm,hang); 
-CONSTANT freq_sclk: integer := 5000; --- 200 kHz
+TYPE state_t IS (power_up , idle, 
+                 measure_request_1,measure_request_2,measure_request_3,measure_request_4,
+                 measure_request_5,measure_request_6,measure_request_7,measure_request_8,
+                 measure_request_9,measure_request_10,measure_request_11,measure_request_12,measure_request_13,
+                 data_fetch_1 ,data_fetch_2 ,data_fetch_3 ,data_fetch_4 ,data_fetch_5 ,data_fetch_6 ,data_fetch_7 ,
+                 data_fetch_8 ,data_fetch_9 ,data_fetch_10 ,data_fetch_11 ,data_fetch_12 ,data_fetch_13 ,data_fetch_14 ,
+                 data_fetch_15 ,data_fetch_16 ,data_fetch_17 ,data_fetch_18 ,data_fetch_19 ,data_fetch_20 ,data_fetch_21 ,
+                 data_fetch_22 ,data_fetch_23 ,data_fetch_24 ,data_fetch_25 ,data_fetch_26 ,data_fetch_27 ,data_fetch_28 ,
+                 data_fetch_29 ,data_fetch_30 ,data_fetch_31 ,data_fetch_32 ,
+                  wait_measure,update_duty_cycle_pwm,hang,gen); 
+CONSTANT freq_sclk: integer := 500; --- 200 kHz
 
 SIGNAL  curr_state,next_state: state_t;
-SIGNAL counter_cl: std_logic_vector(   18 DOWNTO 0);
-SIGNAL counter: std_logic_vector(   1+integer(ceil(log2(real(freq_sclk/main_clk)))) DOWNTO 0);
-SIGNAL counter_wait:  std_logic_vector(   1+integer(ceil(log2(real(25000)))) DOWNTO 0);  -- ms 
-SIGNAL prescaler_count:  std_logic_vector(   1+integer(ceil(log2(real((1000000-1)/main_clk)))) DOWNTO 0);  -- ms 
+SIGNAL counter_cl: std_logic_vector(    1+integer(ceil(log2(real(1000)))) DOWNTO 0);
+SIGNAL counter: std_logic_vector(   1+integer(ceil(log2(real(freq_sclk)))) DOWNTO 0);
+SIGNAL counter_wait:  std_logic_vector(   1+integer(ceil(log2(real(8000000)))) DOWNTO 0);   
 
-SIGNAL check_ack,reset_cnt_clk,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack,sclk_i: std_logic;
+SIGNAL check_ack,read_sclk,reset_cnt_clk,tc_wait,tc_cl,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack: std_logic;
+SIGNAL sclk_i:STD_LOGIC :='0';
 SIGNAL data: std_logic_vector(15 DOWNTO 0); -- first two bits are the status registers
 
 begin
 
+sclk_i_gen:PROCESS(reset,clk) 
+BEGIN
+IF(reset='1') THEN
+counter<=(OTHERS=>'0');
+ELSIF(rising_edge(clk))THEN
+IF(sclk='0') THEN
+		sclk_collision<='1';
+		ELSE
+	   sclk_collision<='0';
+		END IF;	
+	
+	   
+		IF(to_integer(unsigned(counter))= freq_sclk/2-1) then
+		sclk_i<=not(sclk_i);
+		counter<=(OTHERS=>'0');
+           ELSE
+           		counter<=std_logic_vector(unsigned(counter)+1);
+
+		END IF;
+	
+
+END IF;
+END PROCESS sclk_i_gen;
 
 
 
-
-state_reg:PROCESS(reset,clk)
+state_reg:PROCESS(reset,sclk_i)
 BEGIN
 IF(reset='1' ) THEN
+data<=(OTHERS=>'0');
+counter_wait<=(OTHERS=>'0');
 curr_state<=power_up;
-counter<=(OTHERS=>'0');
 counter_cl<=(OTHERS=>'0');
-
-
-ELSIF (rising_edge(clk))THEN
-
+ELSIF (rising_edge(sclk_i))THEN
+    
+       
 IF( reset_counter_cl='1' ) THEN 
 counter_cl<=(OTHERS=>'0');
 ELSE
+IF( to_integer(unsigned(counter_cl))=1000-1 )   THEN 
+tc_cl<='1';
+counter_cl<=(OTHERS=>'0');
+
+ELSE
+tc_cl<='0';
 counter_cl<=std_logic_vector(unsigned(counter_cl)+1);
 END IF;
-		IF ( generate_clk='0' OR reset_cnt_clk='1' ) THEN 
-		counter<=(OTHERS=>'0');
-		ELSE 
-		counter<=std_logic_vector(unsigned(counter)+1);
-		END IF;
-curr_state<=next_state;
+END IF;
+		
+	curr_state<=next_state;	
 
+	IF(enable_wait='1') THEN  -- 40 s 
+		  IF(to_integer(unsigned(counter_wait))= 8000000-1) THEN
+		  	counter_wait<=(OTHERS=>'0');
+            tc_wait<='1';
+		  ELSE 
+		  tc_wait<='0';
+		  counter_wait<=std_logic_vector(unsigned(counter_wait)+1);
+		  END IF;
+	ELSE
+	
+	counter_wait<=(OTHERS=>'0');
+	END IF;
+	
+-- shift register for the data
+
+IF (shf_en='1') THEN
+data(15 DOWNTO 1)<=data(14 downto 0);
+data(0)<=sdata;
+END IF;
+	
 END IF;
 
 END PROCESS state_reg;
 
+ack<=sdata when (sclk_collision='0' and check_ack='1') else '1';
 
-cl:PROCESS(curr_state,counter_cl,ack,enable,counter_wait,data)
+cl:PROCESS(curr_state,tc_cl,ack,enable,data,tc_wait)
 BEGIN
 -- default values 
 data_out<=(OTHERS=>'0');
@@ -95,7 +149,7 @@ shf_en<='0';
 check_ack<='0';
 
 CASE curr_state IS 
-WHEN power_up=> IF ( to_integer(unsigned(counter_cl))=5000000/main_clk) THEN  -- 5 ms
+WHEN power_up=> IF ( tc_cl='1' ) THEN  -- 5 ms
 							next_state<=idle;
 						ELSE 
 						next_state<=curr_state;
@@ -104,264 +158,306 @@ WHEN power_up=> IF ( to_integer(unsigned(counter_cl))=5000000/main_clk) THEN  --
 WHEN idle=> 	reset_counter_cl<='1';
 					enable_cnt<='1';
 					IF(enable='1') THEN
-					next_state<=measure_request;
+					next_state<=measure_request_1;
 					ELSE 
 					next_state<=curr_state;					
 					END IF;
-WHEN measure_request=> 
-								--  start bit
-								IF( to_integer(unsigned(counter_cl))< (freq_sclk*1)/main_clk ) THEN  
-								sdata_i<='0';
-								next_state<=curr_state;
-								generate_clk<='0';
-
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*2)/main_clk) THEN 
-								-- wait some time before writing the address ( 0x28 ) 
-								next_state<=curr_state;
-								generate_clk<='0';
-
-								  
-								-- write address 
-								ELSIF	(to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
-													sdata_i<='0'; -- first address bit msb
-															generate_clk<='1';
-															next_state<=curr_state;
-													
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*4/main_clk) THEN 
-														sdata_i<='1';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*5/main_clk) THEN 
-													sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*6/main_clk) THEN 
-													sdata_i<='1';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*7/main_clk) THEN 
-														sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*8/main_clk) THEN 
-														sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*9/main_clk) THEN 
-															sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-														
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*10) /main_clk) THEN 
-								-- write
-								sdata_i<='0';
-								generate_clk<='1';
-								next_state<=curr_State;
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*11) /main_clk) THEN 
-								-- ack
-								generate_clk<='1';
-								check_ack<='1';
-										IF ( ack='1' ) THEN
-										next_state<=hang;
-										ELSE 
-										next_state<=curr_state;
-										END IF;
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*12) /main_clk) THEN 
-								-- wait 1 cc ( sclk)
-								next_state<=curr_state;
-								generate_clk<='0'	;							
+		
+WHEN measure_request_1=> --  start bit
+                        sdata_i<='0';
+			       		generate_clk<='0';
+			       		
+                        next_state<=measure_request_3;
+                        
+ WHEN measure_request_3=> 
+    						-- write address 
+							sdata_i<='0'; -- first address bit msb
+							generate_clk<='1';
+							
+                            next_state<=measure_request_4;
+                              
+WHEN measure_request_4=> sdata_i<='1';
+                                generate_clk<='1';
 								
-								ELSE 
+                                 next_state<=measure_request_5;
+                                
+WHEN measure_request_5=>        sdata_i<='0';
+                                generate_clk<='1';
+							
+                                 next_state<=measure_request_6;
+                              
+WHEN measure_request_6=> sdata_i<='1';
+                                generate_clk<='1';
+								
+                                
+                                 next_state<=measure_request_7;
+                                
+WHEN measure_request_7=>  sdata_i<='0';
+                                generate_clk<='1';
+								
+                                 next_state<=measure_request_8;
+                               
+WHEN measure_request_8=>   sdata_i<='0';
+								
+                                generate_clk<='1';
+                          
+                                 next_state<=measure_request_9;
+                          
+WHEN measure_request_9=> sdata_i<='0';
+                                generate_clk<='1';
+								
+                                 next_state<=measure_request_10;
+                                
+WHEN measure_request_10=>  -- write
+                    sdata_i<='0';
+                    generate_clk<='1';
+								
+                   
+                                 next_state<=measure_request_11;
+                   
+WHEN measure_request_11=> -- ack
+                            generate_clk<='1';
+								
+								check_ack<='1';
+								
+							        -- IF ( ack='1' ) THEN
+								      -- next_state<=curr_state;
+								        --ELSE
+                                         next_state<=measure_request_12;
+                                         --END IF;
+                                	
+WHEN measure_request_12=> 	-- wait 1 cc ( sclk)
+                                 sdata_i<='Z';
+							generate_clk<='0'	;
+															
+							
+                                 next_state<=measure_request_13;
+                                
+WHEN measure_request_13=> 
 								-- stop bit 
 								sdata_i<='Z';
-								next_state<=wait_measure;
-								generate_clk<='0';					
-								END IF ;
-WHEN wait_measure=> -- wait for 25 sec 
+								
+								generate_clk<='0';
+								
+                                 next_state<=wait_measure;
+                                
+WHEN wait_measure=> -- wait for 30 sec 
 							enable_wait<='1';
+							enable_cnt<='0';
+							
+								generate_clk<='0';
 							reset_counter_cl<='1';
-							IF ( to_integer(unsigned(counter_wait))  = 25000
-							--synthesis translate_off
-							/1000
-							--synthesis translate_on
-							) THEN 
-							next_state<=data_fetch;
+							IF ( tc_wait='1') THEN 
+							next_state<=data_fetch_1;
 							ELSE 
 							next_state<=curr_state;
 							END IF;
-WHEN data_fetch=>	--  start bit
-								IF( to_integer(unsigned(counter_cl))< (freq_sclk*1)/main_clk ) THEN  
-								sdata_i<='0';
-								next_state<=curr_state;
-								generate_clk<='0';
+WHEN data_fetch_1=>	--  start bit
+                    sdata_i<='0';
+					generate_clk<='0';
+					
+                    
+                        next_state<=data_fetch_2;
+                    WHEN data_fetch_2=>-- wait some time before writing the address ( 0x28 )
+                generate_clk<='0';
+                 sdata_i<='Z';
+                        next_state<=data_fetch_3;
 
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*2)/main_clk) THEN 
-								-- wait some time before writing the address ( 0x28 ) 
-								next_state<=curr_state;
-								generate_clk<='0';
-								sdata_i<='Z';
-
-					 
-								-- write address 
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*3/main_clk) THEN 
-													sdata_i<='0'; -- first address bit msb
-															
-															generate_clk<='1';
-															next_state<=curr_state;
-													
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*4/main_clk) THEN 
-														sdata_i<='1';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*5/main_clk) THEN 
-													sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*6/main_clk) THEN 
-													sdata_i<='1';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*7/main_clk) THEN 
-														sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*8/main_clk) THEN 
-														sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-													ELSIF (to_integer(unsigned(counter_cl))<freq_sclk*9/main_clk) THEN 
-															sdata_i<='0';
-															generate_clk<='1';
-															next_state<=curr_state;
-														
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*10) /main_clk) THEN 
-								-- read
-								sdata_i<='1';
-								generate_clk<='1';
-								next_state<=curr_State;
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*11) /main_clk) THEN 
-								-- ack
-								generate_clk<='1';
-								check_ack<='1';
-										IF ( ack='1' ) THEN
-										next_state<=hang;
-										ELSE 
-										next_state<=curr_state;
-										END IF;
+WHEN data_fetch_3=>	-- write address 
+                    sdata_i<='0'; -- first address bit msb								
+                    generate_clk<='1';
+							
+                        next_state<=data_fetch_4;
+                        
+WHEN data_fetch_4=>sdata_i<='1';
+                    generate_clk<='1';
+                    
+                        next_state<=data_fetch_5;
+                        
+WHEN data_fetch_5=>
+                    sdata_i<='0';
+                   generate_clk<='1';
+                   
+                        next_state<=data_fetch_6;
+                        
+WHEN data_fetch_6=>	
+                        sdata_i<='1';
+						generate_clk<='1';
+						
+                        next_state<=data_fetch_7;
+                       
+WHEN data_fetch_7=>		
+						sdata_i<='0';
+						generate_clk<='1';
+						
+                        next_state<=data_fetch_8;
+                        
+WHEN data_fetch_8=>		sdata_i<='0';
+						generate_clk<='1';
+						
+                        next_state<=data_fetch_9;
+                        
+					
+WHEN data_fetch_9=>		sdata_i<='0';
+						generate_clk<='1';
+                        next_state<=data_fetch_10;
+                        
+WHEN data_fetch_10=>sdata_i<='0';
+					generate_clk<='1';
+				
+                        next_state<=data_fetch_11;
+                      
+WHEN data_fetch_11=>-- read
+						sdata_i<='1';
+						generate_clk<='1';
+                        next_state<=data_fetch_12;
+                        
+WHEN data_fetch_12=>-- ack
+						generate_clk<='1';
+						check_ack<='1';
+						
+                                   -- IF ( ack='1' ) THEN
+										--next_state<=hang;
+										--ELSE 
+                                    next_state<=data_fetch_13;
+										--END IF;
 								
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*12) /main_clk) THEN 
-								-- wait 1 cc ( sclk)
+WHEN data_fetch_13=> 		-- wait 1 cc ( sclk)
 								sdata_i<='Z';
-								next_state<=curr_state;
-								generate_clk<='0'	;							
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*13) /main_clk) THEN 
-								-- msb status bit  
-								next_state<=curr_state;
+								generate_clk<='0'	;
+                        next_state<=data_fetch_14;
+
+WHEN data_fetch_14=>-- msb status bit
 								generate_clk<='1';
 								shf_en<='1';
-										
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*14) /main_clk) THEN 
-								-- lsb  status bit 
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_15;
+                        
+WHEN data_fetch_15=>-- lsb  status bit
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*15) /main_clk) THEN 
-								-- humidity 13
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_16;
+                        
+WHEN data_fetch_16=>-- humidity 13
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*16) /main_clk) THEN 
-								-- humidity 12
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_17;
+                        
+WHEN data_fetch_17=>-- humidity 12
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*17) /main_clk) THEN 
-								--  humidity 11
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_18;
+                        
+WHEN data_fetch_18=>--  humidity 11
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*18) /main_clk) THEN 
-								-- humidity 10 
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_19;
+                        
+WHEN data_fetch_19=>-- humidity 10
 								generate_clk<='1';
 								shf_en<='1';								
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*19) /main_clk) THEN 
-								-- humidity 9 
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_20;
+                        
+WHEN data_fetch_20=>-- humidity 9
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*20) /main_clk) THEN 
-								-- humidity 8
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_21;
+                        
+WHEN data_fetch_21=>-- humidity 8
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*21) /main_clk) THEN 
-								-- master ack 
+								
+                        next_state<=data_fetch_22;
+                        
+WHEN data_fetch_22=>-- master ack 
 								sdata_i<='1';
 								generate_clk<='1';
-								next_state<=curr_State;
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*22) /main_clk) THEN 
-								-- humidity 7  
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_23;
+                        
+WHEN data_fetch_23=>-- humidity 7  
+								
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*23) /main_clk) THEN 
-								-- humidity 6 
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_24;
+                        
+WHEN data_fetch_24=>	-- humidity 6 
+							
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*24) /main_clk) THEN 
-								-- humidity 5
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_25;
+                        
+WHEN data_fetch_25=>-- humidity 5
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*25) /main_clk) THEN 
-								-- humidity 4
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_26;
+                        
+WHEN data_fetch_26=>-- humidity 4
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*26) /main_clk) THEN 
-								--  humidity 3
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_27;
+                        
+WHEN data_fetch_27=>--  humidity 3
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*27) /main_clk) THEN 
-								-- humidity 2
-								next_state<=curr_state;
-								generate_clk<='1';
-								shf_en<='1';						
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*28) /main_clk) THEN 
-								-- humidity 1 
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_28;
+                        
+WHEN data_fetch_28=>-- humidity 2
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*29) /main_clk) THEN 
-								-- humidity 0
-								next_state<=curr_state;
+								
+                        next_state<=data_fetch_29;
+                        
+WHEN data_fetch_29=>-- humidity 1
 								generate_clk<='1';
 								shf_en<='1';
-								ELSIF (to_integer(unsigned(counter_cl))< (freq_sclk*30) /main_clk) THEN 
-								-- master n ack  ( stop communication otherwise slave will send the temp ) 
+								
+                        next_state<=data_fetch_30;
+                        
+WHEN data_fetch_30=>-- humidity 0
+								generate_clk<='1';
+								shf_en<='1';
+								
+                        next_state<=data_fetch_31;
+                        
+WHEN data_fetch_31=>-- master n ack  ( stop communication otherwise slave will send the temp ) 
 								sdata_i<='0';
 								generate_clk<='1';
-								next_state<=curr_State;
-								ELSE 
-								-- stop bit 
+								
+                        next_state<=data_fetch_32;
+                        
+WHEN data_fetch_32=>		-- stop bit 
 								sdata_i<='Z';
-								next_state<=update_duty_cycle_pwm;
-								generate_clk<='0';					
-								END IF ;			
+								generate_clk<='0';
+								
+                        next_state<=update_duty_cycle_pwm;
+                        
 WHEN update_duty_cycle_pwm=> -- for 1 cc
+                                        -- data 15  at 1 it is in command mode
+                                        -- data 14 at 1  no new value
+                                        data_OUT<=data(13 downto 0); -- raw data for the pwm generator
 										IF(data(15)='0' AND data(14)='0') THEN
 										-- new value and no command mode
 										ld_data<='1';
 										data_OUT<=data(13 downto 0); -- raw data for the pwm generator
-										next_state<= idle;
+										next_state<= update_duty_cycle_pwm;
 										ELSE 
-										next_state<=idle;
+										next_state<=update_duty_cycle_pwm;
 										END IF;
 WHEN hang=> next_state<=curr_state;
-								data_out<=(OTHERS=>'0');
+							     data_OUT<="11"&x"FFF"; -- debug
+							     --data_OUT<=(OTHERS=>'0');
 								sdata_i<='0';
 								ld_data<='0';
 								reset_counter_cl<='0';
@@ -380,98 +476,12 @@ END PROCESS cl;
 
 
 
--- register for counting up to 25 s
-reg:PROCESS(clk,reset)
-BEGIN
-IF (reset='1') THEN
-counter_wait<=(OTHERS=>'0');
-prescaler_count<=(OTHERS=>'0');
-ELSIF(rising_edge(clk))THEN
-
-	IF(enable_wait='1') THEN 
-		IF ( to_integer(unsigned(prescaler_count))<(1000000-1)/main_clk ) THEN 
-					prescaler_count<=std_logic_vector(unsigned(prescaler_count)+1);
-		ELSE 
-			counter_wait<=std_logic_vector(unsigned(counter_wait)+1);
-			prescaler_count<=(OTHERS=>'0');
-		END IF;
-	ELSE
-	prescaler_count<=(OTHERS=>'0');
-	counter_wait<=(OTHERS=>'0');
-	END IF;
-
-END IF;
-END PROCESS reg;
-
--- shift register for the data
-reg_sh:PROCESS(sclk,reset)
-BEGIN
-IF(reset='1') THEN
-data<=(OTHERS=>'0');
-ELSIF ( rising_edge(sclk))THEN
-IF( check_ack='1') THEN
-    ack<=sdata;
-END IF; 
-IF (shf_en='1') THEN
-data(15 DOWNTO 1)<=data(14 downto 0);
-data(0)<=sdata;
-END IF;
-END IF;
-END PROCESS reg_sh;
 
 
-
--- collision not checked on the sdata since there will be only one slave
-sclk_gen:PROCESS(sclk_collision,clk_wr,counter,generate_clk)
-BEGIN
-IF(generate_clk='1') THEN
-reset_cnt_clk<='0';
--- check for clock streching
-				IF ( sclk_collision = '0' ) THEN  -- no collision 
-					clk_wr<='1';
-							IF(to_integer(unsigned(counter))<=(freq_sclk/2)/main_clk  ) THEN 
-							sclk_i<='0';
-							ELSIF ( to_integer(unsigned(counter))<=freq_sclk/main_clk ) THEN
-							sclk_i<='1';
-							
-							ELSE 
-							-- other cycle
-							sclk_i<='0';
-							reset_cnt_clk<='1';
-									
-							END IF;
-
-				ELSE
-				clk_wr<='0';
-				-- open drain 
-				sclk_i<='Z';
-				END IF;
-ELSE
-clk_wr<='0';
-reset_cnt_clk<='1';
-END IF;
-END PROCESS sclk_gen;
-
--- check sclk collision 
-sclk_collision <= not (clk_rd  or  clk_wr_neg);
-
-clk_rd<=sclk
---synthesis translate_off
-or '1'
---synthesis translate_on
-
-;
-
--- only for simualtion ( or '1' )  i.e. no clock streching 
-
-
--- open drain 
-clk_wr_neg<= not ( clk_wr );
 
 -- tristate output
-sclk<=sclk_i WHEN sclk_collision='0' ELSE 'Z';
+sclk<=sclk_i WHEN (generate_clk='1' and sclk_collision='0') ELSE 'Z';
 		
 sdata<=sdata_i;
-
 end Behavioral;
 
