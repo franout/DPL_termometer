@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity temall is
 port	(clk : in std_logic;
-		 nrst:in std_logic;
+		 reset:in std_logic;
 		 in_out: in std_logic;
 		 led: out std_logic_vector(8 downto 0);
 		 dq:  inout std_logic;            --ja[1]
@@ -23,7 +23,7 @@ signal clk_1ms:		std_logic;
 signal data_outdoor:		std_logic_vector(8 downto 0);
 component temperature is
 port (	clk: in std_logic;
-		nrst:in std_logic;
+		reset:in std_logic;
 		dq	:inout std_logic;
 --		led: out std_logic;
 		finish:	out std_logic;
@@ -51,10 +51,10 @@ begin
 		port map ( clk=>clk, clk_1ms=>clk_1ms);
 		
 	decode_com: component decode
-		port map(reset=>nrst,clk=>clk_1ms,Din=>data_recei,finish=>finishout, Dout=>data_outdoor);
+		port map(reset=>reset,clk=>clk_1ms,Din=>data_recei,finish=>finishout, Dout=>data_outdoor);
 	
 tem: component temperature
-	port map(clk=>clk, nrst=>nrst, dq=>dq, finish=>finishin, data=>data_indoor);	
+	port map(clk=>clk, reset=>reset, dq=>dq, finish=>finishin, data=>data_indoor);	
 	
 led<= data_indoor when in_out='1'	else
 	  data_outdoor;
