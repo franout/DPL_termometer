@@ -48,7 +48,7 @@ begin
 
 	begin
 
-		if(reset='1')then
+		if(reset='0')then
 
 			cnt<=0;
 
