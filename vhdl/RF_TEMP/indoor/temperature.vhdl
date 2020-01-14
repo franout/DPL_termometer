@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity temperature is
 port (	clk: in std_logic;
-		nrst:in std_logic;
+		reset:in std_logic;
 		dq	:inout std_logic;
 		led: out std_logic;
 		finish: out std_logic;
@@ -43,9 +43,9 @@ CLKCOMP: component clock_enable
 port map ( clk=>clk, clk_1us=>clk_1us);
 
 ------------------------------------------state machine --------------------------------
-process( clk_1us,nrst)
+process( clk_1us,reset)
 begin
-	if(nrst='0') then
+	if(reset='1') then
 		state<=RESET1;
 		write_high_cnt<=0;
 		write_low_cnt<=0;
