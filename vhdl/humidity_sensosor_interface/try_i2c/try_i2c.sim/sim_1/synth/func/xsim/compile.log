@@ -1,0 +1,3 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/synth/func/xsim/tb_i2c_func_synth.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module humidity_interface
+INFO: [VRFC 10-311] analyzing module glbl

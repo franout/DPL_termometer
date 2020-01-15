@@ -1,0 +1,373 @@
+
+*** Running vivado
+    with args -log humidity_interface.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source humidity_interface.tcl
+
+
+****** Vivado v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source humidity_interface.tcl -notrace
+Command: synth_design -top humidity_interface -part xc7a100tcsg324-2L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-2L
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 21568 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 968.508 ; gain = 236.219
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'humidity_interface' [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/humidity_interface.vhd:36]
+WARNING: [Synth 8-614] signal 'reset' is read in the process but is not in the sensitivity list [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/humidity_interface.vhd:51]
+INFO: [Synth 8-256] done synthesizing module 'humidity_interface' (1#1) [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/humidity_interface.vhd:36]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1041.023 ; gain = 308.734
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1041.023 ; gain = 308.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1041.023 ; gain = 308.734
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1041.023 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.srcs/constrs_1/new/i2c_try.xdc]
+Finished Parsing XDC File [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.srcs/constrs_1/new/i2c_try.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.srcs/constrs_1/new/i2c_try.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/humidity_interface_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/humidity_interface_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1099.109 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1099.109 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1099.109 ; gain = 366.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-2L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1099.109 ; gain = 366.820
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1099.109 ; gain = 366.820
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'humidity_interface'
+INFO: [Synth 8-5546] ROM "enable_wait" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "reset_counter_cl" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "check_ack" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "generate_clk" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "enable_cnt" won't be mapped to RAM because it is too sparse
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                power_up | 00000000000000000000000000000000000000000000001 |                           000000
+                    idle | 00000000000000000000000000000000000000000000010 |                           000001
+       measure_request_1 | 00000000000000000000000000000000000000000000100 |                           000010
+       measure_request_3 | 00000000000000000000000000000000000000000001000 |                           000100
+       measure_request_4 | 00000000000000000000000000000000000000000010000 |                           000101
+       measure_request_5 | 00000000000000000000000000000000000000000100000 |                           000110
+       measure_request_6 | 00000000000000000000000000000000000000001000000 |                           000111
+       measure_request_7 | 00000000000000000000000000000000000000010000000 |                           001000
+       measure_request_8 | 00000000000000000000000000000000000000100000000 |                           001001
+       measure_request_9 | 00000000000000000000000000000000000001000000000 |                           001010
+      measure_request_10 | 00000000000000000000000000000000000010000000000 |                           001011
+      measure_request_11 | 00000000000000000000000000000000000100000000000 |                           001100
+      measure_request_12 | 00000000000000000000000000000000001000000000000 |                           001101
+      measure_request_13 | 00000000000000000000000000000000010000000000000 |                           001110
+            wait_measure | 00000000000000000000000000000000100000000000000 |                           101111
+            data_fetch_1 | 00000000000000000000000000000001000000000000000 |                           001111
+            data_fetch_3 | 00000000000000000000000000000010000000000000000 |                           010001
+            data_fetch_4 | 00000000000000000000000000000100000000000000000 |                           010010
+            data_fetch_5 | 00000000000000000000000000001000000000000000000 |                           010011
+            data_fetch_6 | 00000000000000000000000000010000000000000000000 |                           010100
+            data_fetch_7 | 00000000000000000000000000100000000000000000000 |                           010101
+            data_fetch_8 | 00000000000000000000000001000000000000000000000 |                           010110
+            data_fetch_9 | 00000000000000000000000010000000000000000000000 |                           010111
+           data_fetch_10 | 00000000000000000000000100000000000000000000000 |                           011000
+           data_fetch_11 | 00000000000000000000001000000000000000000000000 |                           011001
+           data_fetch_12 | 00000000000000000000010000000000000000000000000 |                           011010
+           data_fetch_13 | 00000000000000000000100000000000000000000000000 |                           011011
+           data_fetch_14 | 00000000000000000001000000000000000000000000000 |                           011100
+           data_fetch_15 | 00000000000000000010000000000000000000000000000 |                           011101
+           data_fetch_16 | 00000000000000000100000000000000000000000000000 |                           011110
+           data_fetch_17 | 00000000000000001000000000000000000000000000000 |                           011111
+           data_fetch_18 | 00000000000000010000000000000000000000000000000 |                           100000
+           data_fetch_19 | 00000000000000100000000000000000000000000000000 |                           100001
+           data_fetch_20 | 00000000000001000000000000000000000000000000000 |                           100010
+           data_fetch_21 | 00000000000010000000000000000000000000000000000 |                           100011
+           data_fetch_22 | 00000000000100000000000000000000000000000000000 |                           100100
+           data_fetch_23 | 00000000001000000000000000000000000000000000000 |                           100101
+           data_fetch_24 | 00000000010000000000000000000000000000000000000 |                           100110
+           data_fetch_25 | 00000000100000000000000000000000000000000000000 |                           100111
+           data_fetch_26 | 00000001000000000000000000000000000000000000000 |                           101000
+           data_fetch_27 | 00000010000000000000000000000000000000000000000 |                           101001
+           data_fetch_28 | 00000100000000000000000000000000000000000000000 |                           101010
+           data_fetch_29 | 00001000000000000000000000000000000000000000000 |                           101011
+           data_fetch_30 | 00010000000000000000000000000000000000000000000 |                           101100
+           data_fetch_31 | 00100000000000000000000000000000000000000000000 |                           101101
+           data_fetch_32 | 01000000000000000000000000000000000000000000000 |                           101110
+   update_duty_cycle_pwm | 10000000000000000000000000000000000000000000000 |                           110000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'one-hot' in module 'humidity_interface'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1099.109 ; gain = 366.820
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     26 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	               26 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	  47 Input     47 Bit        Muxes := 1     
+	   2 Input     47 Bit        Muxes := 1     
+	   2 Input     26 Bit        Muxes := 2     
+	  47 Input     14 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   2 Input      9 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	  47 Input      1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module humidity_interface 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     26 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 1     
++---Registers : 
+	               26 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	  47 Input     47 Bit        Muxes := 1     
+	   2 Input     47 Bit        Muxes := 1     
+	   2 Input     26 Bit        Muxes := 2     
+	  47 Input     14 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   2 Input      9 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	  47 Input      1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1099.109 ; gain = 366.820
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1121.398 ; gain = 389.109
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1141.117 ; gain = 408.828
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1141.117 ; gain = 408.828
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     2|
+|2     |CARRY4 |    10|
+|3     |LUT1   |     3|
+|4     |LUT2   |    20|
+|5     |LUT3   |    29|
+|6     |LUT4   |    31|
+|7     |LUT5   |    10|
+|8     |LUT6   |    19|
+|9     |FDCE   |   110|
+|10    |FDPE   |     1|
+|11    |FDRE   |     3|
+|12    |IBUF   |     3|
+|13    |IOBUF  |     1|
+|14    |OBUF   |    16|
+|15    |OBUFT  |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   259|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:34 . Memory (MB): peak = 1149.301 ; gain = 358.926
+Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1149.301 ; gain = 417.012
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1159.293 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1165.777 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
+
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1165.777 ; gain = 740.824
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1165.777 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.runs/synth_1/humidity_interface.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file humidity_interface_utilization_synth.rpt -pb humidity_interface_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 15 19:02:16 2020...

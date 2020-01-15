@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Wed Jan 15 19:01:24 2020
+# Process ID: 7068
+# Current directory: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.runs/synth_1
+# Command line: vivado.exe -log humidity_interface.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source humidity_interface.tcl
+# Log file: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.runs/synth_1/humidity_interface.vds
+# Journal file: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source humidity_interface.tcl -notrace

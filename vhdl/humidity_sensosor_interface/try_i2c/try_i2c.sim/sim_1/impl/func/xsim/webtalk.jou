@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2019.2.1 (64-bit)
+# SW Build 2729669 on Thu Dec  5 04:49:17 MST 2019
+# IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+# Start of session at: Fri Jan 10 17:41:16 2020
+# Process ID: 19068
+# Current directory: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/impl/func/xsim
+# Command line: wbtcv.exe -mode batch -source D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/impl/func/xsim/xsim.dir/tb_i2c_func_impl/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/impl/func/xsim/webtalk.log
+# Journal file: D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/impl/func/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/uni/2019-2020/CTH/Digital_project_laboratory/project/vhdl/humidity_sensosor_interface/try_i2c/try_i2c.sim/sim_1/impl/func/xsim/xsim.dir/tb_i2c_func_impl/webtalk/xsim_webtalk.tcl -notrace

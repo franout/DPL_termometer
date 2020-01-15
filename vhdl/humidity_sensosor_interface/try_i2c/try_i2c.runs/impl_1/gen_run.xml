@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-2L" LaunchTime="1579111280">
+  <File Type="BITSTR-BMM" Name="humidity_interface_bd.bmm"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="humidity_interface_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="humidity_interface_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR" Name="humidity_interface_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="humidity_interface.tcl"/>
+  <File Type="OPT-TIMING" Name="humidity_interface_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="humidity_interface_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="humidity_interface_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="humidity_interface_reports.tcl"/>
+  <File Type="OPT-DRC" Name="humidity_interface_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="humidity_interface.hwdef"/>
+  <File Type="PWROPT-DCP" Name="humidity_interface_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="humidity_interface_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="humidity_interface_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="humidity_interface_placed.dcp"/>
+  <File Type="PLACE-IO" Name="humidity_interface_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="humidity_interface_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="humidity_interface_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="humidity_interface_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="humidity_interface_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="humidity_interface_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="humidity_interface_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="humidity_interface_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="humidity_interface_postplace_pwropt.dcp"/>
+  <File Type="BG-BIN" Name="humidity_interface.bin"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="humidity_interface_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="humidity_interface_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="humidity_interface_drc_physopted.rpt"/>
+  <File Type="BITSTR-MSK" Name="humidity_interface.msk"/>
+  <File Type="PHYSOPT-TIMING" Name="humidity_interface_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="humidity_interface_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="humidity_interface_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="humidity_interface_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="humidity_interface_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="humidity_interface_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="humidity_interface_drc_routed.rpx"/>
+  <File Type="BITSTR-MMI" Name="humidity_interface.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="humidity_interface_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="humidity_interface_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="humidity_interface_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="humidity_interface_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="humidity_interface_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="humidity_interface_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="humidity_interface_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="humidity_interface_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="humidity_interface_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="humidity_interface_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="humidity_interface_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="humidity_interface_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="humidity_interface_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="humidity_interface_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="humidity_interface_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="humidity_interface_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="humidity_interface_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="humidity_interface_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="humidity_interface_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="humidity_interface_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="humidity_interface_bus_skew_postroute_physopted.pb"/>
+  <File Type="BG-BIT" Name="humidity_interface.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="humidity_interface_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-RBT" Name="humidity_interface.rbt"/>
+  <File Type="BITSTR-NKY" Name="humidity_interface.nky"/>
+  <File Type="PDI-FILE" Name="humidity_interface.pdi"/>
+  <File Type="RCFI_FILE" Name="humidity_interface.rcfi"/>
+  <File Type="CFI_FILE" Name="humidity_interface.cfi"/>
+  <File Type="RNPI_FILE" Name="humidity_interface.rnpi"/>
+  <File Type="NPI_FILE" Name="humidity_interface.npi"/>
+  <File Type="RBD_FILE" Name="humidity_interface.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="humidity_interface.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="humidity_interface.sysdef"/>
+  <File Type="BG-BGN" Name="humidity_interface.bgn"/>
+  <File Type="BG-DRC" Name="humidity_interface.drc"/>
+  <File Type="RDI-RDI" Name="humidity_interface.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../humidity_interface.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../tb_i2c.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="humidity_interface"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/i2c_try.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/i2c_try.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design" EnableStepBool="1"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

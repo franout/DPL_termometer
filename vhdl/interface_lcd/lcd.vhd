@@ -6,7 +6,7 @@ ENTITY  LCD is
 	PORT(	
 		clk:            IN STD_LOGIC;
 		reset:          IN STD_LOGIC;
-	    dataIN:         IN STD_LOGIC_VECTOR(8 downto 0);
+	   	dataIN:         IN STD_LOGIC_VECTOR(8 downto 0);
 		enable_init:    IN STD_LOGIC;
 		enable:         IN STD_LOGIC;                             -- called display in control unit
 		ind_outd_select:IN STD_LOGIC;
@@ -14,7 +14,7 @@ ENTITY  LCD is
 		enable_lcd: OUT std_logic;
 		dataOUT:        OUT STD_LOGIC_VECTOR(7 downto 0);
 		done:	        OUT STD_LOGIC;
-		RS:             buffer STD_LOGIC;			       -- 0 instruction register (write) /  1 (write, read)
+		RS:             out STD_LOGIC;			       -- 0 instruction register (write) /  1 (write, read)
 		R_W:            OUT STD_LOGIC  );
 END ENTITY  LCD;
 
@@ -58,14 +58,14 @@ end COMPONENT translator;
 
 
 
-component clock_enable is
+component clock_enable_2ms is
 port( clk: in std_logic;
 	  clk_2ms: out std_logic);
 end component;
 
 begin
 
-clk_com:component clock_enable								--enable delay
+clk_com:component clock_enable_2ms								--enable delay
 	port map ( clk=>clk, clk_2ms=>clk_2ms);
 	
 	

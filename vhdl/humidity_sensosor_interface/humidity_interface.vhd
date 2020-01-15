@@ -49,39 +49,33 @@ CONSTANT freq_sclk: integer := 500; --- 200 kHz
 
 SIGNAL  curr_state,next_state: state_t;
 SIGNAL counter_cl: std_logic_vector(    1+integer(ceil(log2(real(1000)))) DOWNTO 0);
-SIGNAL counter: std_logic_vector(   1+integer(ceil(log2(real(freq_sclk)))) DOWNTO 0);
-SIGNAL counter_wait:  std_logic_vector(   1+integer(ceil(log2(real(8000000)))) DOWNTO 0);   
+SIGNAL counter: std_logic_vector(   8 DOWNTO 0);
+SIGNAL counter_wait:  std_logic_vector(   1+integer(ceil(log2(real(12000000)))) DOWNTO 0);   
 
-SIGNAL check_ack,read_sclk,reset_cnt_clk,tc_wait,tc_cl,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack: std_logic;
+SIGNAL check_ack,read_sclk,reset_cnt_clk,sclk_rd,tc_wait,tc_cl,enable_wait,shf_en,clk_rd,clk_wr,clk_wr_neg,sclk_collision,reset_counter_cl,generate_clk,sdata_i,ack: std_logic;
 SIGNAL sclk_i:STD_LOGIC :='0';
 SIGNAL data: std_logic_vector(15 DOWNTO 0); -- first two bits are the status registers
-
 begin
 
-sclk_i_gen:PROCESS(reset,clk) 
+
+sclk_i_gen:PROCESS(clk)
 BEGIN
-IF(reset='1') THEN
+IF (reset='1')THEN 
 counter<=(OTHERS=>'0');
+sclk_i<='0';
 ELSIF(rising_edge(clk))THEN
-IF(sclk='0') THEN
-		sclk_collision<='1';
-		ELSE
-	   sclk_collision<='0';
-		END IF;	
-	
-	   
+
 		IF(to_integer(unsigned(counter))= freq_sclk/2-1) then
-		sclk_i<=not(sclk_i);
-		counter<=(OTHERS=>'0');
-           ELSE
-           		counter<=std_logic_vector(unsigned(counter)+1);
-
+        sclk_i<=not(sclk_i);
+        counter<=(OTHERS=>'0');
+        ELSE
+        counter<=std_logic_vector(unsigned(counter)+1);
 		END IF;
-	
-
+	IF (check_ack='1' and sclk_i='1'  ) then
+	ack<=sdata;
+	end if;
 END IF;
 END PROCESS sclk_i_gen;
-
 
 
 state_reg:PROCESS(reset,sclk_i)
@@ -92,8 +86,10 @@ counter_wait<=(OTHERS=>'0');
 curr_state<=power_up;
 counter_cl<=(OTHERS=>'0');
 ELSIF (rising_edge(sclk_i))THEN
-    
-       
+
+
+ 
+  
 IF( reset_counter_cl='1' ) THEN 
 counter_cl<=(OTHERS=>'0');
 ELSE
@@ -109,8 +105,8 @@ END IF;
 		
 	curr_state<=next_state;	
 
-	IF(enable_wait='1') THEN  -- 40 s 
-		  IF(to_integer(unsigned(counter_wait))= 8000000-1) THEN
+	IF(enable_wait='1') THEN  -- 60 s 
+		  IF(to_integer(unsigned(counter_wait))= 12000000-1) THEN
 		  	counter_wait<=(OTHERS=>'0');
             tc_wait<='1';
 		  ELSE 
@@ -132,8 +128,6 @@ END IF;
 END IF;
 
 END PROCESS state_reg;
-
-ack<=sdata when (sclk_collision='0' and check_ack='1') else '1';
 
 cl:PROCESS(curr_state,tc_cl,ack,enable,data,tc_wait)
 BEGIN
@@ -162,36 +156,34 @@ WHEN idle=> 	reset_counter_cl<='1';
 					ELSE 
 					next_state<=curr_state;					
 					END IF;
-		
+
 WHEN measure_request_1=> --  start bit
-                        sdata_i<='0';
-			       		generate_clk<='0';
-			       		
+
+			       		generate_clk<='1';
                         next_state<=measure_request_3;
                         
  WHEN measure_request_3=> 
     						-- write address 
 							sdata_i<='0'; -- first address bit msb
 							generate_clk<='1';
-							
                             next_state<=measure_request_4;
-                              
+                        
 WHEN measure_request_4=> sdata_i<='1';
                                 generate_clk<='1';
-								
                                  next_state<=measure_request_5;
-                                
-WHEN measure_request_5=>        sdata_i<='0';
+                        
+  WHEN measure_request_5=>        sdata_i<='0';
                                 generate_clk<='1';
 							
                                  next_state<=measure_request_6;
-                              
+                        
 WHEN measure_request_6=> sdata_i<='1';
                                 generate_clk<='1';
 								
                                 
                                  next_state<=measure_request_7;
                                 
+                             
 WHEN measure_request_7=>  sdata_i<='0';
                                 generate_clk<='1';
 								
@@ -220,12 +212,13 @@ WHEN measure_request_11=> -- ack
 								
 								check_ack<='1';
 								
-							        -- IF ( ack='1' ) THEN
-								      -- next_state<=curr_state;
-								        --ELSE
+							    IF ( ack='1' ) THEN
+								 next_state<=measure_request_11;
+								ELSE
                                          next_state<=measure_request_12;
-                                         --END IF;
-                                	
+                                 END IF;
+                                
+                        --0';      	
 WHEN measure_request_12=> 	-- wait 1 cc ( sclk)
                                  sdata_i<='Z';
 							generate_clk<='0'	;
@@ -240,7 +233,8 @@ WHEN measure_request_13=>
 								generate_clk<='0';
 								
                                  next_state<=wait_measure;
-                                
+                            --
+          
 WHEN wait_measure=> -- wait for 30 sec 
 							enable_wait<='1';
 							enable_cnt<='0';
@@ -257,23 +251,20 @@ WHEN data_fetch_1=>	--  start bit
 					generate_clk<='0';
 					
                     
-                        next_state<=data_fetch_2;
-                    WHEN data_fetch_2=>-- wait some time before writing the address ( 0x28 )
-                generate_clk<='0';
-                 sdata_i<='Z';
                         next_state<=data_fetch_3;
-
+                    
 WHEN data_fetch_3=>	-- write address 
                     sdata_i<='0'; -- first address bit msb								
                     generate_clk<='1';
 							
                         next_state<=data_fetch_4;
-                        
+                    
 WHEN data_fetch_4=>sdata_i<='1';
                     generate_clk<='1';
                     
                         next_state<=data_fetch_5;
-                        
+                    
+                       
 WHEN data_fetch_5=>
                     sdata_i<='0';
                    generate_clk<='1';
@@ -298,40 +289,47 @@ WHEN data_fetch_8=>		sdata_i<='0';
                         next_state<=data_fetch_9;
                         
 					
+
 WHEN data_fetch_9=>		sdata_i<='0';
 						generate_clk<='1';
                         next_state<=data_fetch_10;
                         
+
 WHEN data_fetch_10=>sdata_i<='0';
 					generate_clk<='1';
 				
                         next_state<=data_fetch_11;
                       
+
 WHEN data_fetch_11=>-- read
 						sdata_i<='1';
 						generate_clk<='1';
                         next_state<=data_fetch_12;
                         
+
 WHEN data_fetch_12=>-- ack
 						generate_clk<='1';
 						check_ack<='1';
 						
-                                   -- IF ( ack='1' ) THEN
-										--next_state<=hang;
-										--ELSE 
+                                   IF ( ack='1' ) THEN
+										next_state<=data_fetch_13;
+										ELSE 
                                     next_state<=data_fetch_13;
-										--END IF;
+										END IF;
 								
 WHEN data_fetch_13=> 		-- wait 1 cc ( sclk)
 								sdata_i<='Z';
 								generate_clk<='0'	;
                         next_state<=data_fetch_14;
 
+                    
+
 WHEN data_fetch_14=>-- msb status bit
 								generate_clk<='1';
 								shf_en<='1';
 								
                         next_state<=data_fetch_15;
+                    
                         
 WHEN data_fetch_15=>-- lsb  status bit
 								generate_clk<='1';
@@ -381,7 +379,7 @@ WHEN data_fetch_22=>-- master ack
 								
                         next_state<=data_fetch_23;
                         
-WHEN data_fetch_23=>-- humidity 7  
+  WHEN data_fetch_23=>-- humidity 7  
 								
 								generate_clk<='1';
 								shf_en<='1';
@@ -437,11 +435,13 @@ WHEN data_fetch_31=>-- master n ack  ( stop communication otherwise slave will s
 								
                         next_state<=data_fetch_32;
                         
+                        
 WHEN data_fetch_32=>		-- stop bit 
 								sdata_i<='Z';
 								generate_clk<='0';
 								
                         next_state<=update_duty_cycle_pwm;
+                        
                         
 WHEN update_duty_cycle_pwm=> -- for 1 cc
                                         -- data 15  at 1 it is in command mode
@@ -478,10 +478,11 @@ END PROCESS cl;
 
 
 
-
+-- sclk should be shifthed by one phase
 -- tristate output
-sclk<=sclk_i WHEN (generate_clk='1' and sclk_collision='0') ELSE 'Z';
-		
-sdata<=sdata_i;
+sclk<='0' WHEN (generate_clk='1' and sclk_i='1') ELSE 'Z';
+	--	sclk_collision<='0';
+sdata<='0' WHEN sdata_i='0' ELSE 'Z';
+
 end Behavioral;
 

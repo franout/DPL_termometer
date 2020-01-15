@@ -43,9 +43,9 @@ ARCHITECTURE behavior OF tb_i2c IS
          enable : IN  std_logic;
          data_out : OUT  std_logic_vector(13 downto 0);
          ld_data : OUT  std_logic;
-         enable_cnt : OUT  std_logic;
+         enable_cnt,sclk_debug : OUT  std_logic;
          sclk : INOUT  std_logic;
-         sdata : INOUT  std_logic
+          : INOUT  std_logic
         );
     END COMPONENT;
     
@@ -57,13 +57,14 @@ ARCHITECTURE behavior OF tb_i2c IS
 
 	--BiDirs
    signal sclk : std_logic;
-   signal sdata : std_logic;
+   signal  : std_logic;
 
  	--Outputs
    signal data_out : std_logic_vector(13 downto 0);
    signal ld_data : std_logic;
    signal enable_cnt : std_logic;
-	
+   signal sclk_debug : std_logic;
+   
 	signal outputs : std_logic_Vector( 17 DOWNTO 0);
 
    -- Clock period definitions
@@ -81,7 +82,7 @@ BEGIN
           ld_data => ld_data,
           enable_cnt => enable_cnt,
           sclk => sclk,
-          sdata => sdata
+           => , sclk_debug=> sclk_debug
         );
 
    -- Clock process definitions
@@ -98,7 +99,7 @@ BEGIN
    stim_proc: process
    begin		
 		reset<='1';
-		sdata<='Z';
+		<='Z';
       wait for 10 ns;	
 		sclk<='H';
 		reset<='0';
@@ -114,6 +115,6 @@ BEGIN
       wait;
    end process;
 	
-	outputs<= sclk & sdata &  ld_data & enable_cnt & data_out ;
+	outputs<= sclk &  &  ld_data & enable_cnt & data_out ;
 	
 END;

@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../pwm_generator.vhd" \
+"../../../../../tb_pwm_fre.vhd" \
+
+# Do not sort compile order
+nosort
