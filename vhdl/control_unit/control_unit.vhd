@@ -28,7 +28,7 @@ GENERIC ( WATCH_DOG_COUNT: integer:= 100);
 PORT ( reset,clk: IN std_logic;
 -- selecting the indoor or outdoor temp sensor
 in_out_sel: IN std_logic;
-
+--led: out std_logic_vector( 8 downto 0);
 init_set_up: OUT std_logic ; -- commond signal to all component for setting up the lcd and sensors
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ end entity control_unit;
 
 
 architecture Behavioral of control_unit is
-type  state_t is (pll_lock_clock,set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp);
+type  state_t is (pll_lock_clock,set_up,set_up_hang,idle,measure_tmp,compute_max_min,display_curr_tmp,display_max_tmp,display_min_tmp,display_wait_min,display_wait_max,display_wait_now);
 
 SIGNAL curr_state,next_state: state_t;
 SIGNAL curr_in_out_val,next_in_out_val: std_logic:='0';
@@ -103,20 +103,21 @@ comb_logic:PROCESS(locked_clock,in_out_sel,done_comparison,done_lcd,done_meas,cu
 BEGIN
 -- default assignments of all signal 
 next_state<=curr_state;
-start_meas<='0';
-display<='0';
+display<='1';
 select_data<="00";
 next_in_out_val<=curr_in_out_val;
 start_comparison<='0';
 init_set_up<='0';
 enable_wd<='0';
+start_meas<='1';
 reset_i<='0';
 ready<='1';
 in_out<=curr_in_out_val;
 enable_humidity_sensor<='1';
 CASE curr_state IS
 WHEN pll_lock_clock=> 	enable_humidity_sensor<='0';
-						ready<='0';
+--						ready<='0';
+                    --    led(0)<='1';
 						enable_wd<='1';
 						IF (locked_clock='1') THEN 
 						-- desired frequnecy reached
@@ -126,8 +127,10 @@ WHEN pll_lock_clock=> 	enable_humidity_sensor<='0';
 						END IF;
 WHEN set_up=> init_set_up<='1';
 				enable_wd<='1';
+				
+				-- led(1)<='1';
 				enable_humidity_sensor<='0';
-			ready<='0';
+--			ready<='0';
 			-- interfaces will maintain the done signals up ( if they have completed the initialization ) as soon as the init_set-up remains at 1
 			IF ( done_lcd='1' ) THEN
 			next_state<=idle;
@@ -138,13 +141,17 @@ WHEN set_up=> init_set_up<='1';
 			END IF;
 WHEN set_up_hang=> -- tear downt the initialization signal for one clock cycle
 					enable_humidity_sensor<='0';
-					ready<='0';
+					    --                    led(2)<='1';
+--					ready<='0';
 					reset_i<='1';
 					next_state<=set_up;
 WHEN idle=> enable_wd<='1';
+            start_meas<='0';display<='0';
+
+                        --led(3)<='1';
 				IF( edge_detect="01" ) THEN
 				-- rising edge  INDOOR
-				next_state<=measure_tmp;
+	next_state<=measure_tmp;
 				next_in_out_val<=in_out_sel; -- keeping constant until next idle period
 				ELSIF (edge_detect="10") THEN 
 				-- falling edge outdoor
@@ -156,44 +163,69 @@ WHEN idle=> enable_wd<='1';
 				ELSE 
 				next_state<=curr_state;
 				END IF;
-WHEN measure_tmp=>
-				start_meas<='1';
+WHEN measure_tmp=>--led(4)<='1';
+				display<='0';
 				IF(done_meas='1')THEN
 				next_state<=compute_max_min;
 				ELSE 
 				next_state<=curr_state;
 				END IF;			
-WHEN compute_max_min=>
+WHEN compute_max_min=>--led(5)<='1';
+						   start_meas<='0';
 						start_comparison<='1';
+						display<='0';
 						IF(done_comparison='1') THEN
 						next_state<=display_max_tmp;
 						ELSE
 						next_state<=curr_state;
 						END IF;
-WHEN display_max_tmp=>
+WHEN display_max_tmp=>		--display<='0';
+							start_meas<='0';
 							select_data<="01";
-							display<='1';
 							IF ( done_lcd ='1') THEN
+							next_state<=display_wait_max;
+							ELSE 
+							next_state<=curr_state;
+							END IF;
+							
+WHEN display_wait_max=>		--display<='0';
+							select_data<="01";   start_meas<='0';
+							IF ( done_lcd ='0') THEN
 							next_state<=display_min_tmp;
 							ELSE 
 							next_state<=curr_state;
 							END IF;
-WHEN display_min_tmp=>select_data<="10";
-							display<='1';
+												
+WHEN display_min_tmp=>select_data<="10";   start_meas<='0';
+--led(7)<='1';
+						--	display<='1';
 							IF ( done_lcd ='1') THEN
+							next_state<=display_wait_min;
+							ELSE 
+							next_state<=curr_state;
+							END IF;
+WHEN display_wait_min=>		--display<='0';
+							select_data<="01";   start_meas<='0';
+							IF ( done_lcd ='0') THEN
 							next_state<=display_curr_tmp;
 							ELSE 
 							next_state<=curr_state;
 							END IF;
-
-WHEN display_curr_tmp=> 
-							select_data<="11";
-							display<='1';
+WHEN display_curr_tmp=> --led(8)<='1';
+							select_data<="11";   start_meas<='0';
+					--		display<='1';
 							IF ( done_lcd ='1') THEN
-							next_state<=idle;
+							next_state<=display_wait_now;
 							ELSE 
 							next_state<=curr_state;
 							END IF;
+WHEN display_wait_now=>		--display<='0';
+							select_data<="11";   start_meas<='0';
+							IF ( done_lcd ='0') THEN
+							next_state<=idle;
+							ELSE 
+							next_state<=curr_state;
+							END IF;					
 
 -- for a safe fsm
 WHEN OTHERS=> 
@@ -206,4 +238,3 @@ END CASE;
 END PROCESS comb_logic;
 
 end Behavioral;
-
